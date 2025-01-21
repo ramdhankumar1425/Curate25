@@ -1,6 +1,9 @@
 const path = require("path");
 const { build } = require("vite");
 const fs = require("fs");
+// import Anthropic from "@anthropic-ai/sdk";
+const { Anthropic } = require("@anthropic-ai/sdk");
+const { getStructure } = require("../structure/structure");
 
 const viteConfig = {
     root: path.join(__dirname, "../demo"),
@@ -13,31 +16,28 @@ const viteConfig = {
     },
 };
 
+const anthropic = new Anthropic({
+    apiKey: process.env.CLAUDE_API_KEY,
+});
+
 const handleBuild = async (req, res) => {
     try {
-        console.log("Starting build process...");
-        await build(viteConfig);
-        console.log("Build completed...");
+        console.log("Started building...");
 
-        console.log("Merging files...");
-        mergeFiles();
-        console.log("Files merged!");
+        const { prompt } = req.body;
 
-        const indexHtml = fs.readFileSync(
-            path.join("src", "demo", "dist", "index.html"),
-            "utf-8"
-        );
+        const structure = getStructure(prompt);
 
-        const files = await getDirectoryContent(
-            path.join("src", "demo", "src")
-        );
-
-        // console.log(files);
-
-        res.json({
-            bundle: indexHtml,
-            files,
+        const response = await anthropic.messages.create({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 3000,
+            messages: [{ role: "user", content: structure }],
         });
+
+        const content = response.content[0];
+        console.log(content);
+
+        res.send("Build completed!");
     } catch (err) {
         console.error("Error during build:", err);
         res.status(500).send("Build failed!");
@@ -124,3 +124,34 @@ async function getDirectoryContent(dirPath) {
     await readDir(dirPath);
     return result;
 }
+
+// const handleBuild = async (req, res) => {
+//     try {
+//         console.log("Starting build process...");
+//         await build(viteConfig);
+//         console.log("Build completed...");
+
+//         console.log("Merging files...");
+//         mergeFiles();
+//         console.log("Files merged!");
+
+//         const indexHtml = fs.readFileSync(
+//             path.join("src", "demo", "dist", "index.html"),
+//             "utf-8"
+//         );
+
+//         const files = await getDirectoryContent(
+//             path.join("src", "demo", "src")
+//         );
+
+//         // console.log(files);
+
+//         res.json({
+//             bundle: indexHtml,
+//             files,
+//         });
+//     } catch (err) {
+//         console.error("Error during build:", err);
+//         res.status(500).send("Build failed!");
+//     }
+// };

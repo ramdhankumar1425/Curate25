@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Preview from "../components/builder/Preview";
-import EditorPanel from "../components/builder/EditorPanel";
 import Sidebar from "../components/builder/Sidebar";
-import CodeEditor from "../components/CodeEditor";
+import Preview from "../components/builder/Preview";
+import CodeEditor from "../components/builder/CodeEditor";
+import EditorPanel from "../components/builder/EditorPanel";
 
 function BuilderPage() {
     const [view, setView] = useState("code");

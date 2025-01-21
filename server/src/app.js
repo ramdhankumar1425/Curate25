@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const authGuard = require("./middlewares/authGuard");
 const { handleBuild } = require("./controllers/build.controller");
 const { handleRefine } = require("./controllers/refine.controller");
 const { handleUpdate } = require("./controllers/update.controller");
@@ -25,7 +26,7 @@ app.post("/refine", handleRefine);
 app.post("/update", handleUpdate);
 app.post("/download", handleDownload);
 
-app.get("/test", (req, res) => {
+app.get("/test", authGuard, (req, res) => {
     console.log("Request received on test route");
 
     res.send("This is a test response from server");

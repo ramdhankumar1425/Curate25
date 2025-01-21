@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+    const {
+        loginWithRedirect,
+        logout,
+        user,
+        isAuthenticated,
+        isLoading,
+        getAccessTokenSilently,
+    } = useAuth0();
     const [prompt, setPrompt] = useState("");
     const navigate = useNavigate();
 
@@ -9,12 +19,36 @@ function LandingPage() {
         setPrompt(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add logic to generate website from prompt
-        console.log("Generating website for prompt:", prompt);
-        navigate("/build");
+        if (!isAuthenticated) {
+            await loginWithRedirect();
+        }
+
+        try {
+            const token = await getAccessTokenSilently();
+            console.log("Access Token:", token);
+
+            const response = await axios.get(
+                import.meta.env.VITE_SERVER_URI + "/test",
+                {
+                    // headers: {
+                    //     Authorization: `Bearer ${token}`,
+                    // },
+                }
+            );
+
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            console.log(user);
+        }
+    }, [isAuthenticated]);
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-900 text-white">
@@ -22,6 +56,23 @@ function LandingPage() {
             <header className="bg-gray-800 py-4">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="text-xl font-semibold px-2">LogoText</div>
+                    <div className="text-xl font-semibold px-2">
+                        {isAuthenticated ? (
+                            <button
+                                onClick={logout}
+                                className="p-2 bg-blue-600 hover:bg-blue-700"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <button
+                                onClick={loginWithRedirect}
+                                className="p-2 bg-blue-600 hover:bg-blue-700"
+                            >
+                                Login
+                            </button>
+                        )}
+                    </div>
                 </div>
             </header>
 
