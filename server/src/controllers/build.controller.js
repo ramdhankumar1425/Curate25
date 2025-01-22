@@ -30,12 +30,23 @@ const handleBuild = async (req, res) => {
 
         const response = await anthropic.messages.create({
             model: "claude-3-5-sonnet-20241022",
-            max_tokens: 3000,
+            max_tokens: 5000,
             messages: [{ role: "user", content: structure }],
         });
 
-        const content = response.content[0];
-        console.log(content);
+        const content = response.content[0].text;
+
+        // store the content on ../store/responses with name as timestamp **** TEMPORARY ****
+        const timestamp = new Date().getTime();
+        const responsePath = path.join(
+            __dirname,
+            "../store/responses",
+            `${timestamp}.txt`
+        );
+        fs.writeFileSync(responsePath, content);
+
+        // parse files and directories from the response
+        parseResponse(content);
 
         res.send("Build completed!");
     } catch (err) {
@@ -123,6 +134,47 @@ async function getDirectoryContent(dirPath) {
 
     await readDir(dirPath);
     return result;
+}
+
+async function parseResponse(response) {
+    const baseDir = path.join(__dirname, "../store", Date.now().toString());
+
+    const parseNode = (content, currentPath) => {
+        const fileRegex =
+            /<file>\s*<file_name>(.*?)<\/file_name>\s*<file_path>(.*?)<\/file_path>\s*<file_content>\s*([\s\S]*?)\s*<\/file_content>\s*<\/file>/g;
+        const dirRegex =
+            /<directory>\s*<directory_name>(.*?)<\/directory_name>\s*<directory_path>(.*?)<\/directory_path>\s*<directory_content>([\s\S]*?)<\/directory_content>\s*<\/directory>/g;
+
+        let match;
+
+        // Handle files
+        while ((match = fileRegex.exec(content)) !== null) {
+            const [_, fileName, filePath, fileContent] = match;
+            const fullPath = path.join(currentPath, fileName);
+            fs.writeFileSync(fullPath, fileContent.trim(), "utf8");
+        }
+
+        // Handle directories
+        while ((match = dirRegex.exec(content)) !== null) {
+            const [_, dirName, , dirContent] = match; // Ignore <directory_path>
+            const dirFullPath = path.join(currentPath, dirName);
+            if (!fs.existsSync(dirFullPath)) {
+                fs.mkdirSync(dirFullPath, { recursive: true });
+            }
+            parseNode(dirContent, dirFullPath);
+        }
+    };
+
+    // Start parsing the response
+    const projectRegex = /<project>([\s\S]*?)<\/project>/;
+    const projectMatch = projectRegex.exec(response);
+
+    if (projectMatch) {
+        if (!fs.existsSync(baseDir)) {
+            fs.mkdirSync(baseDir, { recursive: true });
+        }
+        parseNode(projectMatch[1], baseDir);
+    }
 }
 
 // const handleBuild = async (req, res) => {

@@ -278,7 +278,7 @@ export const getStructure = (userQuery) => {
      
           <constraints>
      
-               CRITICAL: Third-party libraries cannot be installed or imported. Only two packages are available [react, react-dom].
+               CRITICAL: Third-party libraries cannot be installed or imported. Only packages available in the provided 'package.json' file can be used.
      
                IMPORTANT: The code should be properly formatted and indented.
      
@@ -310,7 +310,11 @@ export const getStructure = (userQuery) => {
 
                IMPORTANT: Always use tailwind css for styling.
 
-               ULTRA IMPORTANT: All the generated pages, components must be responsive. 
+               ULTRA IMPORTANT: All the generated pages, components must be responsive.
+
+               ULTRA IMPORTANT: Must use provided 'package.json' file only. You are not allowed to modify it except the name.
+
+
      
           </constraint>
      
@@ -426,11 +430,52 @@ export const getStructure = (userQuery) => {
                          </project>
      
                     </response>
-     
-     
-     
-     
                
                </example>
+
+          Here is the 'package.json' file content:
+
+          <file>
+               <file_name>package.json</file_name>
+               <file_path>./</file_path>
+               
+               <file_content>
+                    {
+                         "name": "demo",
+                         "private": true,
+                         "version": "1.0.0",
+                         "type": "module",
+                         "scripts": {
+                           "dev": "vite",
+                           "build": "vite build",
+                           "lint": "eslint .",
+                           "preview": "vite preview"
+                         },
+                         "dependencies": {
+                           "lucide-react": "^0.473.0",
+                           "react": "^18.3.1",
+                           "react-dom": "^18.3.1",
+                           "react-router-dom": "^7.1.3"
+                         },
+                         "devDependencies": {
+                           "@eslint/js": "^9.17.0",
+                           "@types/react": "^18.3.18",
+                           "@types/react-dom": "^18.3.5",
+                           "@vitejs/plugin-react": "^4.3.4",
+                           "autoprefixer": "^10.4.20",
+                           "eslint": "^9.17.0",
+                           "eslint-plugin-react": "^7.37.2",
+                           "eslint-plugin-react-hooks": "^5.0.0",
+                           "eslint-plugin-react-refresh": "^0.4.16",
+                           "globals": "^15.14.0",
+                           "postcss": "^8.5.1",
+                           "tailwindcss": "^3.4.17",
+                           "vite": "^6.0.5"
+                         }
+                    }
+
+               </file_content>
+
+          </file>
      `;
 };
