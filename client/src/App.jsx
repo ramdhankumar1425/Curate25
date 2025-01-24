@@ -3,6 +3,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import LandingPage from "./pages/LandingPage";
 import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import TestPage from "./pages/TestPage";
 
 function App() {
     return (
@@ -19,6 +20,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/builder" element={<BuilderPage />} />
+
+                    <Route path="/test" element={<TestPage />} />
 
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

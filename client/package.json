@@ -13,6 +13,7 @@
     "@auth0/auth0-react": "^2.2.4",
     "@monaco-editor/react": "^4.6.0",
     "@sinm/react-file-tree": "^1.1.1",
+    "@webcontainer/api": "^1.5.1-internal.6",
     "axios": "^1.7.9",
     "lucide-react": "^0.473.0",
     "monaco-editor": "^0.52.2",
