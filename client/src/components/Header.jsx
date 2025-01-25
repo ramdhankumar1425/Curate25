@@ -3,43 +3,52 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
-    const { loginWithRedirect, logout, isLoading, isAuthenticated } =
-        useAuth0();
+    const { loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
     return (
-        <header className="py-4 px-10 flex items-center justify-between">
-            <div className="w-fit flex items-center space-x-10 align-baseline">
-                <Link to="/">
-                    <img
-                        className="h-5"
-                        src="images/logo-text.png"
-                        alt="Curate logo"
-                    />
+        <header className="w-full flex justify-between items-center py-4 px-8 bg-transparent">
+            {/* Logo and Navigation Links */}
+            <div className="flex items-center space-x-6">
+                <Link to="/" className="flex items-center space-x-2">
+                    <img src="/images/logo.png" alt="Curate Logo" className="w-8 h-8" />
+                    <div className="text-2xl font-bold text-white">Curate</div>
                 </Link>
-
-                <ul className="flex items-center space-x-6 text-lg pt-1 font-inter font-[200]">
-                    <li>Product</li>
-                    <li>Resources</li>
-                    <li>Contact</li>
-                </ul>
+                <nav className="flex space-x-6 text-lg font-light">
+                    <Link to="#" className="text-white hover:text-blue-400 transition duration-300">
+                        Product
+                    </Link>
+                    <Link to="#" className="text-white hover:text-blue-400 transition duration-300">
+                        Resources
+                    </Link>
+                    <Link to="#" className="text-white hover:text-blue-400 transition duration-300">
+                        Contact
+                    </Link>
+                </nav>
             </div>
+
+            {/* Authentication Buttons */}
             {isLoading ? (
-                <p>Loading...</p>
+                <p className="text-white">Loading...</p>
             ) : isAuthenticated ? (
-                <button onClick={logout}>Logout</button>
+                <button
+                    className="bg-blue-600 text-white rounded-lg px-4 py-1 hover:bg-blue-400 transition duration-300"
+                    onClick={() => logout()}
+                >
+                    Logout
+                </button>
             ) : (
-                <div className="flex items-center space-x-6 tracking-tight">
+                <div className="flex space-x-4">
                     <button
-                        className="px-5 py-1.5 rounded-md border border-[#467DBE] bg-[#125ABC]"
+                        className="bg-blue-600 text-white rounded-lg px-4 py-1 hover:bg-blue-400 transition duration-300"
                         onClick={loginWithRedirect}
                     >
-                        Sign in
+                        Sign Up
                     </button>
                     <button
-                        className="px-5 py-1.5 rounded-md border border-[#949494] bg-white bg-opacity-[12%]"
+                        className="text-white border border-white rounded-lg px-4 py-1 hover:bg-white hover:text-black transition duration-300"
                         onClick={loginWithRedirect}
                     >
-                        Login
+                        Log In
                     </button>
                 </div>
             )}
