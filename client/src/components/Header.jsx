@@ -33,7 +33,7 @@ function Header() {
                         className="px-5 py-1.5 rounded-md border border-[#467DBE] bg-[#125ABC]"
                         onClick={loginWithRedirect}
                     >
-                        Sign in
+                        Sign up
                     </button>
                     <button
                         className="px-5 py-1.5 rounded-md border border-[#949494] bg-white bg-opacity-[12%]"

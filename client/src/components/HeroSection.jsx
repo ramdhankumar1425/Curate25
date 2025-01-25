@@ -58,7 +58,7 @@ function HeroSection() {
                     onChange={(e) => setPrompt(e.target.value)}
                     value={prompt}
                     onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-                    className="w-full rounded-md p-6 bg-inherit border border-opacity-5 resize-none"
+                    className="w-full rounded-md p-6 bg-inherit border drop-shadow-lg"
                     rows={7}
                     placeholder="Tell us about your website..."
                 />

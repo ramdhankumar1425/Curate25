@@ -310,7 +310,9 @@ export const getStructure = (userQuery) => {
 
                ULRTA IMPORTANT: You must wrap the project json inside <project> tag.
 
-               CRITICAL: Always use single backticks for content of the file.
+               CRITICAL: If you are using a single quotation (eg. I've, we're, I'll etc.) in your response, you must use escape character before the single quotation. For example, I\'ve, we\'re, I\'ll etc.
+
+               IMPORTANT: Use placeholder images from ['https://www.pexels.com/','https://unsplash.com/', 'https://pixabay.com/'] for images in the project.
 
           </constraints>
      
