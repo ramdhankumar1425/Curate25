@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TestPage from "./pages/TestPage";
+import PromptPage from "./pages/PromptPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             >
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
+                    <Route path="/prompt" element={<PromptPage />} />
                     <Route path="/builder" element={<BuilderPage />} />
 
                     <Route path="/test" element={<TestPage />} />

@@ -1,13 +1,14 @@
 const handleDownload = async (req, res) => {
-    console.log("Request received on download route");
+    try {
+        const { project } = req.body;
 
-    const { data } = req.body;
-
-    const csv = new ObjectsToCsv(data);
-
-    await csv.toDisk("./data.csv");
-
-    res.download("./data.csv", "data.csv");
+        if (!project) {
+            return res.status(400).json({ message: "Project is required" });
+        }
+    } catch (error) {
+        console.error("Error in download controller: ", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 };
 
 module.exports = { handleDownload };

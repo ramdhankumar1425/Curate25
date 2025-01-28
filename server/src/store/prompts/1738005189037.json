@@ -1,0 +1,4 @@
+{
+  "prompt": "a webpage with listed vegetbles and fruits with diffeerent prices and add to cart button.",
+  "refinedPrompt": "Create a responsive webpage that displays a list of vegetables and fruits with their respective prices. Each item should have an \"Add to Cart\" button. The webpage should have a clean and appealing design, with a header containing the website name and a navigation menu. Implement a shopping cart functionality that allows users to add items to their cart, view the cart contents, and proceed to checkout. Ensure the website is mobile-friendly and follows web accessibility guidelines."
+}

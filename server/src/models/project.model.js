@@ -14,6 +14,11 @@ const projectSchema = new mongoose.Schema(
                 type: Object,
             },
         ],
+        chats: [
+            {
+                type: String,
+            },
+        ],
     },
     { timestamps: true }
 );

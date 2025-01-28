@@ -45,7 +45,11 @@ function HeroSection() {
 
     return (
         <section className="w-full flex-1 flex flex-col items-center pt-20">
-            <img className="w-12" src="images/logo.png" alt="Logo" />
+            <img
+                className="w-12 aspect-square"
+                src="images/logo.png"
+                alt="Logo"
+            />
 
             <div className="flex flex-col items-center space-y-10 mt-10">
                 <h1 className="text-6xl font-bold text-center">
@@ -68,18 +72,22 @@ function HeroSection() {
                             handleSubmit(e);
                         }
                     }}
-                    className="w-full rounded-lg p-6 bg-inherit border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-lg font-semibold placeholder-gray-400 text-white resize-none transition-all duration-300"
+                    className="w-full rounded-lg p-6 bg-inherit border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder-gray-400 text-white resize-none transition-all duration-300"
                     rows={7}
                     placeholder="Tell us about your website..."
                 />
 
                 <button
-                    className="absolute bottom-3 right-3 rounded-full p-3 bg-[#EDEEF0] text-[#1E1E1E] font-bold cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
+                    className="absolute bottom-3 right-3 rounded-full p-1 bg-[#EDEEF0] hover:bg-gray-400 text-[#1E1E1E] font-bold cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
                     title="Submit"
                     onClick={handleSubmit}
                 >
-                    <ArrowUp className="scale-100" />
+                    <ArrowUp className="scale-75" />
                 </button>
+
+                <span className="absolute left-2 bottom-2 text-xs text-gray-400">
+                    {250 - prompt.length}/250 left
+                </span>
             </div>
         </section>
     );

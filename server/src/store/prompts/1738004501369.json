@@ -1,0 +1,4 @@
+{
+  "prompt": "a webpage with listed vegetbles and fruits with diffeerent prices and add to cart button  A cart button on top to see added product. ",
+  "refinedPrompt": "Create an e-commerce website that sells vegetables and fruits. The main page should display a list of available products with their respective prices. Each product should have an \"Add to Cart\" button. Implement a shopping cart feature with a cart icon at the top of the page, allowing users to view the products they have added. The cart page should display the selected items, quantities, and total price, with options to modify quantities or remove items."
+}

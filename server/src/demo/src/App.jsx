@@ -1,34 +1,25 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Courses from "./pages/Courses";
-// import About from './pages/About'
-// import Testimonials from "./pages/Testimonials";
-// import Register from "./pages/Register";
-// import Contact from "./pages/Contact";
-// import Blog from "./pages/Blog";
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
 
 const App = () => {
-    return (
-        <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-grow">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/courses" element={<Courses />} />
-                    {/* <Route path="/about" element={<About />} /> */}
-                    {/* <Route path="/testimonials" element={<Testimonials />} /> */}
-                    {/* <Route path="/register" element={<Register />} /> */}
-                    {/* <Route path="/contact" element={<Contact />} /> */}
-                    {/* <Route path="/blog" element={
-                    <Blog />} /> */}
-                </Routes>
-            </main>
-            <Footer />
-        </div>
-    );
-};
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
+    </div>
+  )
+}
 
-export default App;
+export default App

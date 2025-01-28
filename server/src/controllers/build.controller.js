@@ -1,17 +1,29 @@
 const fs = require("fs");
 const path = require("path");
-const { Anthropic } = require("@anthropic-ai/sdk");
-const { build } = require("vite");
-const { getStructure } = require("../structure/structure");
-
-const anthropic = new Anthropic({
-    apiKey: process.env.CLAUDE_API_KEY,
-});
+const {
+    MIN_PROMPT_LENGTH,
+    MAX_PROMPT_LENGTH,
+    MAX_TOKENS_ALLOWED,
+} = require("../constants/constants");
+const { getBuildPrompt, getRefinePrompt } = require("../prompts/prompts");
+const { User } = require("../models/user.model");
+const { Project } = require("../models/project.model");
+const anthropic = require("../utils/anthropic.util");
 
 // main function to handle build request
 const handleBuild = async (req, res) => {
+    const buildStart = performance.now();
+
     try {
         console.log("Started building...");
+
+        // user received from attachUser middleware
+        const user = req.user;
+
+        if (!user) {
+            console.error("User not found in request.");
+            return res.status(500).json({ message: "Build failed" });
+        }
 
         const { prompt } = req.body;
 
@@ -20,15 +32,17 @@ const handleBuild = async (req, res) => {
             prompt
         );
 
-        const structure = getStructure(refinedPrompt);
+        const structure = getBuildPrompt(refinedPrompt, projectName);
 
         const response = await anthropic.messages.create({
             model: "claude-3-5-sonnet-20241022",
-            max_tokens: 5000,
+            max_tokens: MAX_TOKENS_ALLOWED,
             messages: [{ role: "user", content: structure }],
         });
 
         const content = response.content[0].text;
+
+        console.log("Response:", content);
 
         const match = content.match(/<project>([\s\S]*?)<\/project>/);
 
@@ -37,11 +51,16 @@ const handleBuild = async (req, res) => {
             return res.status(500).json({ message: "Build failed" });
         }
 
-        // console.log("Project content:", match[1].trim());
+        console.log("Project content:", match[1]);
+
+        fs.writeFileSync(
+            path.join(__dirname, "../store", "temp", `${Date.now()}`),
+            match[1]
+        );
 
         // const project = JSON.parse(match[1].trim());
         const project = new Function(`return ${match[1].trim()}`)();
-        console.log("Project:", project);
+        console.log("Project after parsing:", project);
 
         fs.writeFileSync(
             path.join(__dirname, "../store", "responses", `${Date.now()}.json`),
@@ -54,11 +73,44 @@ const handleBuild = async (req, res) => {
         );
 
         console.log("Building completed!");
-        res.send("Build completed!");
+
+        // store project in database, associate with user if user exists else create new user in database
+        let storedUser = await User.findOne({ email: user.email });
+
+        if (!storedUser) {
+            storedUser = new User({
+                email: user.email,
+            });
+
+            await storedUser.save();
+        }
+
+        const newProject = new Project({
+            name: projectName,
+            user: storedUser._id,
+            history: [project],
+            chats: [prompt],
+        });
+
+        await newProject.save();
+
+        storedUser.projects.push(newProject._id);
+
+        await storedUser.save();
+
+        res.status(200).json({
+            message: "Build successful!",
+            project,
+            projectId: newProject._id,
+        });
     } catch (err) {
         console.error("Error during build:", err);
-        res.status(500).send("Build failed!");
+        res.status(500).json({ message: "Build failed" });
     }
+
+    const buildEnd = performance.now();
+
+    console.log("Build time:", buildEnd - buildStart, "ms");
 };
 
 module.exports = { handleBuild };
@@ -66,8 +118,15 @@ module.exports = { handleBuild };
 // helper functions
 const checkPromptAndRefine = async (prompt) => {
     try {
+        //check type
+        if (typeof prompt !== "string") {
+            console.log("Prompt should be a string.");
+
+            throw new Error("Prompt should be a string.");
+        }
+
         // check if prompt contains any invalid characters
-        const invalidChars = prompt.match(/[^a-zA-Z0-9\s.,?!]/g);
+        const invalidChars = prompt.match(/[^a-zA-Z0-9\s.,?!;:()'"@#$%&*+-]/g);
 
         if (invalidChars && invalidChars.length > 0) {
             console.log("Invalid characters found in the prompt.");
@@ -76,43 +135,33 @@ const checkPromptAndRefine = async (prompt) => {
         }
 
         // length check
-        if (prompt.length < 10 || prompt.length > 250) {
+        if (
+            prompt.length < MIN_PROMPT_LENGTH ||
+            prompt.length > MAX_PROMPT_LENGTH
+        ) {
             console.log(
-                "Prompt length should be between 10 and 250 characters."
+                `Prompt length should be between ${MIN_PROMPT_LENGTH} and ${MAX_PROMPT_LENGTH} characters.`
             );
 
             throw new Error(
-                "Prompt length should be between 10 and 250 characters."
+                `Prompt length should be between ${MIN_PROMPT_LENGTH} and ${MAX_PROMPT_LENGTH} characters.`
             );
         }
 
-        //check type
-        if (typeof prompt !== "string") {
-            console.log("Prompt should be a string.");
-
-            throw new Error("Prompt should be a string.");
-        }
-
         // refine prompt
-        const modifiedPrompt = `User wants to create a website and provided the following prompt, now you have to refine it, add more details to it.
-            CRITICAL: You must write the refined prompt only. No explanation or any other text should be added.
-            ULTRA IMPORTANT: Check if the user's input inside <prompt> </prompt> is a valid input and is reated to building to a website ,if not return false  inside <validity>  </validity> and true otherwise .
-            ULTRA IMPORTANT: If the user's prompt is valid , return a valid project name from the prompt inside <project_name> </project_name>.
-            ULTRA IMPORTANT: Return the refined prompt inside <refined_prompt> </refined_prompt>. Make sure you follow the mentioned format and in the same order and don't add anything else .
-
-            <prompt> ${prompt} </prompt>
-         `;
+        const modifiedPrompt = getRefinePrompt(prompt);
 
         let response = await anthropic.messages.create({
             model: "claude-3-opus-20240229",
-            max_tokens: 3000,
+            max_tokens: MAX_TOKENS_ALLOWED,
             messages: [{ role: "user", content: modifiedPrompt }],
         });
 
         response = response.content[0].text;
 
+        // check prompt validity
         const validityMatch = response.match(
-            /<validity>(true|false)<\/validity>/
+            /<valid_prompt>(true|false)<\/valid_prompt>/
         );
 
         if (!validityMatch || validityMatch[1] !== "true") {
@@ -121,13 +170,14 @@ const checkPromptAndRefine = async (prompt) => {
             throw new Error("Invalid prompt provided.");
         }
 
+        // extract project name and refined prompt
         const projectNameMatch = response.match(
             /<project_name>([\s\S]*?)<\/project_name>/
         );
 
         const projectName = projectNameMatch
             ? projectNameMatch[1].trim()
-            : "default_project";
+            : "default project";
 
         const refinedPromptMatch = response.match(
             /<refined_prompt>([\s\S]*?)<\/refined_prompt>/
@@ -135,7 +185,7 @@ const checkPromptAndRefine = async (prompt) => {
 
         const refinedPrompt = refinedPromptMatch?.[1].trim();
 
-        // *** TEMP
+        // *** TEMP ***
         fs.writeFileSync(
             path.join(__dirname, "../store", "prompts", `${Date.now()}.json`),
             JSON.stringify({ prompt, refinedPrompt }, null, 2)
@@ -171,112 +221,3 @@ const createStructure = (root, currentPath = ".") => {
         }
     }
 };
-
-// function to build using vite
-const buildWithVite = async (rootPath) => {
-    try {
-        const viteConfig = {
-            root: path.join(__dirname, rootPath),
-            build: {
-                outDir: path.join(
-                    __dirname,
-                    "../store",
-                    "builds",
-                    Date.now().toString()
-                ),
-                rollupOptions: {
-                    input: path.resolve(__dirname, "src/demo/index.html"),
-                },
-            },
-        };
-        console.log("Starting build process...");
-        await build(viteConfig);
-        console.log("Build completed...");
-    } catch (err) {
-        console.error("Error during build:", err);
-        throw new Error(err.message);
-    }
-};
-
-const mergeFiles = () => {
-    const distDir = path.join(__dirname, "../demo/dist");
-    const assetsDir = path.join(distDir, "assets");
-
-    // Read all files from the assets folder
-    const filesInAssets = fs.readdirSync(assetsDir);
-
-    // Initialize variables to store the content of script and style files
-    let scriptContent = "";
-    let styleContent = "";
-
-    // Iterate over the files in the assets directory
-    filesInAssets.forEach((file) => {
-        const filePath = path.join(assetsDir, file);
-        const fileExt = path.extname(file);
-
-        // If the file is a JavaScript file, read its content
-        if (fileExt === ".js") {
-            const script = fs.readFileSync(filePath, "utf-8");
-            scriptContent += `<script>\n${script}\n</script>\n`;
-        }
-
-        // If the file is a CSS file, read its content
-        if (fileExt === ".css") {
-            const style = fs.readFileSync(filePath, "utf-8");
-            styleContent += `<style>\n${style}\n</style>\n`;
-        }
-    });
-
-    // The index.html template where script and style will be inserted
-    const indexHtml = `<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + React</title>
-        ${styleContent}
-    </head>
-    <body>
-        <div id="root"></div>
-        ${scriptContent}
-
-        <script src="https://unpkg.com/react@latest/umd/react.production.min.js"></script>
-        <script src="https://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
-    </body>
-</html>`;
-
-    // Write the merged content to the final index.html file
-    fs.writeFileSync(path.join(distDir, "index.html"), indexHtml);
-    console.log("Merged index.html generated!");
-};
-
-// const handleBuild = async (req, res) => {
-//     try {
-//         console.log("Starting build process...");
-//         await build(viteConfig);
-//         console.log("Build completed...");
-
-//         console.log("Merging files...");
-//         mergeFiles();
-//         console.log("Files merged!");
-
-//         const indexHtml = fs.readFileSync(
-//             path.join("src", "demo", "dist", "index.html"),
-//             "utf-8"
-//         );
-
-//         const files = await getDirectoryContent(
-//             path.join("src", "demo", "src")
-//         );
-
-//         // console.log(files);
-
-//         res.json({
-//             bundle: indexHtml,
-//             files,
-//         });
-//     } catch (err) {
-//         console.error("Error during build:", err);
-//         res.status(500).send("Build failed!");
-//     }
-// };
