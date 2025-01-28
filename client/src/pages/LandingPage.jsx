@@ -110,7 +110,7 @@ function LandingPage() {
             </div>
 
             {/* Features */}
-            {/* <div className="w-full py-16">
+            <div className="w-full py-16">
                 <h2 className="text-3xl font-bold text-center text-white mb-8">
                     Key Features
                 </h2>
@@ -158,7 +158,7 @@ function LandingPage() {
                         </p>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
             {/* Footer */}
             <Footer />

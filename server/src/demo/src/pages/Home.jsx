@@ -1,23 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 const Home = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-          Hi, I'm Ramdhan Kumar
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          Full Stack Developer specializing in MERN Stack
-        </p>
-        <img 
-          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" 
-          alt="Developer"
-          className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
-        />
+    <div>
+      <div className="relative h-[500px]">
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d" alt="Music Banner" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <h1 className="text-5xl text-white font-bold">Welcome to Rockinox</h1>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold mb-8 text-center">Your Ultimate Music Destination</h2>
+        <p className="text-lg text-center max-w-3xl mx-auto">Discover the finest collection of musical instruments and equipment at Rockinox.</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
