@@ -56,11 +56,6 @@ const handleBuild = async (req, res) => {
         console.log("Project content:", match[1]);
         const projectId = Date.now().toString();
 
-        fs.writeFileSync(
-            path.join(__dirname, "../store", "temp", `${projectId}.json`),
-            match[1]
-        );
-
         // const project = JSON.parse(match[1].trim());
         const project = new Function(`return ${match[1].trim()}`)();
         console.log("Project after parsing:", project);
