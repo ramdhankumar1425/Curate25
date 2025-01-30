@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a simple alert button, when clicked it should show us alert",
+  "refinedPrompt": "Create a webpage with a button element styled using CSS. Use JavaScript to add an event listener to the button so that when it is clicked, it displays an alert box with a custom message. The alert message should be informative and relevant to the context of the webpage. Ensure the button is visually appealing and strategically placed on the page for optimal user experience."
+}

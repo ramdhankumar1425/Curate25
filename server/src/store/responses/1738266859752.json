@@ -1,0 +1,69 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { BrowserRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <BrowserRouter>\n    <App />\n  </BrowserRouter>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport About from './pages/About';\n\nconst App = () => {\n  return (\n    <div className=\"min-h-screen flex flex-col\">\n      <Navbar />\n      <main className=\"flex-grow\">\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/about\" element={<About />} />\n        </Routes>\n      </main>\n      <Footer />\n    </div>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav className=\"bg-gray-800 text-white p-4\">\n      <div className=\"container mx-auto flex justify-between items-center\">\n        <Link to=\"/\" className=\"text-xl font-bold\">John Doe</Link>\n        <div className=\"space-x-4\">\n          <Link to=\"/\" className=\"hover:text-gray-300\">Home</Link>\n          <Link to=\"/about\" className=\"hover:text-gray-300\">About</Link>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer className=\"bg-gray-800 text-white p-4 mt-8\">\n      <div className=\"container mx-auto text-center\">\n        <p>&copy; 2024 John Doe. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            },
+            {
+              "type": "file",
+              "name": "ProjectCard.jsx",
+              "content": "import React from 'react';\n\nconst ProjectCard = ({ title, description, image, link }) => {\n  return (\n    <div className=\"bg-white rounded-lg shadow-md overflow-hidden\">\n      <img src={image} alt={title} className=\"w-full h-48 object-cover\"/>\n      <div className=\"p-4\">\n        <h3 className=\"text-xl font-bold mb-2\">{title}</h3>\n        <p className=\"text-gray-600 mb-4\">{description}</p>\n        <a href={link} className=\"text-blue-600 hover:underline\">View Project →</a>\n      </div>\n    </div>\n  );\n};\n\nexport default ProjectCard;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport ProjectCard from '../components/ProjectCard';\n\nconst Home = () => {\n  const projects = [\n    {\n      title: \"E-commerce Platform\",\n      description: \"A full-stack e-commerce solution with React and Node.js\",\n      image: \"https://images.unsplash.com/photo-1661956602116-aa6865609028\",\n      link: \"#\"\n    },\n    {\n      title: \"Portfolio Website\",\n      description: \"A responsive portfolio website using React and Tailwind\",\n      image: \"https://images.unsplash.com/photo-1559028012-481c04fa702d\",\n      link: \"#\"\n    }\n  ];\n\n  return (\n    <div className=\"container mx-auto px-4 py-8\">\n      <section className=\"text-center mb-16\">\n        <h1 className=\"text-4xl font-bold mb-4\">Hi, I'm John Doe</h1>\n        <p className=\"text-xl text-gray-600 mb-8\">Full Stack Web Developer</p>\n        <a href=\"/about\" className=\"bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700\">Get in Touch</a>\n      </section>\n\n      <section>\n        <h2 className=\"text-3xl font-bold mb-8 text-center\">Featured Projects</h2>\n        <div className=\"grid md:grid-cols-2 gap-8\">\n          {projects.map((project, index) => (\n            <ProjectCard key={index} {...project} />\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "About.jsx",
+              "content": "import React from 'react';\n\nconst About = () => {\n  return (\n    <div className=\"container mx-auto px-4 py-8\">\n      <section className=\"mb-16\">\n        <h2 className=\"text-3xl font-bold mb-8\">About Me</h2>\n        <div className=\"md:flex gap-8\">\n          <img src=\"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d\" alt=\"Profile\" className=\"w-64 h-64 rounded-full object-cover mb-8 md:mb-0\" />\n          <div>\n            <p className=\"text-gray-600 mb-4\">\n              I'm a passionate web developer with 5 years of experience in creating modern web applications. I specialize in React, Node.js, and modern web technologies.\n            </p>\n            <p className=\"text-gray-600\">\n              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge through technical blog posts.\n            </p>\n          </div>\n        </div>\n      </section>\n\n      <section className=\"mb-16\">\n        <h2 className=\"text-3xl font-bold mb-8\">Skills</h2>\n        <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4\">\n          {['React', 'Node.js', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'MongoDB'].map((skill, index) => (\n            <div key={index} className=\"bg-gray-100 p-3 rounded text-center\">{skill}</div>\n          ))}\n        </div>\n      </section>\n\n      <section className=\"mb-16\">\n        <h2 className=\"text-3xl font-bold mb-8\">Contact Me</h2>\n        <form className=\"max-w-lg mx-auto\">\n          <div className=\"mb-4\">\n            <input type=\"text\" placeholder=\"Name\" className=\"w-full p-2 border rounded\" />\n          </div>\n          <div className=\"mb-4\">\n            <input type=\"email\" placeholder=\"Email\" className=\"w-full p-2 border rounded\" />\n          </div>\n          <div className=\"mb-4\">\n            <textarea placeholder=\"Message\" rows=\"4\" className=\"w-full p-2 border rounded\"></textarea>\n          </div>\n          <button type=\"submit\" className=\"bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700\">Send Message</button>\n        </form>\n      </section>\n    </div>\n  );\n};\n\nexport default About;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Web Developer Portfolio</title>\n</head>\n<body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

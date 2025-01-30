@@ -1,0 +1,69 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { BrowserRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <BrowserRouter>\n    <App />\n  </BrowserRouter>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Header from './components/Header';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Products from './pages/Products';\nimport Checkout from './pages/Checkout';\n\nconst App = () => {\n  return (\n    <div className=\"min-h-screen flex flex-col\">\n      <Header />\n      <main className=\"flex-grow\">\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/products\" element={<Products />} />\n          <Route path=\"/checkout\" element={<Checkout />} />\n        </Routes>\n      </main>\n      <Footer />\n    </div>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Header.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Header = () => {\n  return (\n    <header className=\"bg-gray-800 text-white p-4\">\n      <div className=\"container mx-auto flex flex-col md:flex-row items-center justify-between\">\n        <Link to=\"/\" className=\"text-2xl font-bold mb-4 md:mb-0\">Camera Store</Link>\n        <nav className=\"flex flex-col md:flex-row items-center gap-4\">\n          <Link to=\"/\" className=\"hover:text-gray-300\">Home</Link>\n          <Link to=\"/products\" className=\"hover:text-gray-300\">Products</Link>\n          <Link to=\"/checkout\" className=\"hover:text-gray-300\">Checkout</Link>\n          <div className=\"relative\">\n            <input type=\"text\" placeholder=\"Search...\" className=\"px-4 py-2 rounded-full text-black\" />\n          </div>\n        </nav>\n      </div>\n    </header>\n  );\n};\n\nexport default Header;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Footer = () => {\n  return (\n    <footer className=\"bg-gray-800 text-white p-8\">\n      <div className=\"container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8\">\n        <div>\n          <h3 className=\"text-xl font-bold mb-4\">Quick Links</h3>\n          <div className=\"flex flex-col gap-2\">\n            <Link to=\"/\" className=\"hover:text-gray-300\">Home</Link>\n            <Link to=\"/products\" className=\"hover:text-gray-300\">Products</Link>\n            <Link to=\"/checkout\" className=\"hover:text-gray-300\">Checkout</Link>\n          </div>\n        </div>\n        <div>\n          <h3 className=\"text-xl font-bold mb-4\">Contact Us</h3>\n          <p>123 Camera Street</p>\n          <p>Photo City, PC 12345</p>\n          <p>Email: info@camerastore.com</p>\n          <p>Phone: (123) 456-7890</p>\n        </div>\n        <div>\n          <h3 className=\"text-xl font-bold mb-4\">Follow Us</h3>\n          <div className=\"flex gap-4\">\n            <a href=\"#\" className=\"hover:text-gray-300\">Facebook</a>\n            <a href=\"#\" className=\"hover:text-gray-300\">Twitter</a>\n            <a href=\"#\" className=\"hover:text-gray-300\">Instagram</a>\n          </div>\n        </div>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div className=\"container mx-auto px-4 py-8\">\n      <h1 className=\"text-4xl font-bold mb-8\">Welcome to Camera Store</h1>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        <div>\n          <img src=\"https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg\" alt=\"Camera\" className=\"rounded-lg shadow-lg\" />\n        </div>\n        <div>\n          <h2 className=\"text-2xl font-bold mb-4\">Discover Our Collection</h2>\n          <p className=\"text-gray-600 mb-4\">\n            Explore our wide range of professional cameras and accessories.\n            Find the perfect equipment for your photography needs.\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Products.jsx",
+              "content": "import React from 'react';\n\nconst Products = () => {\n  const products = [\n    {\n      id: 1,\n      name: 'Professional DSLR',\n      price: 999.99,\n      image: 'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg'\n    },\n    {\n      id: 2,\n      name: 'Mirrorless Camera',\n      price: 799.99,\n      image: 'https://images.pexels.com/photos/243757/pexels-photo-243757.jpeg'\n    }\n  ];\n\n  return (\n    <div className=\"container mx-auto px-4 py-8\">\n      <h1 className=\"text-3xl font-bold mb-8\">Our Products</h1>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\">\n        {products.map(product => (\n          <div key={product.id} className=\"border rounded-lg p-4 shadow-lg\">\n            <img src={product.image} alt={product.name} className=\"w-full h-48 object-cover rounded-lg mb-4\" />\n            <h2 className=\"text-xl font-bold\">{product.name}</h2>\n            <p className=\"text-gray-600\">${product.price}</p>\n            <button className=\"bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600\">\n              Add to Cart\n            </button>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Products;"
+            },
+            {
+              "type": "file",
+              "name": "Checkout.jsx",
+              "content": "import React from 'react';\n\nconst Checkout = () => {\n  return (\n    <div className=\"container mx-auto px-4 py-8\">\n      <h1 className=\"text-3xl font-bold mb-8\">Checkout</h1>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        <div className=\"border rounded-lg p-6\">\n          <h2 className=\"text-xl font-bold mb-4\">Shipping Information</h2>\n          <form className=\"space-y-4\">\n            <input type=\"text\" placeholder=\"Full Name\" className=\"w-full p-2 border rounded\" />\n            <input type=\"email\" placeholder=\"Email\" className=\"w-full p-2 border rounded\" />\n            <input type=\"text\" placeholder=\"Address\" className=\"w-full p-2 border rounded\" />\n            <button className=\"bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600\">\n              Place Order\n            </button>\n          </form>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Checkout;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Camera Store</title>\n</head>\n<body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

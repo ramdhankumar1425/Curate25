@@ -9,6 +9,8 @@ const { getBuildPrompt, getRefinePrompt } = require("../prompts/prompts");
 const { User } = require("../models/user.model");
 const { Project } = require("../models/project.model");
 const anthropic = require("../utils/anthropic.util");
+const { createFiles } = require("../utils/createFiles.util");
+const { buildWithVite } = require("../utils/build.util");
 
 // main function to handle build request
 const handleBuild = async (req, res) => {
@@ -52,9 +54,10 @@ const handleBuild = async (req, res) => {
         }
 
         console.log("Project content:", match[1]);
+        const projectId = Date.now().toString();
 
         fs.writeFileSync(
-            path.join(__dirname, "../store", "temp", `${Date.now()}`),
+            path.join(__dirname, "../store", "temp", `${projectId}.json`),
             match[1]
         );
 
@@ -63,16 +66,20 @@ const handleBuild = async (req, res) => {
         console.log("Project after parsing:", project);
 
         fs.writeFileSync(
-            path.join(__dirname, "../store", "responses", `${Date.now()}.json`),
+            path.join(__dirname, "../store", "responses", `${projectId}.json`),
             JSON.stringify(project, null, 2)
         );
 
-        createStructure(
+        createFiles(
             project,
-            path.join(__dirname, "../store", "projects", Date.now().toString())
+            path.join(__dirname, "../store", "projects", projectId)
         );
 
-        console.log("Building completed!");
+        console.log("Building completed!...");
+
+        console.log("Bundling Started...");
+        await buildWithVite(projectId);
+        console.log("Bundling Completed...");
 
         // store project in database, associate with user if user exists else create new user in database
         let storedUser = await User.findOne({ email: user.email });
@@ -98,11 +105,17 @@ const handleBuild = async (req, res) => {
 
         await storedUser.save();
 
-        res.status(200).json({
-            message: "Build successful!",
-            project,
-            projectId: newProject._id,
-        });
+        const buildFilePath = path.join(
+            __dirname,
+            "../store/builds",
+            projectId,
+            "build.html"
+        );
+
+        const buildFile = fs.readFileSync(buildFilePath, "utf-8");
+
+        res.status(200).send(buildFile);
+        // res.send("Done");
     } catch (err) {
         console.error("Error during build:", err);
         res.status(500).json({ message: "Build failed" });
@@ -153,7 +166,7 @@ const checkPromptAndRefine = async (prompt) => {
 
         let response = await anthropic.messages.create({
             model: "claude-3-opus-20240229",
-            max_tokens: MAX_TOKENS_ALLOWED,
+            max_tokens: 4000,
             messages: [{ role: "user", content: modifiedPrompt }],
         });
 
@@ -195,29 +208,5 @@ const checkPromptAndRefine = async (prompt) => {
     } catch (error) {
         console.log("Error refining prompt:", error.message);
         throw new Error(error.message);
-    }
-};
-
-// Function to create directories and files recursively
-const createStructure = (root, currentPath = ".") => {
-    if (root.type === "directory") {
-        const dirPath = path.join(currentPath, root.name);
-
-        // Ensure directory exists
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, { recursive: true });
-        }
-
-        // Recurse into children
-        if (root.children && root.children.length > 0) {
-            root.children.forEach((child) => createStructure(child, dirPath));
-        }
-    } else if (root.type === "file") {
-        const filePath = path.join(currentPath, root.name);
-
-        // Create file only if it doesn't already exist
-        if (!fs.existsSync(filePath)) {
-            fs.writeFileSync(filePath, root.content || "", "utf8");
-        }
     }
 };

@@ -2,6 +2,7 @@ const {
     MAX_REFINED_PROMPT_LENGTH,
     AVAILABLE_PACKAGES,
     AVAILABLE_IMAGE_SOURCES,
+    MAX_TOKENS_ALLOWED,
 } = require("../constants/constants");
 
 const getBuildPrompt = (refined_prompt, project_name) => {
@@ -19,6 +20,10 @@ const getBuildPrompt = (refined_prompt, project_name) => {
      
           <constraints>
                CRITICAL: Do NOT be verbose and DO NOT explain anything. Stick to the provided prompt and constraints only.
+
+               CRITICAL: Response should not exceed ${MAX_TOKENS_ALLOWED} characters in length.
+
+               CRITICAL: Project must start from 'root' directory and contain 'src' directory inside it.
 
                ULTRA IMPORTANT: Think first and reply with the project that contains all necessary files, directory to run. It is SUPER IMPORTANT to respond with this first.
 
@@ -49,6 +54,8 @@ const getBuildPrompt = (refined_prompt, project_name) => {
                ULTRA IMPORTANT: All the generated pages, components must be responsive.
 
                ULTRA IMPORTANT: Always provide a user friendly explanation for created website with response inside <explanation>...</explanation> tags.
+
+               CRITICAL: You must use 'HashRouter' instead of 'BrowserRouter' for routing.
 
                IMPORTANT: Use valid markdown only for all your responses.
      
@@ -113,6 +120,11 @@ const getBuildPrompt = (refined_prompt, project_name) => {
                                                   ]
                                              }
                                         ]
+                                   },
+                                   {
+                                        "type":"file",
+                                        "name":"index.html",
+                                        "content":\`<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>React App</title>\n</head>\n<body>\n    <div id="root"></div>\n    <script type="module" src="/src/main.jsx"></script>\n</body>\n</html>\`
                                    }
                                    ]
                               }  
@@ -185,6 +197,10 @@ const getProjectRefinePrompt = (currProject, prompt) => {
           Here are the constraints you must follow:
                <constraints>
                     CRITICAL: Do NOT be verbose and DO NOT explain anything. Stick to the provided prompt and constraints only.
+
+                    CRITICAL: Response should not exceed ${MAX_TOKENS_ALLOWED} characters in length.
+
+                    CRITICAL: Project must start from 'root' directory and contain 'src' directory inside it.
 
                     ULTRA IMPORTANT: Think first and reply with the project that contains all necessary files, directory to run. It is SUPER IMPORTANT to respond with this first.
 

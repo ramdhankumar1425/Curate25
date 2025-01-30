@@ -1,75 +1,56 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useProject } from "../../context/ProjectProvider";
 
 function Preview() {
+    const { project, isEditing } = useProject();
+    const [url, setUrl] = useState("");
     const iframeRef = useRef(null);
 
     useEffect(() => {
-        fetch("http://localhost:5000/build-web", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then(({ bundle, files }) => {
-                // Set the content of the iframe
-                if (iframeRef.current) {
-                    iframeRef.current.srcdoc = bundle;
-                    console.log("Files:", files);
+        if (!project.current) return;
+        console.log("Running useEffect");
 
-                    iframeRef.current.onload = () => {
-                        const allNodes =
-                            iframeRef.current.contentWindow.document.querySelectorAll(
-                                "*"
-                            );
+        const iframe = iframeRef.current;
 
-                        allNodes.forEach((node) => {
-                            node.onmouseover = (e) => {
-                                // add a outline to node
-                                e.target.style.outline = "1px solid red";
-                            };
-                            node.onmouseleave = (e) => {
-                                e.target.style.outline = "";
-                            };
-                            node.addEventListener("click", (e) => {});
-                        });
+        if (!iframe) return;
+
+        const blob = new Blob([project.current], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+
+        setUrl(url);
+
+        if (isEditing) {
+            iframe.onload = () => {
+                const allNodes =
+                    iframe.contentWindow.document.querySelectorAll("*");
+
+                allNodes.forEach((node) => {
+                    node.onmouseover = (e) => {
+                        e.target.style.outline = "1px solid red";
                     };
-                }
-            })
-            .catch((err) => console.error("Error loading index1.html:", err));
-        // fetch("/index.html")
-        //     .then((response) => response.text())
-        //     .then((html) => {
-        //         // Set the content of the iframe
-        //         if (iframeRef.current) {
-        //             iframeRef.current.srcdoc = html;
+                    node.onmouseleave = (e) => {
+                        e.target.style.outline = "";
+                    };
+                    node.onclick = (e) => {
+                        e.preventDefault(); // Prevent default actions (optional)
+                        console.log("Clicked node:", e.target);
+                    };
+                });
+            };
+        }
 
-        //             iframeRef.current.onload = () => {
-        //                 const allNodes =
-        //                     iframeRef.current.contentWindow.document.querySelectorAll(
-        //                         "*"
-        //                     );
-
-        //                 allNodes.forEach((node) => {
-        //                     node.onmouseover = (e) => {
-        //                         // add a outline to node
-        //                         e.target.style.outline = "1px solid red";
-        //                     };
-        //                     node.onmouseleave = (e) => {
-        //                         e.target.style.outline = "";
-        //                     };
-        //                     node.addEventListener("click", (e) => {});
-        //                 });
-        //             };
-        //         }
-        //     })
-        //     .catch((err) => console.error("Error loading index1.html:", err));
-    }, []);
+        return () => {
+            URL.revokeObjectURL(url);
+        };
+    }, [project.current]);
 
     return (
-        <div className="h-screen flex-1">
+        <div className="h-50vh flex-1">
+            <h1>iframe</h1>
             <iframe
                 ref={iframeRef}
+                src={url}
+                id="project-iframe"
                 className="w-full h-full bg-gray-800"
             ></iframe>
         </div>

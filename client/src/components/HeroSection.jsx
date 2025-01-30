@@ -3,12 +3,14 @@ import axios from "axios";
 import { ArrowUp } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useProject } from "../context/ProjectProvider";
 
 function HeroSection() {
     const [prompt, setPrompt] = useState("");
     const navigate = useNavigate();
     const { loginWithRedirect, isAuthenticated, getAccessTokenSilently } =
         useAuth0();
+    const { setProject, project, setLoading } = useProject();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,8 +28,9 @@ function HeroSection() {
                 );
             }
 
+            setLoading(true);
             const response = await axios.post(
-                `${serverURI}/test`,
+                `${serverURI}/build`,
                 { prompt },
                 {
                     headers: {
@@ -36,10 +39,22 @@ function HeroSection() {
                 }
             );
 
-            console.log(response.data);
+            const html = await response.data;
+            console.log(response);
+
+            setProject({
+                ...project,
+                current: html,
+            });
+
+            navigate("/builder");
+
+            // console.log(response.data);
             setPrompt(""); // Clear the prompt
         } catch (error) {
             console.error("Error submitting prompt:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -72,7 +87,7 @@ function HeroSection() {
                             handleSubmit(e);
                         }
                     }}
-                    className="w-full rounded-lg p-6 bg-inherit border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder-gray-400 text-white resize-none transition-all duration-300"
+                    className="w-full rounded-lg p-6 bg-inherit border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder:font-semibold font-semibold placeholder-gray-400 text-white resize-none transition-all duration-300"
                     rows={7}
                     placeholder="Tell us about your website..."
                 />

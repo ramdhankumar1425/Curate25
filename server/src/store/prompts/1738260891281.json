@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a chat like interface with a textbox and a send button",
+  "refinedPrompt": "Create a simple chat-like interface with a text input field and a send button. The interface should allow users to enter messages and display them in a chat window or message list upon clicking the send button or pressing enter. Implement basic styling to make the interface visually appealing and user-friendly."
+}

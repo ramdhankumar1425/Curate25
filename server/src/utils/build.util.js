@@ -1,35 +1,55 @@
 const fs = require("fs");
 const path = require("path");
 const { build } = require("vite");
+const react = require("@vitejs/plugin-react");
+const { execSync } = require("child_process");
 
 // function to build using vite
-const buildWithVite = async (rootPath) => {
+const buildWithVite = async (projectId) => {
     try {
-        const viteConfig = {
-            root: path.join(__dirname, rootPath),
+        console.log("Building project with Vite...");
+
+        const projectPath = path.resolve(
+            __dirname,
+            "../store/projects",
+            projectId
+        );
+        const outputDir = path.resolve(__dirname, "../store/builds", projectId);
+
+        // Ensure the output directory exists
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+
+        const sharedNodeModules = path.resolve(__dirname, "node_modules");
+
+        //     const root = path.
+        await build({
+            root: projectPath,
+            plugins: [react()],
             build: {
-                outDir: path.join(
-                    __dirname,
-                    "../store",
-                    "builds",
-                    Date.now().toString()
-                ),
+                outDir: outputDir,
+                emptyOutDir: true,
                 rollupOptions: {
-                    input: path.resolve(__dirname, "src/demo/index.html"),
+                    input: path.join(projectPath, "index.html"),
                 },
             },
-        };
-        console.log("Starting build process...");
-        await build(viteConfig);
-        console.log("Build completed...");
+            env: {
+                NODE_PATH: sharedNodeModules, // Ensures it uses the server's node_modules
+            },
+        });
+
+        mergeFiles(projectId);
+
+        console.log("Project built successfully!");
     } catch (err) {
         console.error("Error during build:", err);
         throw new Error(err.message);
     }
 };
 
-const mergeFiles = () => {
-    const distDir = path.join(__dirname, "../demo/dist");
+const mergeFiles = (buildId) => {
+    const distDir = path.join(__dirname, "../store/builds", buildId);
     const assetsDir = path.join(distDir, "assets");
 
     // Read all files from the assets folder
@@ -65,6 +85,8 @@ const mergeFiles = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vite + React</title>
         ${styleContent}
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     </head>
     <body>
         <div id="root"></div>
@@ -76,40 +98,22 @@ const mergeFiles = () => {
 </html>`;
 
     // Write the merged content to the final index.html file
-    fs.writeFileSync(path.join(distDir, "index.html"), indexHtml);
+    fs.writeFileSync(path.join(distDir, "build.html"), indexHtml);
     console.log("Merged index.html generated!");
 };
 
-/*
-const handleBuild = async (req, res) => {
-    try {
-        console.log("Starting build process...");
-        await build(viteConfig);
-        console.log("Build completed...");
+const createStaticFiles = (projectId) => {
+    const distDir = path.join(__dirname, "../store/builds", projectId);
+    const staticDir = path.join(__dirname, "../store/static");
 
-        console.log("Merging files...");
-        mergeFiles();
-        console.log("Files merged!");
-
-        const indexHtml = fs.readFileSync(
-            path.join("src", "demo", "dist", "index.html"),
-            "utf-8"
-        );
-
-        const files = await getDirectoryContent(
-            path.join("src", "demo", "src")
-        );
-
-        // console.log(files);
-
-        res.json({
-            bundle: indexHtml,
-            files,
-        });
-    } catch (err) {
-        console.error("Error during build:", err);
-        res.status(500).send("Build failed!");
+    // Ensure the static directory exists
+    if (!fs.existsSync(staticDir)) {
+        fs.mkdirSync(staticDir, { recursive: true });
     }
-}; */
+
+    // Copy the files from the build directory to the static directory
+    execSync(`cp -r ${distDir}/* ${staticDir}`);
+    console.log("Static files copied successfully!");
+};
 
 module.exports = { buildWithVite };

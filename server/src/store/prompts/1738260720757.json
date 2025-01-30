@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a chat like interface with a textbox and a send button",
+  "refinedPrompt": "Create a real-time chat interface with a textbox for user input and a send button. The interface should allow users to enter messages, and upon clicking the send button or pressing enter, the message should appear in the chat area above. The chat area should display messages in chronological order, with the latest message at the bottom. Include user avatars or names next to each message to identify the sender."
+}

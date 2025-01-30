@@ -5,6 +5,8 @@ import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TestPage from "./pages/TestPage";
 import PromptPage from "./pages/PromptPage";
+import { ProjectProvider } from "./context/ProjectProvider";
+import Loader from "./components/Loader";
 
 function App() {
     return (
@@ -18,15 +20,18 @@ function App() {
                     scope: "openid profile email",
                 }}
             >
-                <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/prompt" element={<PromptPage />} />
-                    <Route path="/builder" element={<BuilderPage />} />
+                <ProjectProvider>
+                    <Routes>
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/prompt" element={<PromptPage />} />
+                        <Route path="/builder" element={<BuilderPage />} />
 
-                    <Route path="/test" element={<TestPage />} />
+                        <Route path="/test" element={<TestPage />} />
 
-                    <Route path="*" element={<NotFoundPage />} />
-                </Routes>
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                    <Loader />
+                </ProjectProvider>
             </Auth0Provider>
         </BrowserRouter>
     );

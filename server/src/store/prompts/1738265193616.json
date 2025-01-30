@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a simple calculator website, with simple functionality of addition, substaraction and all",
+  "refinedPrompt": "Create a website with a simple calculator interface that allows users to perform basic arithmetic operations like addition, subtraction, multiplication, and division. The calculator should have a clean and intuitive design, with buttons for digits 0-9, operators, equals, and clear. Implement the calculator functionality using JavaScript, and ensure the website is responsive and works well on desktop and mobile devices."
+}

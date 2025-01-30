@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a chat like interface with a textbox and a send button",
+  "refinedPrompt": "Create a real-time chat interface with a responsive design. Include a text input field for users to enter their messages and a send button to submit them. Display the conversation history in a scrollable area above the input field, showing both sent and received messages. Implement a backend system to handle multiple users and enable real-time communication using technologies like WebSockets or long-polling."
+}

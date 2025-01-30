@@ -5,7 +5,7 @@ import CodeEditor from "../components/builder/CodeEditor";
 import EditorPanel from "../components/builder/EditorPanel";
 
 function BuilderPage() {
-    const [view, setView] = useState("code");
+    const [view, setView] = useState("preview");
 
     return (
         <div className="w-full h-screen overflow-hidden flex  bg-gray-900 text-gray-200">

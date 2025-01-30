@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a simple alert button, when clicked it should show us alert",
+  "refinedPrompt": "Create a webpage with a button element. When the button is clicked, it should trigger a JavaScript function that displays an alert message to the user. The alert message should say \"Hello, you clicked the alert button!\". Style the button to make it visually appealing and center it on the webpage."
+}
