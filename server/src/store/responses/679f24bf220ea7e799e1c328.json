@@ -1,0 +1,74 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n.dark {\n  @apply bg-gray-900 text-white;\n}\n\n.light {\n  @apply bg-white text-gray-900;\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React, { useState } from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport About from './pages/About';\nimport Portfolio from './pages/Portfolio';\nimport Contact from './pages/Contact';\nimport DarkModeToggle from './components/DarkModeToggle';\n\nconst App = () => {\n  const [darkMode, setDarkMode] = useState(false);\n\n  const toggleDarkMode = () => {\n    setDarkMode(!darkMode);\n  };\n\n  return (\n    <Router>\n      <div className={`min-h-screen ${darkMode ? 'dark' : 'light'}`}>\n        <Navbar />\n        <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/about\" element={<About />} />\n          <Route path=\"/portfolio\" element={<Portfolio />} />\n          <Route path=\"/contact\" element={<Contact />} />\n        </Routes>\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav curate-edit-id=\"a872afc8-85e0-40fc-8eb4-62f73e459c68\" className=\"fixed top-0 w-full bg-blue-600 p-4\">\n      <div curate-edit-id=\"a18b3ce3-fb5e-48b4-a420-60b0952199b2\" className=\"container mx-auto flex justify-between items-center\">\n        <Link curate-edit-id=\"f7f62e08-67f8-4db2-abf1-1223ea0f2b98\" to=\"/\" className=\"text-white text-xl font-bold\">MERN Developer</Link>\n        <div curate-edit-id=\"064f6bbc-f62f-4f1a-a352-b01646e1c81c\" className=\"space-x-4\">\n          <Link curate-edit-id=\"465fe061-2fff-45d7-9b77-63c157bfbdcf\" to=\"/\" className=\"text-white hover:text-gray-200\">Home</Link>\n          <Link curate-edit-id=\"2907c85f-744e-433f-96e2-e82f37405660\" to=\"/about\" className=\"text-white hover:text-gray-200\">About</Link>\n          <Link curate-edit-id=\"5a22ba06-f9f5-48d5-bb30-b1d3ea45c8ce\" to=\"/portfolio\" className=\"text-white hover:text-gray-200\">Portfolio</Link>\n          <Link curate-edit-id=\"d357314d-cf3a-4602-9fa6-2f74a197ad47\" to=\"/contact\" className=\"text-white hover:text-gray-200\">Contact</Link>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "DarkModeToggle.jsx",
+              "content": "import React from 'react';\n\nconst DarkModeToggle = ({ darkMode, toggleDarkMode }) => {\n  return (\n    <button curate-edit-id=\"da244328-c39c-47dd-8123-77deed342a47\"\n      onClick={toggleDarkMode}\n      className=\"fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700\"\n    >\n      {darkMode ? '🌞' : '🌙'}\n    </button>\n  );\n};\n\nexport default DarkModeToggle;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div curate-edit-id=\"fd6e7218-25bd-44ff-9273-874363549dfe\" className=\"pt-16 min-h-screen flex items-center justify-center\">\n      <div curate-edit-id=\"8840169d-4c4d-49dd-aa0e-718b72bcc994\" className=\"text-center\">\n        <h1 curate-edit-id=\"2e869291-ab88-49bd-8004-a9e1ebaffd41\" className=\"text-4xl font-bold mb-4\">MERN Stack Developer</h1>\n        <p curate-edit-id=\"354ce48c-9ae1-4ae5-8a8d-81782fc5739a\" className=\"text-xl\">Building modern web applications with MongoDB, Express, React, and Node.js</p>\n      </div>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "About.jsx",
+              "content": "import React from 'react';\n\nconst About = () => {\n  const skills = ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Git'];\n\n  return (\n    <div curate-edit-id=\"abf6be13-0591-4735-8ea9-a0d7633b119f\" className=\"pt-20 px-4\">\n      <div curate-edit-id=\"44430876-99e9-472f-b8cf-65fcaf03467d\" className=\"max-w-4xl mx-auto\">\n        <h2 curate-edit-id=\"4a857ad9-9e9e-4e03-8cf0-a7d3acc88f9f\" className=\"text-3xl font-bold mb-6\">About Me</h2>\n        <p curate-edit-id=\"4e942471-01b3-4aa0-8049-4d3b48c26672\" className=\"mb-8\">Experienced MERN stack developer with a passion for building scalable web applications.</p>\n        \n        <h3 curate-edit-id=\"1ac686fd-c2af-4a58-a955-c914ba64e314\" className=\"text-2xl font-bold mb-4\">Technical Skills</h3>\n        <div curate-edit-id=\"c854da22-d912-4b2e-a546-dce5cf5c5f58\" className=\"flex flex-wrap gap-2\">\n          {skills.map((skill, index) => (\n            <span curate-edit-id=\"c02be9c7-6064-4e83-a66b-23b4efc62d92\" key={index} className=\"px-3 py-1 bg-blue-600 text-white rounded-full\">{skill}</span>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default About;"
+            },
+            {
+              "type": "file",
+              "name": "Portfolio.jsx",
+              "content": "import React from 'react';\n\nconst Portfolio = () => {\n  const projects = [\n    {\n      title: 'E-commerce Platform',\n      description: 'Full-stack e-commerce application built with MERN stack',\n      image: 'https://images.unsplash.com/photo-1557821552-17105176677c'\n    },\n    {\n      title: 'Task Manager',\n      description: 'Real-time task management system with user authentication',\n      image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91'\n    }\n  ];\n\n  return (\n    <div curate-edit-id=\"78231c01-1ebb-4175-bbc6-b6121230a7cd\" className=\"pt-20 px-4\">\n      <div curate-edit-id=\"24d96d8b-f817-46d8-854e-581d68267280\" className=\"max-w-6xl mx-auto\">\n        <h2 curate-edit-id=\"418de83f-6b99-453a-858b-9650b14caafb\" className=\"text-3xl font-bold mb-6\">Portfolio</h2>\n        <div curate-edit-id=\"b26aa275-0b28-499e-8996-cb91c566df0a\" className=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n          {projects.map((project, index) => (\n            <div curate-edit-id=\"76f3f9ac-725b-4707-81fb-1d2b8bef9fee\" key={index} className=\"border rounded-lg overflow-hidden shadow-lg\">\n              <img curate-edit-id=\"6daa3034-fb91-4bfd-a4d5-424506e9629e\" src={project.image} alt={project.title} className=\"w-full h-48 object-cover\" />\n              <div curate-edit-id=\"0fe89ee4-e564-4ca5-946b-77a68c41d767\" className=\"p-4\">\n                <h3 curate-edit-id=\"31794a9b-7383-4f20-8c58-a87fdcdbad3c\" className=\"text-xl font-bold\">{project.title}</h3>\n                <p curate-edit-id=\"0e982f9b-bade-4c96-b34d-ca903e02b45a\">{project.description}</p>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Portfolio;"
+            },
+            {
+              "type": "file",
+              "name": "Contact.jsx",
+              "content": "import React from 'react';\n\nconst Contact = () => {\n  return (\n    <div curate-edit-id=\"04240fc3-cfcf-4fd8-9b61-4fc91728590c\" className=\"pt-20 px-4\">\n      <div curate-edit-id=\"4d2f5609-0257-48ef-a37c-dc7c66f08a45\" className=\"max-w-2xl mx-auto\">\n        <h2 curate-edit-id=\"6661d563-3635-4cd2-8658-1968b9a7b568\" className=\"text-3xl font-bold mb-6\">Contact Me</h2>\n        <form curate-edit-id=\"5b318004-bcf8-4688-b6d0-920eb6bd9e23\" className=\"space-y-4\">\n          <div curate-edit-id=\"75cc4e71-02a7-4ed8-884e-91daaadbb406\">\n            <label curate-edit-id=\"50ba9b00-bbef-4a2c-8259-2cbc9a65eb19\" className=\"block mb-2\">Name</label>\n            <input curate-edit-id=\"2e4a7f9c-5f5c-4cef-98ce-a2c9b76b5b47\" type=\"text\" className=\"w-full p-2 border rounded dark:bg-gray-800\" />\n          </div>\n          <div curate-edit-id=\"c1da2486-b08c-4389-b80a-1e4704dfa674\">\n            <label curate-edit-id=\"c9ff3ed0-2c64-4d82-afa2-91118e736494\" className=\"block mb-2\">Email</label>\n            <input curate-edit-id=\"a8258df8-d180-4995-93fb-5a2eb956d6a4\" type=\"email\" className=\"w-full p-2 border rounded dark:bg-gray-800\" />\n          </div>\n          <div curate-edit-id=\"355abfcc-24d3-41c8-b9c6-730a5bf2ed60\">\n            <label curate-edit-id=\"7b497ea6-d6b9-4ed4-9a0f-c0bb95d6a209\" className=\"block mb-2\">Message</label>\n            <textarea curate-edit-id=\"051d2306-f86c-417c-a56c-5d7af637d14a\" className=\"w-full p-2 border rounded dark:bg-gray-800\" rows=\"4\"></textarea>\n          </div>\n          <button curate-edit-id=\"eaa51b18-4200-424a-874c-c2c270ca10c0\" type=\"submit\" className=\"bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700\">\n            Send Message\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default Contact;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html curate-edit-id=\"5c8f99c2-0700-4361-b24d-4880b00858de\" lang=\"en\">\n<head curate-edit-id=\"6fc17e23-1412-4f76-afea-f5581379f138\">\n    <meta curate-edit-id=\"20350c11-7b8f-4fc1-81a4-f6f4fe88680c\" charset=\"UTF-8\">\n    <meta curate-edit-id=\"f97ea89e-a45e-49d8-afa6-e98dce4cd5e5\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title curate-edit-id=\"9acc060f-4c3f-49d8-9fe5-edd82ac7bab2\">MERN Stack Developer Portfolio</title>\n</head>\n<body curate-edit-id=\"801e269b-be4f-473d-a35d-c4611b4de7c4\">\n    <div curate-edit-id=\"ca1b39eb-5b36-491f-9df9-c467d9f3af4d\" id=\"root\"></div>\n    <script curate-edit-id=\"f1ff9161-ccd7-4295-a5ef-0c70ab0e1c33\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

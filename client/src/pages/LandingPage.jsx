@@ -1,12 +1,25 @@
-import HeroSection from "../components/HeroSection";
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LandingPage() {
+    const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+    const navigate = useNavigate();
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const videoRef = useRef(null);
+
+    const handleTryNowClick = () => {
+        if (isLoading) return;
+
+        if (!isAuthenticated) {
+            loginWithRedirect();
+            return;
+        }
+
+        navigate("/prompt");
+    };
 
     useEffect(() => {
         if (!videoRef.current) return;
@@ -40,11 +53,12 @@ function LandingPage() {
                     required!
                 </h3>
 
-                <Link to="/prompt">
-                    <button className="px-14 py-5 border text-lg font-semibold tracking-wide font-inter rounded-xl hover:bg-blue-700 duration-500 hover:border-blue-500 hover:shadow-2xl">
-                        Try it now
-                    </button>
-                </Link>
+                <button
+                    onClick={handleTryNowClick}
+                    className="px-14 py-5 border text-lg font-semibold tracking-wide font-inter rounded-xl hover:bg-blue-700 duration-500 hover:border-blue-500 hover:shadow-2xl"
+                >
+                    Try it now
+                </button>
             </div>
 
             {/* Video Section */}

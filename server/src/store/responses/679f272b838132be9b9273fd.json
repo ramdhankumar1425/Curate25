@@ -1,0 +1,74 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Products from './pages/Products';\nimport Cart from './pages/Cart';\nimport Blog from './pages/Blog';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen flex flex-col\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/products\" element={<Products />} />\n            <Route path=\"/cart\" element={<Cart />} />\n            <Route path=\"/blog\" element={<Blog />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React, { useState } from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <nav data-curate-edit-id=\"c80ed947-95b8-499a-a0b3-2807e2fac874\" className=\"bg-gray-800 text-white\">\n      <div data-curate-edit-id=\"f0123eb5-4d69-4a1b-8668-b8a412e8c20f\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n        <div data-curate-edit-id=\"636bb212-f8ce-46a0-8ae7-c29cca83309b\" className=\"flex items-center justify-between h-16\">\n          <Link data-curate-edit-id=\"1816deb1-53d3-45e3-9382-fe90150417f4\" to=\"/\" className=\"text-xl font-bold\">ClickX</Link>\n          <div data-curate-edit-id=\"9cbd3916-4b6a-4e56-979a-18e00f318a00\" className=\"hidden md:flex space-x-4\">\n            <Link data-curate-edit-id=\"cfc87b1d-859c-4323-ba11-d9a650237bd4\" to=\"/\" className=\"hover:text-gray-300\">Home</Link>\n            <Link data-curate-edit-id=\"ed4510a2-2c53-4d9f-a37b-5f039b001c27\" to=\"/products\" className=\"hover:text-gray-300\">Products</Link>\n            <Link data-curate-edit-id=\"1dd49372-6c43-4c21-8756-6b9686f7f4ed\" to=\"/cart\" className=\"hover:text-gray-300\">Cart</Link>\n            <Link data-curate-edit-id=\"e35e72af-089d-4626-bfed-deb3c7847f16\" to=\"/blog\" className=\"hover:text-gray-300\">Blog</Link>\n          </div>\n          <button data-curate-edit-id=\"b7395ee6-5536-49d6-92e4-85dea8a569e8\"\n            onClick={() => setIsOpen(!isOpen)}\n            className=\"md:hidden p-2\"\n          >\n            <span data-curate-edit-id=\"ef644d46-c751-4761-8069-0dbb73a04cd3\" className=\"block w-6 h-0.5 bg-white mb-1\"></span>\n            <span data-curate-edit-id=\"fa38c57a-9c33-47c0-bfe9-76f115880a5d\" className=\"block w-6 h-0.5 bg-white mb-1\"></span>\n            <span data-curate-edit-id=\"8dd3b444-8669-40d4-bcb9-b7fcb56b5f65\" className=\"block w-6 h-0.5 bg-white\"></span>\n          </button>\n        </div>\n        {isOpen && (\n          <div data-curate-edit-id=\"397fb29b-abae-4c76-992c-7ee1d7802a45\" className=\"md:hidden\">\n            <div data-curate-edit-id=\"d7bd25b1-ed87-4217-92d5-3b99d37a1d41\" className=\"px-2 pt-2 pb-3 space-y-1\">\n              <Link data-curate-edit-id=\"326539eb-b721-4504-8136-466173212809\" to=\"/\" className=\"block hover:text-gray-300\">Home</Link>\n              <Link data-curate-edit-id=\"e5d29eaa-2977-46de-8e4b-d7b63da30882\" to=\"/products\" className=\"block hover:text-gray-300\">Products</Link>\n              <Link data-curate-edit-id=\"4de1165f-a8d8-4e4c-bdfe-a1ac56566187\" to=\"/cart\" className=\"block hover:text-gray-300\">Cart</Link>\n              <Link data-curate-edit-id=\"750c0093-a59f-4a69-af71-45870334685f\" to=\"/blog\" className=\"block hover:text-gray-300\">Blog</Link>\n            </div>\n          </div>\n        )}\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"cc9448d2-4f3d-4023-b33d-9943073ab936\" className=\"bg-gray-800 text-white py-8\">\n      <div data-curate-edit-id=\"89007e16-a16e-4232-bc53-140c4f435152\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n        <div data-curate-edit-id=\"d6816a70-f5f4-4466-879c-5880e2674177\" className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n          <div data-curate-edit-id=\"421cc9e7-4d6f-436d-a7ed-45df44e39545\">\n            <h3 data-curate-edit-id=\"373da04e-8528-4632-bb4c-733e4dba2d63\" className=\"text-lg font-bold mb-4\">Contact Us</h3>\n            <p data-curate-edit-id=\"369038bd-941c-40aa-bf17-cdb44c26c8c3\">Email: info@clickx.com</p>\n            <p data-curate-edit-id=\"d958490a-f07c-463f-9150-d354b7a215fb\">Phone: (555) 123-4567</p>\n          </div>\n          <div data-curate-edit-id=\"65e4fc85-086e-4485-b884-d790d543a6e2\">\n            <h3 data-curate-edit-id=\"7d5df95a-6321-44fc-b11e-5650a0f275e1\" className=\"text-lg font-bold mb-4\">Follow Us</h3>\n            <div data-curate-edit-id=\"78dcd4c5-a467-4050-ad0b-dc26c2f7edad\" className=\"space-x-4\">\n              <a data-curate-edit-id=\"902ea916-60ee-4e60-85c4-4f431c5d3b6b\" href=\"#\" className=\"hover:text-gray-300\">Facebook</a>\n              <a data-curate-edit-id=\"b0202c30-b04f-464e-b0ae-10285e2f8154\" href=\"#\" className=\"hover:text-gray-300\">Twitter</a>\n              <a data-curate-edit-id=\"e06f29f4-a3e1-48d6-bf37-93386510e4fd\" href=\"#\" className=\"hover:text-gray-300\">Instagram</a>\n            </div>\n          </div>\n          <div data-curate-edit-id=\"86bf41e8-1a56-4935-a5e1-ee1774f3a832\">\n            <h3 data-curate-edit-id=\"b19ce2e1-82c4-4692-963b-0658136c4785\" className=\"text-lg font-bold mb-4\">Newsletter</h3>\n            <input data-curate-edit-id=\"9e717271-5dec-4d9d-86b1-e6d0e70f4893\"\n              type=\"email\"\n              placeholder=\"Enter your email\"\n              className=\"w-full p-2 rounded text-black\"\n            />\n          </div>\n        </div>\n        <div data-curate-edit-id=\"e69b6b56-085b-4b64-97ce-f1eab5f12f41\" className=\"mt-8 text-center\">\n          <p data-curate-edit-id=\"573f770c-f1b3-4c89-8169-ddb14d3d622a\">&copy; 2024 ClickX Camera Store. All rights reserved.</p>\n        </div>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"9b7f0861-230c-4ffa-8cc0-0be70add214f\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\">\n      <section data-curate-edit-id=\"a16dc747-7819-4431-a475-03c41fb9b77a\" className=\"text-center mb-16\">\n        <h1 data-curate-edit-id=\"7033f174-34db-4ac1-83b4-38cea0b3f4f5\" className=\"text-4xl font-bold mb-4\">Welcome to ClickX</h1>\n        <p data-curate-edit-id=\"ed90d98f-db52-41a5-8ad7-b9fed0770d91\" className=\"text-xl text-gray-600\">Discover the perfect camera for your photography journey</p>\n      </section>\n      \n      <section data-curate-edit-id=\"79239d31-c292-4f91-9d08-396b86a43b87\" className=\"grid grid-cols-1 md:grid-cols-3 gap-8 mb-16\">\n        <div data-curate-edit-id=\"f2e9cc75-f02d-4cd5-9628-03d9dbd1a724\" className=\"bg-gray-100 p-6 rounded-lg\">\n          <img data-curate-edit-id=\"1c20ddcd-a40b-4176-95d3-ade4c48c97ea\" src=\"https://images.unsplash.com/photo-1516035069371-29a1b244cc32\" alt=\"Camera\" className=\"w-full h-48 object-cover rounded mb-4\" />\n          <h3 data-curate-edit-id=\"2dca4835-6d47-4f3a-8da8-c44bd31b5c75\" className=\"text-xl font-bold mb-2\">Latest Models</h3>\n          <p data-curate-edit-id=\"edaa0213-5c99-4ea2-aa6b-5f4964a88aee\">Explore our newest camera collection</p>\n        </div>\n        <div data-curate-edit-id=\"4ef81b51-9119-4a70-b890-ffc172ab5c77\" className=\"bg-gray-100 p-6 rounded-lg\">\n          <img data-curate-edit-id=\"f98f4a39-32df-4b87-bddc-73d4b1501a14\" src=\"https://images.unsplash.com/photo-1502982720700-bfff97f2ecac\" alt=\"Lens\" className=\"w-full h-48 object-cover rounded mb-4\" />\n          <h3 data-curate-edit-id=\"140511b1-a6cf-4c05-8aab-90d4a3192729\" className=\"text-xl font-bold mb-2\">Professional Lenses</h3>\n          <p data-curate-edit-id=\"9cb5ead3-8c77-461f-9614-dc34a481f5c4\">High-quality lenses for every need</p>\n        </div>\n        <div data-curate-edit-id=\"6e4f9f6f-62e1-4b38-a990-bec200573697\" className=\"bg-gray-100 p-6 rounded-lg\">\n          <img data-curate-edit-id=\"148007a7-4587-4350-bedc-ebdd1eeb8f80\" src=\"https://images.unsplash.com/photo-1542567455-cd733f23fbb1\" alt=\"Accessories\" className=\"w-full h-48 object-cover rounded mb-4\" />\n          <h3 data-curate-edit-id=\"a123628e-7c73-45c5-8198-2404d60e10cd\" className=\"text-xl font-bold mb-2\">Accessories</h3>\n          <p data-curate-edit-id=\"1483cb40-1020-4652-a400-94f0d9ef0206\">Complete your photography kit</p>\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Products.jsx",
+              "content": "import React from 'react';\n\nconst Products = () => {\n  return (\n    <div data-curate-edit-id=\"9626f2dd-f1c4-4478-a3a3-0fda14a59301\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\">\n      <h1 data-curate-edit-id=\"64a8d536-6020-4dd7-a870-c43d76bbae9a\" className=\"text-3xl font-bold mb-8\">Our Products</h1>\n      <div data-curate-edit-id=\"f3582f17-023a-4e64-8f29-7e0667e1f3b8\" className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {/* Product cards would go here */}\n        <div data-curate-edit-id=\"0c9cf131-1b60-42db-a8b0-7e23da8fa28f\" className=\"border rounded-lg p-4\">\n          <img data-curate-edit-id=\"d8a0b09d-b226-4a4b-8020-80a3212ee080\" src=\"https://images.unsplash.com/photo-1516035069371-29a1b244cc32\" alt=\"Camera\" className=\"w-full h-48 object-cover rounded mb-4\" />\n          <h3 data-curate-edit-id=\"1deb9027-954f-45b0-ae6c-827b324fa98f\" className=\"text-xl font-bold\">Professional DSLR</h3>\n          <p data-curate-edit-id=\"61798b87-a7b4-4413-8f44-d8886aef64e8\" className=\"text-gray-600\">$999.99</p>\n          <button data-curate-edit-id=\"e5818b6f-da64-4bc5-a659-a50f7618a67f\" className=\"mt-4 bg-blue-500 text-white px-4 py-2 rounded\">Add to Cart</button>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Products;"
+            },
+            {
+              "type": "file",
+              "name": "Cart.jsx",
+              "content": "import React from 'react';\n\nconst Cart = () => {\n  return (\n    <div data-curate-edit-id=\"af86304f-261e-4dfd-8a7d-a104831a2f87\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\">\n      <h1 data-curate-edit-id=\"7c972b09-8c28-49d3-b3da-20971e705de2\" className=\"text-3xl font-bold mb-8\">Shopping Cart</h1>\n      <div data-curate-edit-id=\"f31380b2-18be-4143-b8af-d2e7ea9eee97\" className=\"bg-white rounded-lg p-6\">\n        <p data-curate-edit-id=\"f4a4f1a1-0b9e-48d1-9164-77a5678cdc42\" className=\"text-gray-600\">Your cart is empty</p>\n      </div>\n    </div>\n  );\n};\n\nexport default Cart;"
+            },
+            {
+              "type": "file",
+              "name": "Blog.jsx",
+              "content": "import React from 'react';\n\nconst Blog = () => {\n  return (\n    <div data-curate-edit-id=\"22bbb076-1883-4927-b407-3083357cd0f6\" className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\">\n      <h1 data-curate-edit-id=\"b7998e07-b5af-4189-b071-6f9f5354a4c0\" className=\"text-3xl font-bold mb-8\">Photography Blog</h1>\n      <div data-curate-edit-id=\"50ff4107-1756-478e-a986-38e935970469\" className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        <article data-curate-edit-id=\"ee8c28fd-9dfe-4a4f-8474-c6bc11bef186\" className=\"bg-white rounded-lg p-6\">\n          <img data-curate-edit-id=\"117d894a-1cf3-4a7e-9aed-479076c1218d\" src=\"https://images.unsplash.com/photo-1452587925148-ce544e77e70d\" alt=\"Photography Tips\" className=\"w-full h-48 object-cover rounded mb-4\" />\n          <h2 data-curate-edit-id=\"6614ad0e-8be5-43cc-bbf4-adceb993b8a6\" className=\"text-xl font-bold mb-2\">Essential Photography Tips</h2>\n          <p data-curate-edit-id=\"cc5b760a-fb25-495f-b661-36c3e58cc771\" className=\"text-gray-600\">Learn the basics of photography with our comprehensive guide.</p>\n        </article>\n      </div>\n    </div>\n  );\n};\n\nexport default Blog;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"07f67558-5fbc-483d-8069-8edb22aa69c6\" lang=\"en\">\n<head data-curate-edit-id=\"f4a330c0-5648-41af-b60b-30ba0e7ec662\">\n    <meta data-curate-edit-id=\"67b242d2-b86e-4291-8915-317944ec1465\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"ee5143b0-5f76-4685-9aa4-2a95c40d63d5\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"7fb24435-66b9-450e-b215-4ffe84c11d39\">ClickX Camera Store</title>\n</head>\n<body data-curate-edit-id=\"885463a9-c113-4001-a87a-c24ea08ac9e9\">\n    <div data-curate-edit-id=\"f968db06-c5dd-480a-b544-839bffb7267c\" id=\"root\"></div>\n    <script data-curate-edit-id=\"9ac224ac-7ce6-4dbe-a422-86fc2a1e8bc1\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

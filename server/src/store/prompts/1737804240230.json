@@ -1,4 +1,0 @@
-{
-    "prompt": "Create a blog website and use sample blog posts and images.",
-    "refinedPrompt": "Create a responsive blog website with a clean and modern design. Include a homepage featuring a grid of blog post previews with titles, dates, and brief excerpts. Implement individual blog post pages with full content, images, and author information. Use sample blog posts covering various topics and include relevant royalty-free images. Incorporate a search functionality and categorize the blog posts for easy navigation. Design an \"About\" page with information about the blog's purpose and the author(s). Integrate social media sharing buttons for each blog post. Ensure the website is mobile-friendly and optimized for different screen sizes."
-}

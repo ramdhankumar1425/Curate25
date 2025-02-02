@@ -41,7 +41,7 @@ const getBuildPrompt = (refined_prompt, project_name) => {
 
                CRITICAL: Must use single template literals to wrap file content as provided in the example.
 
-               CRITICAL: If you are using a single quotation (eg. I've, we're, I'll etc.) in the project json, you must use escape character before the single quotation. For example, I\'ve, we\'re, I\'ll etc.
+               CRITICAL: NEVER use a single quotation (eg. I've, we're, I'll etc.) in the project json.
 
                CRITICAL: When using template literal interpolation inside any project file content (e.g., \`\${variable}\`), ensure to prepend a single escape character before the dollar sign, For example, \`\${variable}\`.
 
@@ -54,6 +54,8 @@ const getBuildPrompt = (refined_prompt, project_name) => {
                ULTRA IMPORTANT: All the generated pages, components must be responsive.
 
                ULTRA IMPORTANT: Always provide a user friendly explanation for created website with response inside <explanation>...</explanation> tags.
+
+               ULTRA IMPORTANT: Must follow this convention, never ever write anything else to 'main.jsx' file except importing 'App.jsx' and rendering. Always write routing logic inside 'App.jsx' only.
 
                CRITICAL: You must use 'HashRouter' instead of 'BrowserRouter' for routing.
 
@@ -224,6 +226,8 @@ const getProjectRefinePrompt = (currProject, prompt) => {
 
                     CRITICAL: Must use Tailwind CSS for styling, must create 'index.css' file in the 'src' directory and import it in 'main.jsx' file.
 
+                    ULTRA IMPORTANT: Must follow this convention, never ever write anything else to 'main.jsx' file except importing 'App.jsx' and rendering. Always write routing logic inside 'App.jsx' only.
+
                     CRITICAL: Only import components or pages that are explicitly created and included in the current response. Do NOT assume or reference components/pages that are not defined in this response.
 
                     CRITICAL: Must use 'export default' for all components and pages you created.
@@ -294,6 +298,11 @@ const getProjectRefinePrompt = (currProject, prompt) => {
                                                   ]
                                              }
                                         ]
+                                   },
+                                   {
+                                        "type":"file",
+                                        "name":"index.html",
+                                        "content":\`<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>React App</title>\n</head>\n<body>\n    <div id="root"></div>\n    <script type="module" src="/src/main.jsx"></script>\n</body>\n</html>\`
                                    }
                               ]
                          } 
@@ -338,6 +347,11 @@ const getProjectRefinePrompt = (currProject, prompt) => {
                                                   ]
                                              }
                                         ]
+                                   },
+                                   {
+                                        "type":"file",
+                                        "name":"index.html",
+                                        "content":\`<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>React App</title>\n</head>\n<body>\n    <div id="root"></div>\n    <script type="module" src="/src/main.jsx"></script>\n</body>\n</html>\`
                                    }
                                    ]
                               }  

@@ -12,6 +12,8 @@ AVAILABLE_IMAGE_SOURCES = [
     "https://pixabay.com/",
 ];
 
+EDIT_IDENTIFIER = "curate-edit-id";
+
 module.exports = {
     MIN_PROMPT_LENGTH,
     MAX_PROMPT_LENGTH,
@@ -19,4 +21,5 @@ module.exports = {
     MAX_TOKENS_ALLOWED,
     AVAILABLE_PACKAGES,
     AVAILABLE_IMAGE_SOURCES,
+    EDIT_IDENTIFIER,
 };

@@ -1,4 +1,0 @@
-{
-  "prompt": "Create a chat like interface with a textbox and a send button",
-  "refinedPrompt": "Design and develop a real-time chat interface with a user-friendly layout consisting of an input textbox for entering messages and a send button to submit them. Implement functionality to display the conversation history, showing both sent and received messages. Ensure the interface is responsive and works seamlessly across different devices and screen sizes."
-}

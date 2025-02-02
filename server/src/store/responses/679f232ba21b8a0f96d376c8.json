@@ -1,0 +1,63 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\nbody { @apply bg-gray-900 text-white; }"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(<App />);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Hero from './components/Hero';\nimport Skills from './components/Skills';\nimport Projects from './components/Projects';\nimport Footer from './components/Footer';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen\">\n        <Navbar />\n        <Routes>\n          <Route path=\"/\" element={\n            <>\n              <Hero />\n              <Skills />\n              <Projects />\n            </>\n          } />\n        </Routes>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav curate-edit-id=\"3bdcb5e5-052e-43fc-89af-2b7dc9ed7c9d\" className=\"fixed w-full bg-gray-800 shadow-lg z-50\">\n      <div curate-edit-id=\"8d5ac3bc-2f73-4d02-a76c-58e21964b991\" className=\"container mx-auto px-6 py-4 flex justify-between items-center\">\n        <Link curate-edit-id=\"06c8dd7a-0a2c-4db5-a28e-079fd10b080b\" to=\"/\" className=\"text-xl font-bold\">DevPortfolio</Link>\n        <div curate-edit-id=\"3593dae8-b8e9-4ea8-ad47-5a98090e8ad2\" className=\"flex space-x-6\">\n          <a curate-edit-id=\"c9fb29c0-a0f4-4b3b-bbae-7fe87273abfb\" href=\"#skills\" className=\"hover:text-blue-400\">Skills</a>\n          <a curate-edit-id=\"25885c27-397e-4470-b3c9-d764e759fac1\" href=\"#projects\" className=\"hover:text-blue-400\">Projects</a>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Hero.jsx",
+              "content": "import React from 'react';\n\nconst Hero = () => {\n  return (\n    <div curate-edit-id=\"8d47f68f-b8fd-46b8-9bb0-616e2997013b\" className=\"pt-20 min-h-screen flex items-center bg-gray-900\">\n      <div curate-edit-id=\"3d9e4c20-afec-4665-845b-697f64314df0\" className=\"container mx-auto px-6 flex flex-col md:flex-row items-center\">\n        <div curate-edit-id=\"7de8937c-c497-4425-a2a8-3abeb8bdb4d5\" className=\"flex flex-col w-full md:w-1/2 justify-center items-start px-6\">\n          <h1 curate-edit-id=\"41aaf3ea-dc5a-438c-96ad-8c9a6fe65f06\" className=\"text-5xl md:text-6xl font-bold tracking-tight mb-4\">\n            MERN Stack Developer\n          </h1>\n          <p curate-edit-id=\"c67064d2-c434-4f83-ab7f-c0b3939fa3e6\" className=\"text-xl mb-8\">Building modern web applications with MongoDB, Express.js, React, and Node.js</p>\n          <button curate-edit-id=\"f8490b51-dd20-4e0f-8065-b01af36ad029\" className=\"bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300\">\n            View Projects\n          </button>\n        </div>\n        <div curate-edit-id=\"995580ad-d6a5-4ea6-a067-b0806984c1ca\" className=\"w-full md:w-1/2 py-6 text-center\">\n          <img curate-edit-id=\"489b0582-577f-48e0-a768-cde698164767\" src=\"https://images.unsplash.com/photo-1555066931-4365d14bab8c\" alt=\"Coding\" className=\"w-full max-w-md mx-auto rounded-lg shadow-lg\" />\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Hero;"
+            },
+            {
+              "type": "file",
+              "name": "Skills.jsx",
+              "content": "import React from 'react';\n\nconst Skills = () => {\n  const skills = [\n    { name: 'MongoDB', icon: '🗄️' },\n    { name: 'Express.js', icon: '⚡' },\n    { name: 'React', icon: '⚛️' },\n    { name: 'Node.js', icon: '🟢' }\n  ];\n\n  return (\n    <section curate-edit-id=\"c1530a33-eacb-4fcb-af7e-e3391756b4e9\" id=\"skills\" className=\"py-20 bg-gray-800\">\n      <div curate-edit-id=\"b95ba5fc-d582-41ac-b126-5b6db6d4a8b1\" className=\"container mx-auto px-6\">\n        <h2 curate-edit-id=\"3825e400-dd36-45b3-9e9e-9db3b883fa16\" className=\"text-4xl font-bold text-center mb-12\">Skills</h2>\n        <div curate-edit-id=\"b3bab2ba-ec71-43d6-aa3a-e27d7159421a\" className=\"grid grid-cols-1 md:grid-cols-4 gap-8\">\n          {skills.map((skill, index) => (\n            <div curate-edit-id=\"18e04d64-a77d-4a46-8a2c-6c511fc396ee\" key={index} className=\"bg-gray-700 p-6 rounded-lg text-center hover:bg-gray-600 transition duration-300\">\n              <div curate-edit-id=\"5f3ad306-ed3f-49dd-8d95-82820a1c3ec0\" className=\"text-4xl mb-4\">{skill.icon}</div>\n              <h3 curate-edit-id=\"1b7bd242-08b9-41e7-aba2-eaa716ffc3a9\" className=\"text-xl font-semibold\">{skill.name}</h3>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Skills;"
+            },
+            {
+              "type": "file",
+              "name": "Projects.jsx",
+              "content": "import React from 'react';\n\nconst Projects = () => {\n  const projects = [\n    {\n      title: \"E-Commerce Platform\",\n      description: \"Full-stack e-commerce application built with MERN stack\",\n      image: \"https://images.unsplash.com/photo-1557821552-17105176677c\",\n      demo: \"#\",\n      repo: \"#\"\n    },\n    {\n      title: \"Social Media App\",\n      description: \"Real-time social media platform with MERN stack\",\n      image: \"https://images.unsplash.com/photo-1611162616475-46b635cb6868\",\n      demo: \"#\",\n      repo: \"#\"\n    }\n  ];\n\n  return (\n    <section curate-edit-id=\"d6fae31c-92c3-4934-ae42-6f7124e09c96\" id=\"projects\" className=\"py-20 bg-gray-900\">\n      <div curate-edit-id=\"cab71131-8b37-47df-9164-9996dfd600ed\" className=\"container mx-auto px-6\">\n        <h2 curate-edit-id=\"021a1649-1f95-491e-b39c-4da514ca39ad\" className=\"text-4xl font-bold text-center mb-12\">Projects</h2>\n        <div curate-edit-id=\"57b66cff-031b-494a-a033-f3251482e5c4\" className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n          {projects.map((project, index) => (\n            <div curate-edit-id=\"d41b1648-2526-4bdf-9bcd-41aff562c072\" key={index} className=\"bg-gray-800 rounded-lg overflow-hidden shadow-lg\">\n              <img curate-edit-id=\"6fc50b0c-90b8-4b17-8b38-2195569c0602\" src={project.image} alt={project.title} className=\"w-full h-48 object-cover\" />\n              <div curate-edit-id=\"b4463ccc-0ce3-4a64-8df2-5fa5ceb82f65\" className=\"p-6\">\n                <h3 curate-edit-id=\"754421f5-0f3d-476b-8825-908b07f1c8ef\" className=\"text-xl font-bold mb-2\">{project.title}</h3>\n                <p curate-edit-id=\"5abab53b-09bf-4de5-a3ac-528aba05765e\" className=\"text-gray-300 mb-4\">{project.description}</p>\n                <div curate-edit-id=\"3335ea0b-4325-4467-a5d4-cab8f689d6e1\" className=\"flex space-x-4\">\n                  <a curate-edit-id=\"ae832575-a03e-4207-8b1a-607ad03931bf\" href={project.demo} className=\"bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700\">Demo</a>\n                  <a curate-edit-id=\"49f79ae8-2a35-4a43-b27f-9627d066a5f5\" href={project.repo} className=\"bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600\">Code</a>\n                </div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Projects;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer curate-edit-id=\"04029da4-eb28-4f29-b9c0-17505fa8ee92\" className=\"bg-gray-800 py-8\">\n      <div curate-edit-id=\"e7046c3d-c793-4f5a-bc65-2811fae55c9b\" className=\"container mx-auto px-6 text-center\">\n        <p curate-edit-id=\"a9b1f8e1-fb8a-4fc8-a9e9-6fdb28cada32\" className=\"text-gray-400\">© 2024 MERN Stack Developer. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html curate-edit-id=\"f5b1cfb1-6667-446e-aab4-a3430689048f\" lang=\"en\">\n<head curate-edit-id=\"070c66cb-0a34-4f20-b704-5e87a8a30cbf\">\n    <meta curate-edit-id=\"46a60211-90eb-4209-a655-bbcdbff41f69\" charset=\"UTF-8\">\n    <meta curate-edit-id=\"47f700c5-ca2b-4a80-8610-afb90abe6219\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title curate-edit-id=\"d2727dff-1bac-4d09-8576-be754dd2fe07\">MERN Stack Developer Portfolio</title>\n</head>\n<body curate-edit-id=\"4842c982-7c92-485e-90b9-83cd0beabee3\">\n    <div curate-edit-id=\"62bb2c46-d7f6-456f-b39c-af15e15a3000\" id=\"root\"></div>\n    <script curate-edit-id=\"f14249a4-cc0b-40ff-96e7-4922993ae423\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ProjectProvider } from "./context/ProjectProvider";
 import LandingPage from "./pages/LandingPage";
+import PromptPage from "./pages/PromptPage";
 import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import TestPage from "./pages/TestPage";
-import PromptPage from "./pages/PromptPage";
-import { ProjectProvider } from "./context/ProjectProvider";
 import Loader from "./components/Loader";
+import TestPage from "./pages/TestPage";
 
 function App() {
     return (
@@ -30,6 +30,7 @@ function App() {
 
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
+
                     <Loader />
                 </ProjectProvider>
             </Auth0Provider>

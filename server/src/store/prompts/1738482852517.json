@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a basic landing page for a mern stack developer and use sample projects with dark mode enabled",
+  "refinedPrompt": "Create a responsive landing page for a MERN stack developer that showcases their skills, experience, and sample projects. Include sections for an about me, technical skills, portfolio, and contact information. Implement a dark mode toggle to allow users to switch between light and dark themes. Ensure the design is modern, visually appealing, and highlights the developer's expertise in the MERN stack."
+}

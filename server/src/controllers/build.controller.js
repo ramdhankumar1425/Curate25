@@ -11,6 +11,8 @@ const { Project } = require("../models/project.model");
 const anthropic = require("../utils/anthropic.util");
 const { createFiles } = require("../utils/createFiles.util");
 const { buildWithVite } = require("../utils/build.util");
+const { removeFiles } = require("../utils/removeFiles.util");
+const { addIDs } = require("../utils/addIDs.util");
 
 // main function to handle build request
 const handleBuild = async (req, res) => {
@@ -44,7 +46,7 @@ const handleBuild = async (req, res) => {
 
         const content = response.content[0].text;
 
-        console.log("Response:", content);
+        // console.log("Response:", content);
 
         const match = content.match(/<project>([\s\S]*?)<\/project>/);
 
@@ -53,29 +55,13 @@ const handleBuild = async (req, res) => {
             return res.status(500).json({ message: "Build failed" });
         }
 
-        console.log("Project content:", match[1]);
-        const projectId = Date.now().toString();
-
         // const project = JSON.parse(match[1].trim());
-        const project = new Function(`return ${match[1].trim()}`)();
-        console.log("Project after parsing:", project);
+        let project = new Function(`return ${match[1].trim()}`)();
 
-        fs.writeFileSync(
-            path.join(__dirname, "../store", "responses", `${projectId}.json`),
-            JSON.stringify(project, null, 2)
-        );
+        // add unique identifier to all dom nodes to apply editing on client side
+        project = addIDs(project);
 
-        createFiles(
-            project,
-            path.join(__dirname, "../store", "projects", projectId)
-        );
-
-        console.log("Building completed!...");
-
-        console.log("Bundling Started...");
-        await buildWithVite(projectId);
-        console.log("Bundling Completed...");
-
+        // console.log("Project content:", match[1]);
         // store project in database, associate with user if user exists else create new user in database
         let storedUser = await User.findOne({ email: user.email });
 
@@ -98,6 +84,22 @@ const handleBuild = async (req, res) => {
 
         storedUser.projects.push(newProject._id);
 
+        const projectId = newProject._id.toString();
+
+        fs.writeFileSync(
+            path.join(__dirname, "../store", "responses", `${projectId}.json`),
+            JSON.stringify(project, null, 2)
+        );
+
+        createFiles(
+            project,
+            path.join(__dirname, "../store", "projects", projectId)
+        );
+
+        console.log("Bundling Started...");
+        await buildWithVite(projectId);
+        console.log("Bundling Completed...");
+
         await storedUser.save();
 
         const buildFilePath = path.join(
@@ -107,13 +109,21 @@ const handleBuild = async (req, res) => {
             "build.html"
         );
 
-        const buildFile = fs.readFileSync(buildFilePath, "utf-8");
+        const fileContent = fs.readFileSync(buildFilePath, "utf-8");
 
-        res.status(200).send(buildFile);
-        // res.send("Done");
+        removeFiles(projectId);
+
+        res.status(200).json({
+            bundle: fileContent,
+            message: "Build successful!",
+            code: project,
+            projectId: projectId,
+        });
     } catch (err) {
         console.error("Error during build:", err);
         res.status(500).json({ message: "Build failed" });
+    } finally {
+        console.log("Building completed!...");
     }
 
     const buildEnd = performance.now();

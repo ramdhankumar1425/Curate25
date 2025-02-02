@@ -1,0 +1,74 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n:root {\n  --primary: #1a1a1a;\n  --secondary: #4a5568;\n  --accent: #6366f1;\n}\n\nbody {\n  background-color: var(--primary);\n  color: white;\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n)"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport Projects from './pages/Projects';\nimport Skills from './pages/Skills';\nimport Contact from './pages/Contact';\nimport Footer from './components/Footer';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen\">\n        <Navbar />\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/projects\" element={<Projects />} />\n          <Route path=\"/skills\" element={<Skills />} />\n          <Route path=\"/contact\" element={<Contact />} />\n        </Routes>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React, { useState } from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <nav className=\"bg-gray-900 p-4\">\n      <div className=\"container mx-auto flex justify-between items-center\">\n        <Link to=\"/\" className=\"text-white text-xl font-bold\">MERN Dev</Link>\n        \n        <div className=\"hidden md:flex space-x-6\">\n          <Link to=\"/\" className=\"text-white hover:text-indigo-400\">Home</Link>\n          <Link to=\"/projects\" className=\"text-white hover:text-indigo-400\">Projects</Link>\n          <Link to=\"/skills\" className=\"text-white hover:text-indigo-400\">Skills</Link>\n          <Link to=\"/contact\" className=\"text-white hover:text-indigo-400\">Contact</Link>\n        </div>\n\n        <button onClick={() => setIsOpen(!isOpen)} className=\"md:hidden text-white\">\n          <svg className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M4 6h16M4 12h16M4 18h16\" />\n          </svg>\n        </button>\n      </div>\n\n      {isOpen && (\n        <div className=\"md:hidden\">\n          <div className=\"px-2 pt-2 pb-3 space-y-1\">\n            <Link to=\"/\" className=\"block text-white hover:text-indigo-400 p-2\">Home</Link>\n            <Link to=\"/projects\" className=\"block text-white hover:text-indigo-400 p-2\">Projects</Link>\n            <Link to=\"/skills\" className=\"block text-white hover:text-indigo-400 p-2\">Skills</Link>\n            <Link to=\"/contact\" className=\"block text-white hover:text-indigo-400 p-2\">Contact</Link>\n          </div>\n        </div>\n      )}\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer className=\"bg-gray-900 text-white py-8 mt-12\">\n      <div className=\"container mx-auto text-center\">\n        <p>© 2024 MERN Stack Developer. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div className=\"min-h-screen\">\n      <section className=\"container mx-auto px-4 py-16\">\n        <div className=\"text-center\">\n          <h1 className=\"text-4xl md:text-6xl font-bold mb-6\">MERN Stack Developer</h1>\n          <p className=\"text-xl text-gray-400 mb-8\">Building modern web applications with MongoDB, Express.js, React, and Node.js</p>\n          <a href=\"#contact\" className=\"bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700 transition duration-300\">Get in Touch</a>\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Projects.jsx",
+              "content": "import React from 'react';\n\nconst Projects = () => {\n  const projects = [\n    {\n      title: \"E-commerce Platform\",\n      description: \"Full-stack e-commerce solution with MERN stack\",\n      image: \"https://images.unsplash.com/photo-1661956602116-aa6865609028\"\n    },\n    {\n      title: \"Task Management App\",\n      description: \"Real-time task management application\",\n      image: \"https://images.unsplash.com/photo-1517694712202-14dd9538aa97\"\n    }\n  ];\n\n  return (\n    <div className=\"container mx-auto px-4 py-16\">\n      <h2 className=\"text-3xl font-bold mb-8 text-center\">Featured Projects</h2>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        {projects.map((project, index) => (\n          <div key={index} className=\"bg-gray-800 rounded-lg overflow-hidden\">\n            <img src={project.image} alt={project.title} className=\"w-full h-48 object-cover\" />\n            <div className=\"p-6\">\n              <h3 className=\"text-xl font-bold mb-2\">{project.title}</h3>\n              <p className=\"text-gray-400\">{project.description}</p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Projects;"
+            },
+            {
+              "type": "file",
+              "name": "Skills.jsx",
+              "content": "import React from 'react';\n\nconst Skills = () => {\n  const skills = [\n    { name: \"MongoDB\", level: \"90%\" },\n    { name: \"Express.js\", level: \"85%\" },\n    { name: \"React\", level: \"95%\" },\n    { name: \"Node.js\", level: \"88%\" }\n  ];\n\n  return (\n    <div className=\"container mx-auto px-4 py-16\">\n      <h2 className=\"text-3xl font-bold mb-8 text-center\">Technical Skills</h2>\n      <div className=\"max-w-2xl mx-auto\">\n        {skills.map((skill, index) => (\n          <div key={index} className=\"mb-6\">\n            <div className=\"flex justify-between mb-2\">\n              <span>{skill.name}</span>\n              <span>{skill.level}</span>\n            </div>\n            <div className=\"w-full bg-gray-700 rounded-full h-2.5\">\n              <div className=\"bg-indigo-600 h-2.5 rounded-full\" style={{ width: skill.level }}></div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Skills;"
+            },
+            {
+              "type": "file",
+              "name": "Contact.jsx",
+              "content": "import React, { useState } from 'react';\n\nconst Contact = () => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    message: \"\"\n  });\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log(\"Form submitted:\", formData);\n  };\n\n  return (\n    <div className=\"container mx-auto px-4 py-16\">\n      <h2 className=\"text-3xl font-bold mb-8 text-center\">Contact Me</h2>\n      <form onSubmit={handleSubmit} className=\"max-w-lg mx-auto\">\n        <div className=\"mb-6\">\n          <label className=\"block mb-2\">Name</label>\n          <input\n            type=\"text\"\n            className=\"w-full p-2 bg-gray-800 rounded\"\n            value={formData.name}\n            onChange={(e) => setFormData({...formData, name: e.target.value})}\n          />\n        </div>\n        <div className=\"mb-6\">\n          <label className=\"block mb-2\">Email</label>\n          <input\n            type=\"email\"\n            className=\"w-full p-2 bg-gray-800 rounded\"\n            value={formData.email}\n            onChange={(e) => setFormData({...formData, email: e.target.value})}\n          />\n        </div>\n        <div className=\"mb-6\">\n          <label className=\"block mb-2\">Message</label>\n          <textarea\n            className=\"w-full p-2 bg-gray-800 rounded\"\n            rows=\"5\"\n            value={formData.message}\n            onChange={(e) => setFormData({...formData, message: e.target.value})}\n          ></textarea>\n        </div>\n        <button type=\"submit\" className=\"w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition duration-300\">\n          Send Message\n        </button>\n      </form>\n    </div>\n  );\n};\n\nexport default Contact;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>MERN Stack Developer Portfolio</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>"
+    }
+  ]
+}

@@ -1,4 +1,0 @@
-{
-  "prompt": "create a simple calculator with functionality of addition , subtration , multiplication etc.",
-  "refinedPrompt": "Create a simple calculator application with a user-friendly interface that allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division. The calculator should have a clear display to show the input and output, and buttons for digits 0-9, decimal point, equals, and the four operations. Implement error handling for divide by zero and invalid input. Use a programming language suitable for creating calculator applications, such as JavaScript or Python."
-}

@@ -1,4 +1,0 @@
-{
-  "prompt": "Create a simple page with a button, when clicked it shows alert",
-  "refinedPrompt": "Create a simple web page with a single button element. When the button is clicked, an alert message should be displayed to the user. The alert message can be a simple text like \"Button clicked!\" or any other relevant message. The page should have a clean and minimalistic design, focusing on demonstrating the button click event and the alert functionality."
-}

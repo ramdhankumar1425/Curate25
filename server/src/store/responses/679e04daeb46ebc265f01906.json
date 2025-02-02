@@ -1,0 +1,68 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n.dark {\n  @apply bg-gray-900 text-white;\n}\n\n.light {\n  @apply bg-white text-gray-900;\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React, { useState } from 'react';\nimport Navbar from './components/Navbar';\nimport Hero from './components/Hero';\nimport Skills from './components/Skills';\nimport Portfolio from './components/Portfolio';\nimport Contact from './components/Contact';\nimport Footer from './components/Footer';\n\nconst App = () => {\n  const [darkMode, setDarkMode] = useState(true);\n\n  const toggleDarkMode = () => {\n    setDarkMode(!darkMode);\n  };\n\n  return (\n    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : 'light'}`}>\n      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />\n      <Hero />\n      <Skills />\n      <Portfolio />\n      <Contact />\n      <Footer />\n    </div>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\n\nconst Navbar = ({ darkMode, toggleDarkMode }) => {\n  return (\n    <nav className=\"fixed w-full z-50 bg-opacity-90 backdrop-blur-sm\">\n      <div className=\"container mx-auto px-4 py-4 flex justify-between items-center\">\n        <h1 className=\"text-2xl font-bold\">John Doe</h1>\n        <button\n          onClick={toggleDarkMode}\n          className=\"p-2 rounded-full hover:bg-gray-700 transition-colors\"\n        >\n          {darkMode ? '🌞' : '🌙'}\n        </button>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Hero.jsx",
+              "content": "import React from 'react';\n\nconst Hero = () => {\n  return (\n    <section className=\"pt-20 min-h-screen flex items-center\">\n      <div className=\"container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center\">\n        <div>\n          <h1 className=\"text-5xl font-bold mb-4\">MERN Stack Developer</h1>\n          <p className=\"text-xl mb-6\">Building modern web applications with MongoDB, Express, React, and Node.js</p>\n          <a href=\"#contact\" className=\"bg-blue-600 text-white px-6 py-3 rounded-lg inline-block hover:bg-blue-700 transition-colors\">Get in Touch</a>\n        </div>\n        <div className=\"order-first md:order-last\">\n          <img src=\"https://images.unsplash.com/photo-1661956601030-fdfb9c7e9e2f\" alt=\"Developer\" className=\"rounded-lg shadow-xl\" />\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Hero;"
+            },
+            {
+              "type": "file",
+              "name": "Skills.jsx",
+              "content": "import React from 'react';\n\nconst Skills = () => {\n  const skills = [\n    { name: 'MongoDB', level: '90%' },\n    { name: 'Express.js', level: '85%' },\n    { name: 'React.js', level: '95%' },\n    { name: 'Node.js', level: '88%' }\n  ];\n\n  return (\n    <section id=\"skills\" className=\"py-20\">\n      <div className=\"container mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold mb-8 text-center\">Skills</h2>\n        <div className=\"grid md:grid-cols-2 gap-6\">\n          {skills.map((skill) => (\n            <div key={skill.name} className=\"p-4 border rounded-lg\">\n              <h3 className=\"text-xl mb-2\">{skill.name}</h3>\n              <div className=\"w-full bg-gray-200 rounded-full h-2.5\">\n                <div\n                  className=\"bg-blue-600 h-2.5 rounded-full\"\n                  style={{ width: skill.level }}\n                ></div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Skills;"
+            },
+            {
+              "type": "file",
+              "name": "Portfolio.jsx",
+              "content": "import React from 'react';\n\nconst Portfolio = () => {\n  const projects = [\n    {\n      title: 'E-Commerce Platform',\n      description: 'Full-stack MERN application with user authentication and payment integration',\n      image: 'https://images.unsplash.com/photo-1661956601031-4cf09efadfce'\n    },\n    {\n      title: 'Task Management System',\n      description: 'Real-time task tracking application with team collaboration features',\n      image: 'https://images.unsplash.com/photo-1661956601033-8f6972a6b4c4'\n    }\n  ];\n\n  return (\n    <section id=\"portfolio\" className=\"py-20\">\n      <div className=\"container mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold mb-8 text-center\">Portfolio</h2>\n        <div className=\"grid md:grid-cols-2 gap-8\">\n          {projects.map((project) => (\n            <div key={project.title} className=\"rounded-lg overflow-hidden shadow-lg\">\n              <img src={project.image} alt={project.title} className=\"w-full h-48 object-cover\" />\n              <div className=\"p-6\">\n                <h3 className=\"text-xl font-bold mb-2\">{project.title}</h3>\n                <p>{project.description}</p>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Portfolio;"
+            },
+            {
+              "type": "file",
+              "name": "Contact.jsx",
+              "content": "import React from 'react';\n\nconst Contact = () => {\n  return (\n    <section id=\"contact\" className=\"py-20\">\n      <div className=\"container mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold mb-8 text-center\">Contact Me</h2>\n        <form className=\"max-w-lg mx-auto\">\n          <div className=\"mb-4\">\n            <input\n              type=\"text\"\n              placeholder=\"Name\"\n              className=\"w-full p-3 rounded-lg bg-gray-700\"\n            />\n          </div>\n          <div className=\"mb-4\">\n            <input\n              type=\"email\"\n              placeholder=\"Email\"\n              className=\"w-full p-3 rounded-lg bg-gray-700\"\n            />\n          </div>\n          <div className=\"mb-4\">\n            <textarea\n              placeholder=\"Message\"\n              rows=\"4\"\n              className=\"w-full p-3 rounded-lg bg-gray-700\"\n            ></textarea>\n          </div>\n          <button className=\"w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors\">\n            Send Message\n          </button>\n        </form>\n      </div>\n    </section>\n  );\n};\n\nexport default Contact;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer className=\"py-8 border-t\">\n      <div className=\"container mx-auto px-4 text-center\">\n        <p>© 2024 MERN Stack Developer. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>MERN Stack Developer</title>\n</head>\n<body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}
