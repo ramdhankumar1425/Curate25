@@ -84,7 +84,7 @@ export const ProjectProvider = ({ children }) => {
                 }
 
                 const response = await axios.post(
-                    `${serverURI}/temp`,
+                    `${serverURI}/build`,
                     { prompt },
                     {
                         headers: {
