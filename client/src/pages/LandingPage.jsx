@@ -111,13 +111,16 @@ function LandingPage() {
 
             {/* Features */}
             <div className="w-full py-16">
-                <h2 className="text-3xl font-bold text-center text-white mb-8">
+                {/* <h2 className="text-3xl font-bold text-center text-white mb-8">
                     Key Features
+                </h2> */}
+                <h2 className="text-4xl font-bold text-center text-white mb-12">
+                    Why Choose Curate?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
                     <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
-                            src="https://unsplash.com/photos/grey-flat-screen-computer-monitor-i1VQZsU86ok"
+                            src="images/aipowered-design.png"
                             alt="Feature 1"
                             className="w-16 h-16 mx-auto mb-4"
                         />
@@ -131,7 +134,7 @@ function LandingPage() {
                     </div>
                     <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
-                            src="/path/to/feature-icon2.png"
+                            src="images/web-page-customisation.png"
                             alt="Feature 2"
                             className="w-16 h-16 mx-auto mb-4"
                         />
@@ -145,7 +148,7 @@ function LandingPage() {
                     </div>
                     <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
-                            src="/path/to/feature-icon3.png"
+                            src="images/responsive-design.png"
                             alt="Feature 3"
                             className="w-16 h-16 mx-auto mb-4"
                         />
