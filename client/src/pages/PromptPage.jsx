@@ -37,7 +37,14 @@ function PromptPage() {
             <Header />
 
             {/* Hero Section */}
-            <section className="w-full flex-1 flex flex-col items-center pt-20">
+            {/* For smaller screens */}
+            <section className="w-full flex-1 flex flex-col items-center justify-center pt-10 md:hidden">
+                <p className="font-bold">Warning</p>
+                <p>Please use a larger screen to build websites.</p>
+            </section>
+
+            {/* For larger screens */}
+            <section className="hidden w-full flex-1 md:flex flex-col items-center pt-20">
                 <img
                     className="w-12 aspect-square"
                     src="images/logo.png"
@@ -68,7 +75,7 @@ function PromptPage() {
                                 handleSubmit(e);
                             }
                         }}
-                        className="w-full rounded-lg p-6 bg-inherit border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder:font-semibold font-semibold placeholder-gray-400 text-white resize-none transition-all duration-300"
+                        className="w-full rounded-lg p-6 bg-inherit focus:outline-none border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder:font-semibold font-semibold placeholder-gray-400 text-white resize-none transition-all duration-300"
                         rows={7}
                         placeholder="Tell us about your website..."
                     />

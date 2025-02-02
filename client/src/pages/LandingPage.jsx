@@ -32,21 +32,21 @@ function LandingPage() {
     }, [isVideoPlaying]);
 
     return (
-        <div className="w-full min-h-screen flex flex-col justify-between text-white bg-[url(/images/landing-bg.png)] bg-cover bg-center bg-black">
+        <div className="w-full min-h-screen flex flex-col text-white bg-[url(/images/landing-bg.png)] bg-cover bg-center bg-black">
             {/* Header Section */}
             <Header />
 
             {/* Hero Section */}
-            <div className="w-full min-h-[80vh] flex flex-col items-center space-y-10 bg-re d-500">
+            <div className="w-full min-h-[80vh] flex flex-col items-center px-4 space-y-6 sm:space-y-10">
                 <img
-                    className="w-16 aspect-square mt-20"
+                    className="w-12 sm:w-16 aspect-square mt-10 sm:mt-20"
                     src="images/logo.png"
                     alt="Logo"
                 />
-                <h1 className="text-center text-5xl font-bold mt-10">
+                <h1 className="text-center text-3xl sm:text-5xl font-bold mt-6 sm:mt-10">
                     Curate – Websites Made Easy with AI
                 </h1>
-                <h3 className="text-center text-lg mt-4 max-w-2xl">
+                <h3 className="text-center text-base sm:text-lg mt-0 sm:mt-4 max-w-2xl">
                     Transform your thoughts into stunning websites effortlessly
                     with Curate. Our AI-powered platform helps you build
                     tailored websites from simple prompts, no technical skills
@@ -55,17 +55,17 @@ function LandingPage() {
 
                 <button
                     onClick={handleTryNowClick}
-                    className="px-14 py-5 border text-lg font-semibold tracking-wide font-inter rounded-xl hover:bg-blue-700 duration-500 hover:border-blue-500 hover:shadow-2xl"
+                    className="px-10 sm:px-14 py-3 sm:py-5 border text-lg font-semibold tracking-wide font-inter rounded-xl hover:bg-blue-700 duration-500 hover:border-blue-500 hover:shadow-2xl"
                 >
                     Try it now
                 </button>
             </div>
 
             {/* Video Section */}
-            <div className="flex items-center justify-center mb-20 relative">
+            <div className="flex items-center justify-center relative px-4  sm:my-10">
                 <video
                     ref={videoRef}
-                    className="w-1/2 aspect-auto shadow-2xl rounded-lg border-4 border-blue-600 backdrop-blur-3xl"
+                    className="w-full max-w-2xl aspect-auto shadow-2xl rounded-lg border-4 border-blue-600 backdrop-blur-3xl"
                     src="video/curate.mp4"
                     playsInline
                 ></video>
@@ -124,11 +124,8 @@ function LandingPage() {
             </div>
 
             {/* Features */}
-            <div className="w-full py-16">
-                {/* <h2 className="text-3xl font-bold text-center text-white mb-8">
-                    Key Features
-                </h2> */}
-                <h2 className="text-4xl font-bold text-center text-white mb-12">
+            <div className="w-full py-16 px-4">
+                <h2 className=" text-3xl sm:text-4xl font-bold text-center text-white mb-12">
                     Why Choose Curate?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
