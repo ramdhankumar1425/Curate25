@@ -1,0 +1,64 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react'\nimport ReactDOM from 'react-dom/client'\nimport App from './App'\nimport './index.css'\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n)"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import { HashRouter as Router, Routes, Route } from 'react-router-dom'\nimport Navbar from './components/Navbar'\nimport Home from './pages/Home'\nimport Projects from './pages/Projects'\nimport Skills from './pages/Skills'\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen bg-gray-50\">\n        <Navbar />\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/skills\" element={<Skills />} />\n          <Route path=\"/projects\" element={<Projects />} />\n        </Routes>\n      </div>\n    </Router>\n  )\n}\n\nexport default App"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import { Link } from 'react-router-dom'\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"80df6ce3-e993-450e-90dc-abd4c039f09d\" className=\"bg-gray-800 text-white p-4\">\n      <div data-curate-edit-id=\"f7ff92d9-0ce6-48bc-b355-56a4ed08a307\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"dbb466a6-c97e-4029-89ab-12d6d86c5880\" to=\"/\" className=\"text-xl font-bold\">Portfolio</Link>\n        <div data-curate-edit-id=\"10ebceb1-95d9-4a55-b2e4-3709fe3b5de6\" className=\"space-x-4\">\n          <Link data-curate-edit-id=\"7554a90d-258d-4714-9e83-ff33a61517e0\" to=\"/\" className=\"hover:text-gray-300\">Home</Link>\n          <Link data-curate-edit-id=\"f5b9bab1-38de-44cd-acf9-7dfe970c86d5\" to=\"/skills\" className=\"hover:text-gray-300\">Skills</Link>\n          <Link data-curate-edit-id=\"686872de-ed78-44a2-8730-c65ddcf45382\" to=\"/projects\" className=\"hover:text-gray-300\">Projects</Link>\n        </div>\n      </div>\n    </nav>\n  )\n}\n\nexport default Navbar"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "const Home = () => {\n  return (\n    <div data-curate-edit-id=\"5e83c6fe-88e3-41be-b28e-024de12a7ea3\" className=\"container mx-auto px-4 py-12\">\n      <div data-curate-edit-id=\"d5e70e83-aa3c-4e9d-831d-e4af535eebc2\" className=\"max-w-3xl mx-auto text-center\">\n        <h1 data-curate-edit-id=\"2217331f-fae4-4ddb-aa35-55f41fde0b1b\" className=\"text-4xl font-bold mb-6\">John Doe</h1>\n        <p data-curate-edit-id=\"5f718449-f5c3-4fb4-a994-1bfa4f4178b6\" className=\"text-xl mb-8\">MERN Stack Developer</p>\n        <p data-curate-edit-id=\"010ddfb7-a634-4c81-ba87-badb19a9e9d2\" className=\"text-gray-600\">\n          Passionate full-stack developer with expertise in MongoDB, Express.js, React, and Node.js.\n          Building scalable web applications and delivering exceptional user experiences.\n        </p>\n      </div>\n    </div>\n  )\n}\n\nexport default Home"
+            },
+            {
+              "type": "file",
+              "name": "Skills.jsx",
+              "content": "const Skills = () => {\n  const skills = [\n    { category: \"Frontend\", items: [\"React\", \"HTML5\", \"CSS3\", \"JavaScript\", \"Tailwind CSS\"] },\n    { category: \"Backend\", items: [\"Node.js\", \"Express.js\", \"MongoDB\", \"REST API\"] },\n    { category: \"Tools\", items: [\"Git\", \"VS Code\", \"Postman\", \"npm\"] }\n  ]\n\n  return (\n    <div data-curate-edit-id=\"4164dceb-60d1-4efe-b82f-b2acd2a822f6\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"585245f3-58bd-4eb2-9e7f-7aa2f6167779\" className=\"text-3xl font-bold text-center mb-8\">Technical Skills</h2>\n      <div data-curate-edit-id=\"11eda4fa-4677-4426-bb71-57fe4b16095c\" className=\"grid md:grid-cols-3 gap-6\">\n        {skills.map((skill) => (\n          <div data-curate-edit-id=\"115e47ee-062b-4977-968c-972e8237f541\" key={skill.category} className=\"bg-white p-6 rounded-lg shadow-md\">\n            <h3 data-curate-edit-id=\"eb877fe9-f5b5-4001-bf63-dbfefd68000f\" className=\"text-xl font-semibold mb-4\">{skill.category}</h3>\n            <ul data-curate-edit-id=\"68592b11-3eb0-4e08-ae93-946e65a48668\" className=\"space-y-2\">\n              {skill.items.map((item) => (\n                <li data-curate-edit-id=\"5d097f4f-63ec-434b-b62d-4ca4098fe3ef\" key={item} className=\"text-gray-600\">{item}</li>\n              ))}\n            </ul>\n          </div>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nexport default Skills"
+            },
+            {
+              "type": "file",
+              "name": "Projects.jsx",
+              "content": "const Projects = () => {\n  const projects = [\n    {\n      title: \"E-Commerce Platform\",\n      description: \"A full-stack e-commerce application with user authentication, product management, and payment integration.\",\n      tech: [\"React\", \"Node.js\", \"MongoDB\", \"Express\"],\n      demo: \"https://demo1.example.com\",\n      repo: \"https://github.com/example1\"\n    },\n    {\n      title: \"Task Management App\",\n      description: \"A collaborative task management tool with real-time updates and team features.\",\n      tech: [\"React\", \"Socket.io\", \"Node.js\", \"MongoDB\"],\n      demo: \"https://demo2.example.com\",\n      repo: \"https://github.com/example2\"\n    },\n    {\n      title: \"Blog Platform\",\n      description: \"A modern blogging platform with markdown support and user interactions.\",\n      tech: [\"React\", \"Node.js\", \"MongoDB\", \"Express\"],\n      demo: \"https://demo3.example.com\",\n      repo: \"https://github.com/example3\"\n    }\n  ]\n\n  return (\n    <div data-curate-edit-id=\"241e0115-1587-4c11-9efc-3d8a24c5ce93\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"99a40067-abed-4306-a238-17d05b940670\" className=\"text-3xl font-bold text-center mb-8\">Projects</h2>\n      <div data-curate-edit-id=\"02f4e1fd-b9a3-4a82-9083-6e951fd4a5af\" className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-6\">\n        {projects.map((project) => (\n          <div data-curate-edit-id=\"8f2cb075-17f6-4e04-aea6-b7ce47df03a5\" key={project.title} className=\"bg-white p-6 rounded-lg shadow-md\">\n            <h3 data-curate-edit-id=\"a78898b3-88ea-42de-9410-992140b789c0\" className=\"text-xl font-semibold mb-3\">{project.title}</h3>\n            <p data-curate-edit-id=\"c0273bf4-01ee-4452-a646-391982cad4a7\" className=\"text-gray-600 mb-4\">{project.description}</p>\n            <div data-curate-edit-id=\"4373a9d0-e62b-440e-a250-21ab83679d01\" className=\"mb-4\">\n              <h4 data-curate-edit-id=\"8cbfb2e0-1b7d-4c01-9946-1738672186d6\" className=\"font-medium mb-2\">Technologies:</h4>\n              <div data-curate-edit-id=\"e9fef764-2188-4c6d-b94c-8b3f485608b2\" className=\"flex flex-wrap gap-2\">\n                {project.tech.map((tech) => (\n                  <span data-curate-edit-id=\"99b6ce78-f385-42fe-be60-11bda4ca95e4\" key={tech} className=\"bg-gray-100 px-2 py-1 rounded text-sm\">\n                    {tech}\n                  </span>\n                ))}\n              </div>\n            </div>\n            <div data-curate-edit-id=\"64ec1aa7-68a4-4b82-9009-15b4194b7de0\" className=\"flex gap-4\">\n              <a data-curate-edit-id=\"9d738275-694a-408d-b219-e2d6b12e37a9\" href={project.demo} className=\"text-blue-600 hover:underline\">Live Demo</a>\n              <a data-curate-edit-id=\"75f706e9-9932-4269-9c34-4d3acbb27c26\" href={project.repo} className=\"text-blue-600 hover:underline\">Repository</a>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nexport default Projects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"a6b47a56-9900-4b43-8ab2-51ae0080e3c8\" lang=\"en\">\n<head data-curate-edit-id=\"394342a7-6e8e-46fc-be4e-2d18ebfc8fb1\">\n    <meta data-curate-edit-id=\"0cf36bcc-6eff-4f39-8d19-1f20d0acbd62\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"ce711962-a103-4ca7-8d1a-2d3d7430e66e\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"86a3bf30-0864-489a-a3bc-95ecf73efef1\">MERN Stack Developer Portfolio</title>\n</head>\n<body data-curate-edit-id=\"3d3b4eff-04f8-460b-a966-d0949c2ea00e\">\n    <div data-curate-edit-id=\"07f7ad88-d3f3-42f9-8f5c-f085ded77c8c\" id=\"root\"></div>\n    <script data-curate-edit-id=\"ab6d2ad6-e83f-4511-acad-eeda62639ad0\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

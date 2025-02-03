@@ -61,7 +61,10 @@ function PromptPage() {
                     </p>
                 </div>
 
-                <div className="w-1/2 flex justify-center mt-10 relative">
+                <div
+                    className="w-1/2 flex justify-center mt-10 relative"
+                    id="prompt-text-area"
+                >
                     {/* Enhanced textarea styling */}
                     <textarea
                         onChange={(e) => {
@@ -75,6 +78,7 @@ function PromptPage() {
                                 handleSubmit(e);
                             }
                         }}
+                        // id="prompt-text-area"
                         className="w-full rounded-lg p-6 bg-inherit focus:outline-none border border-blue-500 shadow-2xl focus:ring-4 focus:ring-blue-600 text-base font-thing placeholder:font-semibold font-semibold placeholder-gray-400 text-white resize-none transition-all duration-300"
                         rows={7}
                         placeholder="Tell us about your website..."

@@ -1,0 +1,69 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport ProductDetails from './pages/ProductDetails';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen flex flex-col\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/product/:id\" element={<ProductDetails />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"cb07ad76-bd62-4b1a-960a-4c6788fabc0a\" className=\"bg-gray-900 text-white p-4\">\n      <div data-curate-edit-id=\"5c9d6dac-a4a6-4811-8107-d6ad05e5e07f\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"f1dbfab9-dfa5-46c2-bac5-b1d875e5e8bd\" to=\"/\" className=\"text-2xl font-bold\">MobileX</Link>\n        <div data-curate-edit-id=\"d542597c-79ed-4f31-9883-919465b9df51\" className=\"space-x-6\">\n          <Link data-curate-edit-id=\"dc0bc6bf-7b64-4c2e-a4e4-98dbec66f5c6\" to=\"/\" className=\"hover:text-blue-400\">Home</Link>\n          <Link data-curate-edit-id=\"f2c6fb12-1f55-482d-8605-de6094ba4e65\" to=\"/product/1\" className=\"hover:text-blue-400\">Products</Link>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"d8cf12e1-fcba-4276-aef9-1bdb2c584dc6\" className=\"bg-gray-900 text-white py-8\">\n      <div data-curate-edit-id=\"4058211c-9d31-46dc-8a70-b7b28aceeb4c\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"ccc5b95c-4bc7-4826-804f-861f0f128860\">&copy; 2024 MobileX. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            },
+            {
+              "type": "file",
+              "name": "ProductCard.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst ProductCard = ({ id, name, image, price }) => {\n  return (\n    <Link data-curate-edit-id=\"4e5722db-7b29-4c34-bd15-4b28c3b7da78\" to={`/product/${id}`} className=\"bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105\">\n      <img data-curate-edit-id=\"49cdc8ea-3a78-40af-8dac-933014f201b5\" src={image} alt={name} className=\"w-full h-48 object-cover\" />\n      <div data-curate-edit-id=\"846966ee-f707-45ab-baf0-dcc6d8ff41ad\" className=\"p-4\">\n        <h3 data-curate-edit-id=\"1a0d3ae4-a790-48db-8103-52d9dd02c1d4\" className=\"text-xl font-semibold\">{name}</h3>\n        <p data-curate-edit-id=\"4b6dac09-0f16-43b0-9cb3-986817c608df\" className=\"text-gray-600\">${price}</p>\n      </div>\n    </Link>\n  );\n};\n\nexport default ProductCard;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport ProductCard from '../components/ProductCard';\n\nconst products = [\n  {\n    id: 1,\n    name: \"MobileX Pro\",\n    price: 999,\n    image: \"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500\"\n  },\n  {\n    id: 2,\n    name: \"MobileX Ultra\",\n    price: 1299,\n    image: \"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500\"\n  }\n];\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"06e776ba-0351-4c88-a156-e00d0feedf16\">\n      <section data-curate-edit-id=\"7faf1bb8-8512-4bf8-986a-c353fecb4df1\" className=\"relative h-[70vh]\">\n        <img data-curate-edit-id=\"dca66693-7e29-44bd-9c24-0bcc74145786\" \n          src=\"https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=1600\" \n          alt=\"Hero\" \n          className=\"w-full h-full object-cover brightness-50\"\n        />\n        <div data-curate-edit-id=\"4949b3d7-4328-49fd-b451-900967a4cedd\" className=\"absolute inset-0 flex items-center justify-center text-white\">\n          <div data-curate-edit-id=\"a39f2b7f-df30-4ae4-a852-a275fca3da3b\" className=\"text-center\">\n            <h1 data-curate-edit-id=\"f4e9bce7-a181-4357-9556-73f46f0343db\" className=\"text-5xl font-bold mb-4\">Experience Innovation</h1>\n            <p data-curate-edit-id=\"a0b8c1d4-0c69-4470-a966-fbf6635ed2ae\" className=\"text-xl\">Discover our latest smartphone collection</p>\n          </div>\n        </div>\n      </section>\n      \n      <section data-curate-edit-id=\"e7261cbb-00da-4d30-9d1d-ab7a365c2deb\" className=\"container mx-auto py-16 px-4\">\n        <h2 data-curate-edit-id=\"517a03f4-059c-45f9-9e01-84104e515a6a\" className=\"text-3xl font-bold mb-8 text-center\">Our Latest Models</h2>\n        <div data-curate-edit-id=\"c2be6f01-e931-413e-b273-bd98d5f64a65\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\">\n          {products.map(product => (\n            <ProductCard data-curate-edit-id=\"74f5819c-97b6-49b3-91a6-800924110ebd\" key={product.id} {...product} />\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "ProductDetails.jsx",
+              "content": "import React from 'react';\nimport { useParams } from 'react-router-dom';\n\nconst products = {\n  1: {\n    name: \"MobileX Pro\",\n    price: 999,\n    image: \"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500\",\n    specs: {\n      display: \"6.7 inch OLED\",\n      processor: \"X1 Chip\",\n      camera: \"48MP Triple Camera\",\n      battery: \"4500mAh\"\n    }\n  }\n};\n\nconst ProductDetails = () => {\n  const { id } = useParams();\n  const product = products[id];\n\n  if (!product) return <div data-curate-edit-id=\"8c0c5c18-0a69-479f-b0ab-501ed20baa28\" className=\"text-center py-8\">Product not found</div>;\n\n  return (\n    <div data-curate-edit-id=\"2dd22d1f-7396-4b4b-a9a3-2b7f120589d8\" className=\"container mx-auto py-8 px-4\">\n      <div data-curate-edit-id=\"f383213c-43c1-4e85-ab8a-9219c3f7e09e\" className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n        <img data-curate-edit-id=\"a7c6c7c8-5f4b-48b6-8874-fca1acc8d11c\" src={product.image} alt={product.name} className=\"w-full rounded-lg\" />\n        <div data-curate-edit-id=\"f435e4af-8a4d-4af2-a925-905a861884ad\">\n          <h1 data-curate-edit-id=\"1cef1547-17bb-4fea-abd9-7c69e025c654\" className=\"text-3xl font-bold mb-4\">{product.name}</h1>\n          <p data-curate-edit-id=\"ecb4f002-0a69-44ae-80b3-628cc0409e68\" className=\"text-2xl text-gray-600 mb-6\">${product.price}</p>\n          <div data-curate-edit-id=\"77b214cf-87fa-4b54-8912-92cd06cee294\" className=\"space-y-4\">\n            {Object.entries(product.specs).map(([key, value]) => (\n              <div data-curate-edit-id=\"3b27c009-47f7-4b7a-8ec1-8d9aa5e84526\" key={key}>\n                <span data-curate-edit-id=\"993f07c9-fb6c-4dc0-9149-eecd155985e1\" className=\"font-semibold capitalize\">{key}: </span>\n                {value}\n              </div>\n            ))}\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default ProductDetails;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"36e21e54-98b8-4996-b3cd-3316e961c953\" lang=\"en\">\n<head data-curate-edit-id=\"49ac000b-b194-422f-b9f1-a8c0ced44cb7\">\n    <meta data-curate-edit-id=\"817fa7a5-7018-47bd-8198-fc816dccc86b\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"0e14e89f-ab9f-47f1-9c27-9f8783cc69e0\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"19b7cf0b-e5bb-429e-b11c-4bd17a07c75b\">MobileX - Experience Innovation</title>\n</head>\n<body data-curate-edit-id=\"61d750e3-481a-47ee-b894-b601d23ef87b\">\n    <div data-curate-edit-id=\"3fbba2d8-1c16-40dc-88a2-e92781b0a662\" id=\"root\"></div>\n    <script data-curate-edit-id=\"3285bd4e-55df-4b18-883b-d5e5d9778244\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

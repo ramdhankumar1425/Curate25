@@ -1,0 +1,4 @@
+{
+  "prompt": "create me a website to keep track of class missed by a person and also allow to set a threshold for maximum absence",
+  "refinedPrompt": "Create a website for tracking student attendance that allows users to log absences for each student in a class. Include a feature to set a maximum absence threshold for each student, and generate alerts when a student exceeds their allotted absences. The website should have a user-friendly interface for easy input of attendance data, as well as reporting capabilities to view attendance records for individual students or the entire class."
+}

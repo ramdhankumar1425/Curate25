@@ -19,3 +19,20 @@
 .noscroll {
     scrollbar-width: none;
 }
+
+#prompt-text-area::-webkit-scrollbar {
+    width: 4px; /* Adjust width for a slim scrollbar */
+}
+
+#prompt-text-area::-webkit-scrollbar-track {
+    background: transparent; /* Keeps track background minimal */
+}
+
+#prompt-text-area::-webkit-scrollbar-thumb {
+    background: #007bff; /* Blue color */
+    border-radius: 4px; /* Rounded edges */
+}
+
+#prompt-text-area::-webkit-scrollbar-thumb:hover {
+    background: #0056b3; /* Darker blue on hover */
+}

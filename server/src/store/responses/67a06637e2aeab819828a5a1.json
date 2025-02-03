@@ -1,0 +1,64 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Exercises from './pages/Exercises';\nimport CalorieCalculator from './pages/CalorieCalculator';\nimport ProgressTracker from './pages/ProgressTracker';\nimport Community from './pages/Community';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen flex flex-col\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/exercises\" element={<Exercises />} />\n            <Route path=\"/calorie-calculator\" element={<CalorieCalculator />} />\n            <Route path=\"/progress-tracker\" element={<ProgressTracker />} />\n            <Route path=\"/community\" element={<Community />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"3c47a161-740d-4425-8e7d-df5ef3e43027\" className=\"bg-blue-600 text-white p-4\">\n      <div data-curate-edit-id=\"8b6a4247-3b2f-428f-ad67-a6f37a92cedc\" className=\"container mx-auto flex flex-wrap justify-between items-center\">\n        <Link data-curate-edit-id=\"ecc0d1a0-12a8-40c9-9a82-915ccccf70b0\" to=\"/\" className=\"text-2xl font-bold\">Fitness Tracker Hub</Link>\n        <div data-curate-edit-id=\"c88390e3-d142-4a85-8c6c-8a6a32295bdb\" className=\"flex flex-wrap gap-4\">\n          <Link data-curate-edit-id=\"0f49953d-ce68-4c8f-91e8-bf847be877e6\" to=\"/\" className=\"hover:text-blue-200\">Home</Link>\n          <Link data-curate-edit-id=\"d58f9404-5ade-4d73-9a8b-66fb619818d1\" to=\"/exercises\" className=\"hover:text-blue-200\">Exercises</Link>\n          <Link data-curate-edit-id=\"b80df594-52a2-469f-a57a-87ad7f726094\" to=\"/calorie-calculator\" className=\"hover:text-blue-200\">Calorie Calculator</Link>\n          <Link data-curate-edit-id=\"2a0f7e08-bb5a-4a29-8605-51e129932397\" to=\"/progress-tracker\" className=\"hover:text-blue-200\">Progress Tracker</Link>\n          <Link data-curate-edit-id=\"44250c75-812b-4665-822c-9a8cc3f96199\" to=\"/community\" className=\"hover:text-blue-200\">Community</Link>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"d202b7c6-46a6-4f3a-9b83-39c0160893da\" className=\"bg-gray-800 text-white p-4 mt-auto\">\n      <div data-curate-edit-id=\"9ccb1780-e1bc-407f-a877-fca2c94902fd\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"825d22d2-349c-41f4-bbe7-3f41ad02492d\">&copy; 2024 Fitness Tracker Hub. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"64e34006-0bc6-45ef-a0cf-528a1a9d33c7\" className=\"container mx-auto px-4 py-8\">\n      <h1 data-curate-edit-id=\"3631c464-4e92-40a7-ba1f-b4091075f75b\" className=\"text-4xl font-bold mb-6\">Welcome to Fitness Tracker Hub</h1>\n      <div data-curate-edit-id=\"71cec1a1-755a-4cdf-8241-2f684ef530a9\" className=\"grid md:grid-cols-2 gap-8\">\n        <div data-curate-edit-id=\"6a0ba3e8-cbb7-4994-8adf-69eb58926ad9\">\n          <h2 data-curate-edit-id=\"c27064b4-10be-4b16-87c3-707eefec4f0a\" className=\"text-2xl font-semibold mb-4\">Start Your Fitness Journey Today</h2>\n          <p data-curate-edit-id=\"1191dcfa-adaa-42e3-866b-68cd2bcc145a\" className=\"text-gray-600\">Track your progress, calculate calories, and connect with like-minded fitness enthusiasts.</p>\n        </div>\n        <div data-curate-edit-id=\"b66884c7-6f63-4a9d-b742-2c1047dbdc00\">\n          <img data-curate-edit-id=\"f867c2df-5e59-40a1-9224-348e987ed593\" src=\"https://images.unsplash.com/photo-1517836357463-d25dfeac3438\" alt=\"Fitness\" className=\"rounded-lg shadow-lg\" />\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Exercises.jsx",
+              "content": "import React from 'react';\n\nconst Exercises = () => {\n  return (\n    <div data-curate-edit-id=\"ee6e75c4-39ef-4f3a-a341-0708fabffd97\" className=\"container mx-auto px-4 py-8\">\n      <h1 data-curate-edit-id=\"2751e84e-8317-42d9-a15d-701f63a9cea8\" className=\"text-3xl font-bold mb-6\">Exercise Database</h1>\n      <div data-curate-edit-id=\"d75e6d5e-f7ec-4384-a596-ad348c4b7fd9\" className=\"grid md:grid-cols-3 gap-6\">\n        {[1, 2, 3, 4, 5, 6].map((item) => (\n          <div data-curate-edit-id=\"a13da462-49e7-465c-88bf-bc0234d35913\" key={item} className=\"border rounded-lg p-4 shadow-md\">\n            <img data-curate-edit-id=\"1916b984-11c5-4a35-9e47-d73ee8124386\" src={`https://source.unsplash.com/400x300/?fitness-${item}`} alt=\"Exercise\" className=\"w-full rounded-lg mb-4\" />\n            <h3 data-curate-edit-id=\"342d58a3-179f-400f-aee0-f2aff2414984\" className=\"text-xl font-semibold mb-2\">Exercise {item}</h3>\n            <p data-curate-edit-id=\"1a0ca417-9b2a-46ae-9349-983b9ec912b1\" className=\"text-gray-600\">Description of exercise and proper form instructions.</p>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Exercises;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"8691548b-0ad7-40bd-96e3-261f42b23824\" lang=\"en\">\n<head data-curate-edit-id=\"1d5cec08-9815-4fc4-b9ce-34d879b64d26\">\n    <meta data-curate-edit-id=\"3ac04cee-ae67-4696-a225-02213ebaf5d3\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"32f369b7-8748-4902-806c-ed7d54a47c82\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"334f4243-950e-4842-8ce8-d0f43103085c\">Fitness Tracker Hub</title>\n</head>\n<body data-curate-edit-id=\"a1bf1f02-dc52-4403-8589-f09f713868ea\">\n    <div data-curate-edit-id=\"5bb3a43f-d34b-42f9-82e9-47681f0d8151\" id=\"root\"></div>\n    <script data-curate-edit-id=\"473b0525-d8e2-4909-8535-50871eb552f2\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.render(\n  <HashRouter>\n    <App />\n  </HashRouter>,\n  document.getElementById('root')\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport Workouts from './pages/Workouts';\nimport Equipment from './pages/Equipment';\n\nconst App = () => {\n    return (\n        <div className=\"min-h-screen bg-base-100\">\n            <Navbar />\n            <Routes>\n                <Route path=\"/\" element={<Home />} />\n                <Route path=\"/workouts\" element={<Workouts />} />\n                <Route path=\"/equipment\" element={<Equipment />} />\n            </Routes>\n        </div>\n    );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"fcdd58c3-7ab8-457b-94ea-8dc189fc8e0c\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"6dcc7a3a-484f-456b-81e7-8f13aa634476\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"760c8fcc-98cd-480b-bb13-b052243f0435\" className=\"dropdown\">\n                    <div data-curate-edit-id=\"15afeee3-0158-4e26-95de-e358e78be83c\" tabIndex={0} role=\"button\" className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"6c940f81-497f-4dca-bc21-1b04708dbb86\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"d19c327b-2b63-466d-a410-357863b66c75\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </div>\n                    <ul data-curate-edit-id=\"1dfba511-208f-44d3-a789-dbc8a1d6292d\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52\">\n                        <li data-curate-edit-id=\"269cd944-a3ef-41ff-bcfc-bcfd90bab1f2\"><Link data-curate-edit-id=\"8ca8aa96-c221-4c55-a537-8ffbbe0a9ee8\" to=\"/\">Home</Link></li>\n                        <li data-curate-edit-id=\"fb883d70-f193-4c39-9357-eef94cfcdafd\"><Link data-curate-edit-id=\"5da8f81f-0464-4a5b-80cd-f5ef82373d47\" to=\"/workouts\">Workouts</Link></li>\n                        <li data-curate-edit-id=\"36abd0bd-b5f8-4429-9b56-15245e12924c\"><Link data-curate-edit-id=\"e2f8cdfe-7d12-4873-aea8-a1340b674deb\" to=\"/equipment\">Equipment</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"77284a34-b470-4944-8aa2-c60cc1711702\" to=\"/\" className=\"btn btn-ghost text-xl\">FitGuide</Link>\n            </div>\n            <div data-curate-edit-id=\"6862d71f-ec75-44ac-b801-300bd937e231\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"97a3737f-f490-4095-8d84-f7bf6bf31860\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"cb63c96f-2458-4b46-8e99-6a7d297699b3\"><Link data-curate-edit-id=\"e1dd8b5b-9c52-41e4-bfc3-b4755257e200\" to=\"/\">Home</Link></li>\n                    <li data-curate-edit-id=\"6d917e73-f072-492f-a354-ebf75afd512b\"><Link data-curate-edit-id=\"174fbbd0-602a-437e-81e4-8affff2093c2\" to=\"/workouts\">Workouts</Link></li>\n                    <li data-curate-edit-id=\"e8e66449-1660-45ef-a183-2657e79707ae\"><Link data-curate-edit-id=\"c79f38c0-4444-4e12-a2a9-4b732be406c1\" to=\"/equipment\">Equipment</Link></li>\n                </ul>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Home = () => {\n    return (\n        <div data-curate-edit-id=\"fb08aae3-f063-4221-8f26-93b5697cd3cb\" className=\"flex flex-col gap-8\">\n            <div data-curate-edit-id=\"21d88401-2f08-4751-8ba1-477c3cc9f148\" className=\"hero min-h-[70vh] bg-base-200\" style={{ backgroundImage: 'url(https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg)', backgroundSize: 'cover' }}>\n                <div data-curate-edit-id=\"b2207f26-0958-4451-97f5-8f463f6865e6\" className=\"hero-overlay bg-opacity-60\"></div>\n                <div data-curate-edit-id=\"d94f1d16-8abb-4a85-ad4e-e884ce2d6285\" className=\"hero-content text-center text-neutral-content\">\n                    <div data-curate-edit-id=\"e5c5368f-a536-4961-9f4f-962bcb831ac5\" className=\"max-w-md\">\n                        <h1 data-curate-edit-id=\"4d5e022a-ebac-4a8a-946b-124706e94283\" className=\"mb-5 text-5xl font-bold\">FitGuide</h1>\n                        <p data-curate-edit-id=\"3b3f43d9-848e-4714-9692-e972e833a3b3\" className=\"mb-5\">Your complete guide to workouts and gym equipment</p>\n                        <Link data-curate-edit-id=\"84f075e6-bc7c-4ff3-9507-285494ed60db\" to=\"/workouts\" className=\"btn btn-primary\">Start Training</Link>\n                    </div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Workouts.jsx",
+              "content": "import React from 'react';\n\nconst workouts = [\n    { name: \"Chest\", exercises: [\"Bench Press\", \"Push-ups\", \"Dumbbell Flyes\"] },\n    { name: \"Back\", exercises: [\"Pull-ups\", \"Rows\", \"Deadlifts\"] },\n    { name: \"Legs\", exercises: [\"Squats\", \"Lunges\", \"Leg Press\"] }\n];\n\nconst Workouts = () => {\n    return (\n        <div data-curate-edit-id=\"42499e50-1499-4543-9311-5865789bc22d\" className=\"p-4\">\n            <h1 data-curate-edit-id=\"b4206287-fbbb-4a73-96f3-da6693b514e1\" className=\"text-3xl font-bold mb-6\">Workout Guide</h1>\n            <div data-curate-edit-id=\"a17c9a7e-a2e5-49dd-aaeb-595b1273c917\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                {workouts.map((group) => (\n                    <div data-curate-edit-id=\"5122e072-ff99-4d6c-8353-c56b14d24069\" key={group.name} className=\"card bg-base-100 shadow-xl\">\n                        <div data-curate-edit-id=\"83c5a2de-5cf2-49e1-b088-d7ece325a4d0\" className=\"card-body\">\n                            <h2 data-curate-edit-id=\"77c15de8-4382-4fd7-9a63-7385491c2634\" className=\"card-title\">{group.name}</h2>\n                            <ul data-curate-edit-id=\"76439bf3-8345-43b8-87cc-e6550b9e7574\" className=\"list-disc list-inside\">\n                                {group.exercises.map((exercise) => (\n                                    <li data-curate-edit-id=\"cb62481b-a35a-49d5-bf14-5eaa4db9b9c2\" key={exercise}>{exercise}</li>\n                                ))}\n                            </ul>\n                        </div>\n                    </div>\n                ))}\n            </div>\n        </div>\n    );\n};\n\nexport default Workouts;"
+            },
+            {
+              "type": "file",
+              "name": "Equipment.jsx",
+              "content": "import React from 'react';\n\nconst equipment = [\n    { name: \"Dumbbells\", description: \"Versatile weights for various exercises\" },\n    { name: \"Barbell\", description: \"Essential for compound movements\" },\n    { name: \"Bench\", description: \"Multi-purpose workout station\" }\n];\n\nconst Equipment = () => {\n    return (\n        <div data-curate-edit-id=\"f3573a04-0ed5-4527-9a29-37eee7eea8c1\" className=\"p-4\">\n            <h1 data-curate-edit-id=\"6fe80c55-6528-40f9-bdcf-2bae309a172d\" className=\"text-3xl font-bold mb-6\">Equipment Guide</h1>\n            <div data-curate-edit-id=\"5ebbe8b5-50dc-4554-a779-d09e281448da\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                {equipment.map((item) => (\n                    <div data-curate-edit-id=\"d7f15905-fcac-4ed1-9bb2-3dbe0e50fd8f\" key={item.name} className=\"card bg-base-100 shadow-xl\">\n                        <div data-curate-edit-id=\"1e2dd3d2-6d67-4ce2-aac7-8698dd53f74d\" className=\"card-body\">\n                            <h2 data-curate-edit-id=\"3a95b4ac-5e1a-4c43-8b21-c18b7c440b85\" className=\"card-title\">{item.name}</h2>\n                            <p data-curate-edit-id=\"36e6cb8e-38c3-4b0c-8ddb-ef42bd041af5\">{item.description}</p>\n                        </div>\n                    </div>\n                ))}\n            </div>\n        </div>\n    );\n};\n\nexport default Equipment;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"9e9e068a-7bad-428f-8d40-b60cfe6bcf27\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"290f2f0a-50b2-4734-a6e3-5243b0882a49\">\n    <meta data-curate-edit-id=\"444b467d-6cd4-4aef-b50d-bd95699095f8\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"8c296233-f448-4850-9a61-bccf56acf7b1\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"28a92b51-ad74-4d86-8b57-2d287591bcbd\">FitGuide - Workout and Equipment Guide</title>\n</head>\n<body data-curate-edit-id=\"4dd021e7-5fbd-4b37-b084-7624c19ca04d\">\n    <link data-curate-edit-id=\"a1090b5b-60ba-459f-a989-21bf2df07cdc\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"95ecfe8c-94b8-43fd-a51d-eb1abcddb525\" src=\"https://cdn.tailwindcss.com\"></script>\n    <div data-curate-edit-id=\"4e2ac697-3951-4fc6-99ae-9056cbd9b6f1\" id=\"root\"></div>\n    <script data-curate-edit-id=\"adecbef7-d2a7-4829-bdc8-d25a64869500\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

@@ -6,7 +6,10 @@ const { handleBuild } = require("./controllers/build.controller");
 const { handleRefine } = require("./controllers/refine.controller");
 const { handleUpdate } = require("./controllers/update.controller");
 const { handleDownload } = require("./controllers/download.controller");
-const { handleTemp } = require("./controllers/temp.controller");
+const {
+    handleFetchHistory,
+    handleGetProject,
+} = require("./controllers/history.controller");
 
 const app = express();
 
@@ -28,7 +31,8 @@ app.post("/build", authGuard, attachUser, handleBuild);
 app.post("/refine", handleRefine);
 app.post("/update", handleUpdate);
 app.post("/download", handleDownload);
-app.post("/temp", handleTemp);
+app.get("/history", authGuard, attachUser, handleFetchHistory);
+app.post("/project", authGuard, attachUser, handleGetProject);
 
 app.get("/test", (req, res) => {
     console.log("Request received on test route");

@@ -1,0 +1,79 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(<App />);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport About from './pages/About';\nimport Skills from './pages/Skills';\nimport Portfolio from './pages/Portfolio';\nimport Contact from './pages/Contact';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen flex flex-col\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/about\" element={<About />} />\n            <Route path=\"/skills\" element={<Skills />} />\n            <Route path=\"/portfolio\" element={<Portfolio />} />\n            <Route path=\"/contact\" element={<Contact />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React, { useState } from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <nav data-curate-edit-id=\"a3dab1f6-d8ee-4a67-8b5d-2fe3946abf9c\" className=\"bg-gray-800 text-white p-4\">\n      <div data-curate-edit-id=\"d2ed7668-edc0-405b-80d7-a2052a9286cf\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"f3617378-1202-40d2-9afa-2eb84da6bd2b\" to=\"/\" className=\"text-xl font-bold\">MERN Developer</Link>\n        \n        <div data-curate-edit-id=\"f4c94e9b-2a43-4175-a8b1-1da525194b26\" className=\"hidden md:flex space-x-4\">\n          <Link data-curate-edit-id=\"7cd40685-db17-4e16-bf54-4ed92d31ee85\" to=\"/\" className=\"hover:text-blue-400\">Home</Link>\n          <Link data-curate-edit-id=\"7b46c5fb-fdcc-4a9e-9d92-7c7ce30e5e06\" to=\"/about\" className=\"hover:text-blue-400\">About</Link>\n          <Link data-curate-edit-id=\"ae63beb6-0603-4cc9-aa3d-e22521151bbe\" to=\"/skills\" className=\"hover:text-blue-400\">Skills</Link>\n          <Link data-curate-edit-id=\"6c04abca-d156-45ef-bdbc-f34ac4a31ba8\" to=\"/portfolio\" className=\"hover:text-blue-400\">Portfolio</Link>\n          <Link data-curate-edit-id=\"6a396e04-4d77-41b2-99e0-4a0668429819\" to=\"/contact\" className=\"hover:text-blue-400\">Contact</Link>\n        </div>\n\n        <button data-curate-edit-id=\"a76d7d53-d539-466f-ad93-224c3ea7802e\" \n          className=\"md:hidden\"\n          onClick={() => setIsOpen(!isOpen)}\n        >\n          <svg data-curate-edit-id=\"61097d1d-9cb7-43f6-8cae-5713f4917a2e\" className=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path data-curate-edit-id=\"90c0f8a5-c3fa-435a-8bc3-1c38f8021a7d\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"/>\n          </svg>\n        </button>\n      </div>\n\n      {isOpen && (\n        <div data-curate-edit-id=\"18dda8e7-c83a-4e6c-b1d0-e8ffeaba04c7\" className=\"md:hidden\">\n          <div data-curate-edit-id=\"bb581974-ff03-497c-9514-a0303d66473b\" className=\"px-2 pt-2 pb-3 space-y-1\">\n            <Link data-curate-edit-id=\"e4469bca-368d-44ff-8537-4ceeeabe3ec2\" to=\"/\" className=\"block px-3 py-2 hover:bg-gray-700 rounded\">Home</Link>\n            <Link data-curate-edit-id=\"4ff69011-fd3a-41a4-bb3c-e56d2ff4e5c5\" to=\"/about\" className=\"block px-3 py-2 hover:bg-gray-700 rounded\">About</Link>\n            <Link data-curate-edit-id=\"7c738312-4c8e-4641-bb82-8e9c9a672f5c\" to=\"/skills\" className=\"block px-3 py-2 hover:bg-gray-700 rounded\">Skills</Link>\n            <Link data-curate-edit-id=\"dda2d1e2-1cfd-4e06-8108-75ad26ef15e0\" to=\"/portfolio\" className=\"block px-3 py-2 hover:bg-gray-700 rounded\">Portfolio</Link>\n            <Link data-curate-edit-id=\"18d0ab83-e6ca-4705-8519-2ec07909eb41\" to=\"/contact\" className=\"block px-3 py-2 hover:bg-gray-700 rounded\">Contact</Link>\n          </div>\n        </div>\n      )}\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"9b9ef813-ba64-4d00-ae01-9c612ed8faea\" className=\"bg-gray-800 text-white p-4 mt-auto\">\n      <div data-curate-edit-id=\"76de2210-4634-43d7-b2de-966fb2baca7f\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"b44585ce-9bea-4036-9e65-e330a04b00b4\">&copy; 2024 MERN Stack Developer. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"9df6e114-7d72-4d66-bf09-f3fbb2e43cf4\" className=\"container mx-auto px-4 py-12\">\n      <div data-curate-edit-id=\"c8393034-898a-424c-94f8-c921f735d0f9\" className=\"text-center\">\n        <h1 data-curate-edit-id=\"1870230c-ca56-4b06-bb1c-0b754dfea3e0\" className=\"text-4xl font-bold mb-4\">Welcome to My Portfolio</h1>\n        <p data-curate-edit-id=\"1ddd237d-9faa-41b9-8053-e6086a6d1876\" className=\"text-xl mb-8\">MERN Stack Developer</p>\n        <img data-curate-edit-id=\"9c6fc5d0-d562-4a2a-821f-ebc38fab4937\" \n          src=\"https://images.unsplash.com/photo-1498050108023-c5249f4df085\"\n          alt=\"Developer\"\n          className=\"mx-auto rounded-lg max-w-2xl w-full\"\n        />\n      </div>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "About.jsx",
+              "content": "import React from 'react';\n\nconst About = () => {\n  return (\n    <div data-curate-edit-id=\"2151959a-6552-4c1d-b4b6-d2148912a150\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"ac9a7a47-829c-4f30-a84f-ba873426d365\" className=\"text-3xl font-bold mb-6\">About Me</h2>\n      <div data-curate-edit-id=\"d7f0a877-335d-4963-9e7c-893993471826\" className=\"grid md:grid-cols-2 gap-8\">\n        <div data-curate-edit-id=\"8d36e700-ffb9-4211-b629-eccbe76a488d\">\n          <p data-curate-edit-id=\"a95a8f81-9da4-424a-8764-c22e6bb7b688\" className=\"mb-4\">\n            I am a passionate MERN stack developer with experience in building scalable web applications.\n            My expertise includes working with MongoDB, Express.js, React.js, and Node.js.\n          </p>\n          <p data-curate-edit-id=\"b0d7a5bf-f8e7-4f11-b2ea-a843181a1936\">\n            With a strong foundation in both frontend and backend development,\n            I strive to create efficient and user-friendly applications.\n          </p>\n        </div>\n        <div data-curate-edit-id=\"52d0f9cf-b44a-4bc9-86c7-924a631a6d19\">\n          <img data-curate-edit-id=\"55d17da7-1030-4225-9b8d-286a5d6c5986\" \n            src=\"https://images.unsplash.com/photo-1517694712202-14dd9538aa97\"\n            alt=\"About\"\n            className=\"rounded-lg w-full\"\n          />\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default About;"
+            },
+            {
+              "type": "file",
+              "name": "Skills.jsx",
+              "content": "import React from 'react';\n\nconst Skills = () => {\n  const skills = [\n    { name: \"MongoDB\", level: \"90%\" },\n    { name: \"Express.js\", level: \"85%\" },\n    { name: \"React.js\", level: \"95%\" },\n    { name: \"Node.js\", level: \"88%\" }\n  ];\n\n  return (\n    <div data-curate-edit-id=\"b61bdaa2-1d49-499c-8400-cbb6afee2b55\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"d8dcb3f1-e347-4dff-bb51-d7bb995a5eca\" className=\"text-3xl font-bold mb-6\">Skills</h2>\n      <div data-curate-edit-id=\"e69bbcc9-5e68-4475-be8d-490ab6d616df\" className=\"space-y-4\">\n        {skills.map((skill, index) => (\n          <div data-curate-edit-id=\"599b7d98-9fbf-43b0-81f3-f3d7f8cdfe5f\" key={index} className=\"mb-4\">\n            <div data-curate-edit-id=\"59ce7668-22a6-40cb-8558-addecbddee4a\" className=\"flex justify-between mb-1\">\n              <span data-curate-edit-id=\"04e0fdbd-9a82-4d7c-bca5-818d037179d4\" className=\"font-semibold\">{skill.name}</span>\n              <span data-curate-edit-id=\"c6d10938-ae0f-4db5-876f-0244f147bd94\">{skill.level}</span>\n            </div>\n            <div data-curate-edit-id=\"d79927b9-8d74-42f3-87ab-2470a429c83a\" className=\"w-full bg-gray-200 rounded-full h-2.5\">\n              <div data-curate-edit-id=\"2d48ae50-3019-4814-a888-88bb56ec31bd\" \n                className=\"bg-blue-600 h-2.5 rounded-full\" \n                style={{ width: skill.level }}\n              ></div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Skills;"
+            },
+            {
+              "type": "file",
+              "name": "Portfolio.jsx",
+              "content": "import React from 'react';\n\nconst Portfolio = () => {\n  const projects = [\n    {\n      title: \"E-commerce Platform\",\n      description: \"Full-stack e-commerce website using MERN stack\",\n      image: \"https://images.unsplash.com/photo-1557821552-17105176677c\"\n    },\n    {\n      title: \"Task Management App\",\n      description: \"Real-time task management application\",\n      image: \"https://images.unsplash.com/photo-1559028012-481c04fa702d\"\n    }\n  ];\n\n  return (\n    <div data-curate-edit-id=\"da14d0c0-3140-4396-935d-1c31987c7111\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"f245a7bf-1211-4705-b804-ed9cd0380081\" className=\"text-3xl font-bold mb-6\">Portfolio</h2>\n      <div data-curate-edit-id=\"92a04877-efbb-4023-b109-ef75977fadd2\" className=\"grid md:grid-cols-2 gap-6\">\n        {projects.map((project, index) => (\n          <div data-curate-edit-id=\"a57337a5-9b2d-4314-8123-5cce27b37bfc\" key={index} className=\"bg-white rounded-lg shadow-md overflow-hidden\">\n            <img data-curate-edit-id=\"34e87995-66cb-4037-85ac-9baca012ae55\" \n              src={project.image}\n              alt={project.title}\n              className=\"w-full h-48 object-cover\"\n            />\n            <div data-curate-edit-id=\"59419785-cfde-432c-b610-6ef572ef4fab\" className=\"p-4\">\n              <h3 data-curate-edit-id=\"141653fa-3768-44b7-bed5-231b1931aa28\" className=\"text-xl font-bold mb-2\">{project.title}</h3>\n              <p data-curate-edit-id=\"ca3a0b8e-7e85-4de1-90a3-ff75b6851240\">{project.description}</p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Portfolio;"
+            },
+            {
+              "type": "file",
+              "name": "Contact.jsx",
+              "content": "import React, { useState } from 'react';\n\nconst Contact = () => {\n  const [formData, setFormData] = useState({\n    name: '',\n    email: '',\n    message: ''\n  });\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    alert('Message sent successfully!');\n    setFormData({ name: '', email: '', message: '' });\n  };\n\n  return (\n    <div data-curate-edit-id=\"c421a3ae-6f59-4b18-b3f5-deef615f9636\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"4753e514-8574-471c-a1e6-5104a5b84520\" className=\"text-3xl font-bold mb-6\">Contact Me</h2>\n      <form data-curate-edit-id=\"0822feb3-264c-476a-ad08-6773df244d1b\" onSubmit={handleSubmit} className=\"max-w-lg mx-auto\">\n        <div data-curate-edit-id=\"679331b0-4742-4916-bcc7-cb52b87e0f43\" className=\"mb-4\">\n          <label data-curate-edit-id=\"6b5b03ae-fbf2-4d88-84e0-3ea072ee4edf\" htmlFor=\"name\" className=\"block mb-2\">Name</label>\n          <input data-curate-edit-id=\"167c22c7-de66-4756-958f-b14fc53afdb3\"\n            type=\"text\"\n            id=\"name\"\n            value={formData.name}\n            onChange={(e) => setFormData({...formData, name: e.target.value})}\n            className=\"w-full p-2 border rounded\"\n            required\n          />\n        </div>\n        <div data-curate-edit-id=\"31b11fce-6578-45a6-867c-0892bcccdde9\" className=\"mb-4\">\n          <label data-curate-edit-id=\"d65e9f43-686a-4837-b05a-e304882e485e\" htmlFor=\"email\" className=\"block mb-2\">Email</label>\n          <input data-curate-edit-id=\"112d889a-f208-49f7-88a3-ccbf286c24e5\"\n            type=\"email\"\n            id=\"email\"\n            value={formData.email}\n            onChange={(e) => setFormData({...formData, email: e.target.value})}\n            className=\"w-full p-2 border rounded\"\n            required\n          />\n        </div>\n        <div data-curate-edit-id=\"bfbb583a-fd3e-40cb-9c60-3a10bb53af50\" className=\"mb-4\">\n          <label data-curate-edit-id=\"2862183c-7743-479a-b790-a768052f6226\" htmlFor=\"message\" className=\"block mb-2\">Message</label>\n          <textarea data-curate-edit-id=\"bcdf6b80-def5-4a76-ab03-e79cc12747a0\"\n            id=\"message\"\n            value={formData.message}\n            onChange={(e) => setFormData({...formData, message: e.target.value})}\n            className=\"w-full p-2 border rounded\"\n            rows=\"4\"\n            required\n          ></textarea>\n        </div>\n        <button data-curate-edit-id=\"254202c1-db0f-41f7-82d8-24b9e3a8340b\" type=\"submit\" className=\"bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700\">\n          Send Message\n        </button>\n      </form>\n    </div>\n  );\n};\n\nexport default Contact;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"6ce0f05c-7d53-4755-b6cc-66146dcf8618\" lang=\"en\">\n<head data-curate-edit-id=\"d4d8ff62-0f29-41d3-a2fe-82d60853e49b\">\n    <meta data-curate-edit-id=\"66b8bfea-9544-4572-aeb5-489316219fbf\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"3a2a1843-db12-4a42-8a6b-df3cbbe90650\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"7585b680-9321-4858-b199-a2b8cd8819bd\">MERN Stack Developer Portfolio</title>\n</head>\n<body data-curate-edit-id=\"832c276b-9c85-47a3-b06e-169f31309862\">\n    <div data-curate-edit-id=\"d6874656-317c-4235-ac4a-d3ced739d234\" id=\"root\"></div>\n    <script data-curate-edit-id=\"2314b23a-f592-4bd2-9a2b-746dfa28c5fd\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

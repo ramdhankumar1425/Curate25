@@ -1,0 +1,64 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Products from './pages/Products';\nimport Cart from './pages/Cart';\nimport Login from './pages/Login';\n\nconst App = () => {\n    return (\n        <div className=\"min-h-screen bg-base-100\">\n            <Navbar />\n            <Routes>\n                <Route path=\"/\" element={<Home />} />\n                <Route path=\"/products\" element={<Products />} />\n                <Route path=\"/cart\" element={<Cart />} />\n                <Route path=\"/login\" element={<Login />} />\n            </Routes>\n            <Footer />\n        </div>\n    );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"40a649bf-1b54-4663-a9bf-c609d6f4164d\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"13730448-eb7d-4139-81b5-1f0e54c21824\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"934dafd0-53ae-4935-be1e-ccd5cb717678\" className=\"dropdown\">\n                    <div data-curate-edit-id=\"1c54ac55-8497-4bf5-b607-700b5a3b304d\" tabIndex={0} role=\"button\" className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"9def26a3-fbea-4da2-ab77-fc2def53fd2d\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"19807d6e-b8e9-4d04-84a0-8e1fe87bcaf4\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </div>\n                    <ul data-curate-edit-id=\"1ed583ff-6b39-4302-a10b-426156db6531\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52\">\n                        <li data-curate-edit-id=\"7ced61df-43ff-44eb-9884-76a999031fae\"><Link data-curate-edit-id=\"8dda7f39-6e92-45e4-9dc0-f2fbc344e09f\" to=\"/\">Home</Link></li>\n                        <li data-curate-edit-id=\"1f262057-124c-41b1-b739-752c9663a854\"><Link data-curate-edit-id=\"78e32b4b-4905-449b-b0f7-5c9a95c179f0\" to=\"/products\">Products</Link></li>\n                        <li data-curate-edit-id=\"29d582e8-4af4-4ae6-a257-0125099556d9\"><Link data-curate-edit-id=\"ac6ddaa6-cefb-4a4e-bda7-ead0d4c3d6d3\" to=\"/cart\">Cart</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"6837275e-f6b6-4755-85a1-0960744b7253\" to=\"/\" className=\"btn btn-ghost text-xl\">Fresh Mart</Link>\n            </div>\n            <div data-curate-edit-id=\"2969fc17-0145-4b20-9245-a3cb1305538b\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"f3952926-8451-4326-ba62-f035d2aff2ee\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"dd19893c-28df-4be1-8164-ef0b615c863f\"><Link data-curate-edit-id=\"42dc2ac3-4689-4dbb-bcfc-3225b717c5ff\" to=\"/\">Home</Link></li>\n                    <li data-curate-edit-id=\"9b0f8efd-c000-4720-bcaa-a398c8b8e82b\"><Link data-curate-edit-id=\"bb26f099-1054-4e94-bef7-fa7d798ab6d7\" to=\"/products\">Products</Link></li>\n                    <li data-curate-edit-id=\"431145fa-e836-4ace-99aa-3e7207d0d584\"><Link data-curate-edit-id=\"228f19a0-4c72-43b5-86c2-adc0c48174bb\" to=\"/cart\">Cart</Link></li>\n                </ul>\n            </div>\n            <div data-curate-edit-id=\"be05cc21-9441-453e-bedc-a95852acdaaf\" className=\"navbar-end\">\n                <Link data-curate-edit-id=\"e10b07e8-c4a6-4f2e-b28e-f8a3019dd59b\" to=\"/login\" className=\"btn\">Login</Link>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "ProductCard.jsx",
+              "content": "import React from 'react';\n\nconst ProductCard = ({ name, price, image }) => {\n    return (\n        <div data-curate-edit-id=\"c1a62a92-a070-4735-a280-22f01a565f05\" className=\"card w-80 bg-base-100 shadow-xl\">\n            <figure data-curate-edit-id=\"d3c2488b-72e0-4ec0-a1de-3751d98362f4\"><img data-curate-edit-id=\"b9c731dd-0dc2-4c7c-bc83-5096ea09c6fe\" src={image} alt={name} className=\"h-48 w-full object-cover\" /></figure>\n            <div data-curate-edit-id=\"73a3df66-6603-4f43-ab0f-a204770b1d6b\" className=\"card-body\">\n                <h2 data-curate-edit-id=\"c20d11ba-bbab-4c56-a56b-3f073d86328b\" className=\"card-title\">{name}</h2>\n                <p data-curate-edit-id=\"788798ae-fb38-40fd-aa69-412d287cb1af\">${price}</p>\n                <div data-curate-edit-id=\"4b458c79-0f12-43a4-9a53-c61649634b6c\" className=\"card-actions justify-end\">\n                    <button data-curate-edit-id=\"78f06c80-c92d-4e62-8ef5-5d955e9c089d\" className=\"btn btn-primary\">Add to Cart</button>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default ProductCard;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n    return (\n        <footer data-curate-edit-id=\"6e5ccc49-cd82-486f-be5a-bd79f7678821\" className=\"footer p-10 bg-neutral text-neutral-content\">\n            <div data-curate-edit-id=\"a6611b37-5ace-4994-8e15-87266b4afbad\">\n                <span data-curate-edit-id=\"f4861324-e3ee-4700-b200-f49325334630\" className=\"footer-title\">Services</span> \n                <a data-curate-edit-id=\"115182e7-b82a-41c0-869a-4c74063850ed\" className=\"link link-hover\">Home Delivery</a>\n                <a data-curate-edit-id=\"4d088259-cbf3-4776-956f-7eda22543b3b\" className=\"link link-hover\">Bulk Orders</a>\n                <a data-curate-edit-id=\"8abeeff4-258e-4b60-a17f-2bf7b5795f0b\" className=\"link link-hover\">Fresh Produce</a>\n            </div> \n            <div data-curate-edit-id=\"55ee05bf-329f-41cf-97bc-dab933811e08\">\n                <span data-curate-edit-id=\"66ed9383-1426-4e5b-8cb2-2c73cb442b41\" className=\"footer-title\">Company</span> \n                <a data-curate-edit-id=\"898dd8cb-1f16-4019-9374-192037d0cccf\" className=\"link link-hover\">About us</a>\n                <a data-curate-edit-id=\"e2fc71a9-f560-47eb-9783-ce066b601209\" className=\"link link-hover\">Contact</a>\n                <a data-curate-edit-id=\"93bfb29e-c550-4395-b98a-72fd57547cc5\" className=\"link link-hover\">Jobs</a>\n            </div> \n            <div data-curate-edit-id=\"a14c7ea6-5863-454e-8f3a-ad330d3ff733\">\n                <span data-curate-edit-id=\"40c292c7-7cda-4c33-bbac-d3255364f660\" className=\"footer-title\">Legal</span> \n                <a data-curate-edit-id=\"d0eb047c-05c6-4346-87f5-e32bc47d1458\" className=\"link link-hover\">Terms of use</a>\n                <a data-curate-edit-id=\"e2d13ddb-2b66-46ef-99b2-9b17a01b0a96\" className=\"link link-hover\">Privacy policy</a>\n            </div>\n        </footer>\n    );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n    return (\n        <div data-curate-edit-id=\"511db34a-8c9a-46fa-ad62-4d5d020168fc\">\n            <div data-curate-edit-id=\"81f4aacc-7477-4745-bae5-ac1f5f5078c6\" className=\"hero min-h-[500px]\" style={{ backgroundImage: 'url(https://images.pexels.com/photos/3962294/pexels-photo-3962294.jpeg)' }}>\n                <div data-curate-edit-id=\"4b41d9c9-2fb8-4e44-a17a-a92312e43dce\" className=\"hero-overlay bg-opacity-60\"></div>\n                <div data-curate-edit-id=\"e14373d4-5a0f-4a7c-812f-a5ac1c6237f9\" className=\"hero-content text-center text-neutral-content\">\n                    <div data-curate-edit-id=\"c09682bf-8811-42a8-8acf-3b08b0be7763\" className=\"max-w-md\">\n                        <h1 data-curate-edit-id=\"f91529d4-5f09-416a-ac1f-eebe59f8f7aa\" className=\"mb-5 text-5xl font-bold\">Fresh Groceries</h1>\n                        <p data-curate-edit-id=\"26da0695-406c-451a-9d00-c3990602b56c\" className=\"mb-5\">Get fresh groceries delivered to your doorstep</p>\n                        <button data-curate-edit-id=\"6c9f3da4-60c9-4240-965d-f44700865668\" className=\"btn btn-primary\">Shop Now</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Home;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"e0374e68-2483-48df-a139-c9a2e3ccea90\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"1bfbdbe3-e37d-4376-828e-9e4d29e38472\">\n    <meta data-curate-edit-id=\"1c800743-cc88-488e-96ce-805c87925ad7\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"ff5ce6c7-111e-4755-aa1e-c614c8f828ef\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"657f868a-4e8e-411a-9121-9ab2ce4b78fe\">Fresh Mart - Online Grocery Store</title>\n    <link data-curate-edit-id=\"13dfc869-07f9-4c77-8639-c214b25d4e42\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"5cd8f28f-7f3c-48ce-a6d7-1bc4127ba8d9\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"419c8576-7ab8-4bbf-942f-8ccd0846144e\">\n    <div data-curate-edit-id=\"b7b9a24d-eee8-4d58-87c5-c544dea06454\" id=\"root\"></div>\n    <script data-curate-edit-id=\"ffcb1cd2-4257-42ce-9091-1a35252f140f\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

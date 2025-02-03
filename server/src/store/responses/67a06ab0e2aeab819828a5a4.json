@@ -1,0 +1,74 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport Templates from './pages/Templates';\nimport Editor from './pages/Editor';\nimport Pricing from './pages/Pricing';\nimport Footer from './components/Footer';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen flex flex-col\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/templates\" element={<Templates />} />\n            <Route path=\"/editor\" element={<Editor />} />\n            <Route path=\"/pricing\" element={<Pricing />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"afaaed50-4d8a-4219-bc30-8c0107172fe7\" className=\"bg-gray-800 text-white p-4\">\n      <div data-curate-edit-id=\"abe9585c-0f81-4a9a-b3a5-fd592e52c77f\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"871fdc03-87ce-4ed2-a610-29da32dce533\" to=\"/\" className=\"text-2xl font-bold\">Curate</Link>\n        <div data-curate-edit-id=\"e413d82f-c0b3-4186-9a1a-ac56d7f72abb\" className=\"space-x-6\">\n          <Link data-curate-edit-id=\"5ea78a58-ddfb-4d4b-abfc-6684f2edef65\" to=\"/templates\" className=\"hover:text-blue-400\">Templates</Link>\n          <Link data-curate-edit-id=\"941b3a45-4aea-49da-bb09-5dab83fba67d\" to=\"/editor\" className=\"hover:text-blue-400\">Editor</Link>\n          <Link data-curate-edit-id=\"0a243128-84c4-4828-a40f-759e8c2fc705\" to=\"/pricing\" className=\"hover:text-blue-400\">Pricing</Link>\n          <button data-curate-edit-id=\"8bfb2306-c47a-4673-8df3-36a1ef34ddbe\" className=\"bg-blue-500 px-4 py-2 rounded hover:bg-blue-600\">Get Started</button>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"9223b289-6a5d-4a2e-b399-1db7d378d9fc\" className=\"bg-gray-800 text-white p-6\">\n      <div data-curate-edit-id=\"7d3de15f-78d7-47ec-98cf-df98138d88c8\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"99ce26fe-181d-4aa2-b3f9-37448f67ff87\">&copy; 2024 Curate Website Builder. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"3af1811a-bf43-4b34-979f-6f305da87558\" className=\"container mx-auto px-4 py-12\">\n      <section data-curate-edit-id=\"da4ab88f-7a0c-4f97-85a7-6df7140fe6e4\" className=\"text-center mb-16\">\n        <h1 data-curate-edit-id=\"129402e8-cdb8-4fe0-9280-1312a6ddf3ea\" className=\"text-5xl font-bold mb-6\">Build Beautiful Websites Without Code</h1>\n        <p data-curate-edit-id=\"0355c698-cf64-4cbb-9c92-7f04afadac86\" className=\"text-xl text-gray-600 mb-8\">Create stunning websites with our intuitive drag-and-drop builder</p>\n        <button data-curate-edit-id=\"2ab142ea-f19a-4593-87ab-c1efa0c3642b\" className=\"bg-blue-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-600\">\n          Start Building\n        </button>\n      </section>\n    </div>\n  );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Templates.jsx",
+              "content": "import React from 'react';\n\nconst Templates = () => {\n  return (\n    <div data-curate-edit-id=\"2b531969-f32e-49f3-8ae9-b31317276a2c\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"8262caa5-d3ff-4700-aa4c-d6ec29b43b67\" className=\"text-3xl font-bold mb-8\">Website Templates</h2>\n      <div data-curate-edit-id=\"1c55712d-4663-4fd4-a41f-cf468e24e8f3\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8\">\n        {[1, 2, 3, 4, 5, 6].map((item) => (\n          <div data-curate-edit-id=\"897d2284-2903-48d2-a6f4-7c9082e650ff\" key={item} className=\"border rounded-lg overflow-hidden shadow-lg\">\n            <img data-curate-edit-id=\"8ed0643b-fe06-45e4-8a1b-876c504a7f01\" src=\"https://picsum.photos/400/300\" alt=\"Template preview\" className=\"w-full h-48 object-cover\"/>\n            <div data-curate-edit-id=\"fabcf499-b5c1-4446-81da-f4634b91d95a\" className=\"p-4\">\n              <h3 data-curate-edit-id=\"e17da306-8b9d-4326-8c10-5d63aa708134\" className=\"text-xl font-semibold\">Template {item}</h3>\n              <p data-curate-edit-id=\"8be7d28e-d204-4523-b37d-8807a6374ab6\" className=\"text-gray-600\">Professional template for modern websites</p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Templates;"
+            },
+            {
+              "type": "file",
+              "name": "Editor.jsx",
+              "content": "import React from 'react';\n\nconst Editor = () => {\n  return (\n    <div data-curate-edit-id=\"806b7d6e-251e-4c4c-9e3b-f95f7de6f1b3\" className=\"container mx-auto px-4 py-12\">\n      <div data-curate-edit-id=\"a316c1ac-aed7-4684-b034-405a3bc07310\" className=\"flex flex-col lg:flex-row gap-8\">\n        <div data-curate-edit-id=\"34f6ab03-5bba-41f1-b707-6601d95d02d5\" className=\"w-full lg:w-1/4 bg-gray-100 p-4 rounded-lg\">\n          <h3 data-curate-edit-id=\"4c4cf59b-3187-4609-92f5-312a74021137\" className=\"text-xl font-bold mb-4\">Components</h3>\n          <div data-curate-edit-id=\"acae2ced-cbfc-4575-a3b6-464cb89b0d82\" className=\"space-y-2\">\n            <div data-curate-edit-id=\"109a587b-bddd-4989-ad02-09efbafa77cf\" className=\"bg-white p-2 rounded cursor-pointer hover:bg-gray-50\">Header</div>\n            <div data-curate-edit-id=\"b888c096-a488-4a67-8b64-532ae546acea\" className=\"bg-white p-2 rounded cursor-pointer hover:bg-gray-50\">Text Block</div>\n            <div data-curate-edit-id=\"b348f64f-d88a-449a-abb9-d5f2f5f584be\" className=\"bg-white p-2 rounded cursor-pointer hover:bg-gray-50\">Image</div>\n            <div data-curate-edit-id=\"03ab9cf3-a81f-4bb7-88eb-27e73e7fdfde\" className=\"bg-white p-2 rounded cursor-pointer hover:bg-gray-50\">Button</div>\n          </div>\n        </div>\n        <div data-curate-edit-id=\"14966fe3-f4ce-4ad6-9da8-fa448ab4adc6\" className=\"w-full lg:w-3/4 bg-white border-2 border-dashed border-gray-300 rounded-lg p-4 min-h-[500px]\">\n          <div data-curate-edit-id=\"123a806c-8fe6-456b-aeff-df890237255a\" className=\"text-center text-gray-500\">\n            Drag and drop components here\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Editor;"
+            },
+            {
+              "type": "file",
+              "name": "Pricing.jsx",
+              "content": "import React from 'react';\n\nconst Pricing = () => {\n  return (\n    <div data-curate-edit-id=\"3a460a01-0b90-4280-a928-d9b87a49f448\" className=\"container mx-auto px-4 py-12\">\n      <h2 data-curate-edit-id=\"1fd035fd-a260-4037-8f4d-3d96e95e9ad7\" className=\"text-3xl font-bold text-center mb-12\">Choose Your Plan</h2>\n      <div data-curate-edit-id=\"66e8d9e4-9b62-4e6a-9abc-ca6cb238da6f\" className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        {[\n          { name: 'Basic', price: '9.99', features: ['1 Website', 'Basic Templates', 'Community Support'] },\n          { name: 'Pro', price: '19.99', features: ['5 Websites', 'Premium Templates', 'Priority Support'] },\n          { name: 'Enterprise', price: '49.99', features: ['Unlimited Websites', 'Custom Templates', 'Dedicated Support'] }\n        ].map((plan) => (\n          <div data-curate-edit-id=\"dd0616c8-1011-41eb-8a7d-ed2f2a8946d2\" key={plan.name} className=\"border rounded-lg p-6 text-center\">\n            <h3 data-curate-edit-id=\"d23b05dc-9ff6-4db1-ad3b-d87d6a08c2c7\" className=\"text-2xl font-bold mb-4\">{plan.name}</h3>\n            <p data-curate-edit-id=\"8adcaf62-9151-4932-9082-db3db16bb437\" className=\"text-4xl font-bold mb-6\">${plan.price}<span data-curate-edit-id=\"731404d5-1642-4b9d-8d47-925576e8fbfc\" className=\"text-sm\">/month</span></p>\n            <ul data-curate-edit-id=\"4daed771-3f13-441d-80f2-ccb6e32a99dc\" className=\"space-y-2 mb-6\">\n              {plan.features.map((feature) => (\n                <li data-curate-edit-id=\"fa1aac16-48ff-4f85-be2a-050f976d51c5\" key={feature}>{feature}</li>\n              ))}\n            </ul>\n            <button data-curate-edit-id=\"c6c72ae0-e74c-4285-988e-4c09d6364c0e\" className=\"bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600\">\n              Choose Plan\n            </button>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default Pricing;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"aedd0073-d905-4e8a-a4a2-febd83377d70\" lang=\"en\">\n<head data-curate-edit-id=\"e74f17a1-5a4a-4770-90bc-e11ec7b62bbd\">\n    <meta data-curate-edit-id=\"e3ef502a-59a8-460a-8202-33cc97003813\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"d54a51fd-a13f-46ee-812c-102f857d9f36\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"f4ef84a5-ef64-4f5d-b4f7-02077f79ef62\">Curate Website Builder</title>\n</head>\n<body data-curate-edit-id=\"d41c109d-abd2-4254-a8e8-5733cba5e8fa\">\n    <div data-curate-edit-id=\"2cc8b86b-cff1-448a-867f-6a139729306a\" id=\"root\"></div>\n    <script data-curate-edit-id=\"b7433983-1ece-46bc-b3a1-2d533f63bf8e\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}
