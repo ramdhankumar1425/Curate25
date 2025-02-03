@@ -52,60 +52,71 @@ import FileExplorer from "./FileExplorer";
 //     };
 // }
 
-const value = `import { Code, Eye } from "lucide-react";
-import React from "react";
+// const value = `import { Code, Eye } from "lucide-react";
+// import React from "react";
 
-function Sidebar({ setView }) {
-    return (
-        <div className="w-10 h-screen border-r flex flex-col items-center space-y-2 pt-5 bg-gray-800">
-            <div
-                className="p-1 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
-                onClick={() => setView("code")}
-            >
-                <Code />
-            </div>
+// function Sidebar({ setView }) {
+//     return (
+//         <div className="w-10 h-screen border-r flex flex-col items-center space-y-2 pt-5 bg-gray-800">
+//             <div
+//                 className="p-1 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
+//                 onClick={() => setView("code")}
+//             >
+//                 <Code />
+//             </div>
 
-            <div
-                className="p-1 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
-                onClick={() => setView("preview")}
-            >
-                <Eye />
-            </div>
-        </div>
-    );
-}
+//             <div
+//                 className="p-1 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
+//                 onClick={() => setView("preview")}
+//             >
+//                 <Eye />
+//             </div>
+//         </div>
+//     );
+// }
 
-export default Sidebar;
-`;
+// export default Sidebar;
+// `;
 
 function CodeEditor() {
     const editorRef = useRef(null);
+    const monacoEditorRef = useRef(null);
+    const [selectedFileContent, setSelectedFileContent] = useState("Select a file to start editing...");
 
     useEffect(() => {
-        if (editorRef.current) {
-            const editor = monaco.editor.create(editorRef.current, {
-                value: value,
-                language: "javascript",
-                theme: "vs-dark",
-                automaticLayout: true,
-            });
+        if (!editorRef.current) return;
 
-            editor.onDidChangeModelContent(() => {
-                console.log(editor.getValue());
-            });
+        // Initalizing only once.
+        monacoEditorRef.current = monaco.editor.create(editorRef.current, {
+            value: selectedFileContent,
+            language: "javascript",
+            theme: "vs-dark",
+            automaticLayout: true,
+        });
 
-            return () => {
-                editor.dispose();
-            };
+        return () => {
+            monacoEditorRef.current.dispose(); 
+        };
+    }, []); 
+
+    useEffect(() => {
+        if (monacoEditorRef.current) {
+            const model = monacoEditorRef.current.getModel();
+            if (model) {
+                model.setValue(selectedFileContent);
+            }
         }
-    }, []);
+    }, [selectedFileContent]);
 
     return (
-        <div className="h-screen flex-1 flex">
-            <FileExplorer />
-            <div ref={editorRef} className="w-full flex-1"></div>
+        <div className="h-screen flex">
+            <div className="w-1/5">
+                <FileExplorer onSelectFile= {setSelectedFileContent} />
+            </div>
+            <div ref={editorRef} className="w-4/5"></div>
         </div>
     );
 }
 
 export default CodeEditor;
+
