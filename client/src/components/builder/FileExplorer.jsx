@@ -2,92 +2,121 @@ import React, { useState } from "react";
 
 const tree = {
     data: {
-        name: "Earth",
-        type: "directory",
-        children: [
-            {
-                name: "Asia",
-                type: "directory",
-                children: [
-                    { name: "India", type: "file" },
-                    { name: "China", type: "file" },
-                    { name: "Japan", type: "file" },
-                    { name: "South Korea", type: "file" },
-                    { name: "U.A.E", type: "file" },
-                    { name: "Jordan", type: "file" },
-                ],
-            },
-            {
-                name: "Americas",
-                type: "directory",
-                children: [
-                    { name: "USA", type: "file" },
-                    { name: "Canada", type: "file" },
-                    { name: "Brazil", type: "file" },
-                    { name: "Mexico", type: "file" },
-                    { name: "Chile", type: "file" },
-                ],
-            },
-            {
-                name: "Europe",
-                type: "directory",
-                children: [
-                    { name: "France", type: "file" },
-                    { name: "United Kingdom", type: "file" },
-                    { name: "Germany", type: "file" },
-                    { name: "Russia", type: "file" },
-                    { name: "Turkey", type: "file" },
-                    { name: "Sweden", type: "file" },
-                ],
-            },
-            {
-                name: "Africa",
-                type: "directory",
-                children: [
-                    { name: "Egypt", type: "file" },
-                    { name: "South Africa", type: "file" },
-                    { name: "Morocco", type: "file" },
-                    { name: "Nigeria", type: "file" },
-                    { name: "Ghana", type: "file" },
-                    { name: "Ivory Coast", type: "file" },
-                ],
-            },
-            { name: "Australia", type: "directory" },
-            { name: "Antarctica", type: "directory" },
-        ],
+            "type": "directory",
+            "name": "root",
+            "children": [
+              {
+                "type": "directory",
+                "name": "src",
+                "children": [
+                  {
+                    "type": "file",
+                    "name": "index.css",
+                    "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+                  },
+                  {
+                    "type": "file",
+                    "name": "main.jsx",
+                    "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <HashRouter>\n    <App />\n  </HashRouter>\n);"
+                  },
+                  {
+                    "type": "file",
+                    "name": "App.jsx",
+                    "content": "import React from 'react';\nimport Navbar from './components/Navbar';\nimport Hero from './components/Hero';\nimport Products from './components/Products';\nimport Promotions from './components/Promotions';\nimport Testimonials from './components/Testimonials';\nimport Newsletter from './components/Newsletter';\nimport Footer from './components/Footer';\n\nconst App = () => {\n  return (\n    <div className=\"min-h-screen bg-gray-50\">\n      <Navbar />\n      <Hero />\n      <Products />\n      <Promotions />\n      <Testimonials />\n      <Newsletter />\n      <Footer />\n    </div>\n  );\n};\n\nexport default App;"
+                  },
+                  {
+                    "type": "directory",
+                    "name": "components",
+                    "children": [
+                      {
+                        "type": "file",
+                        "name": "Navbar.jsx",
+                        "content": "import React, { useState } from 'react';\n\nconst Navbar = () => {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <nav className=\"bg-white shadow-lg fixed w-full z-10\">\n      <div className=\"max-w-7xl mx-auto px-4\">\n        <div className=\"flex justify-between items-center h-16\">\n          <div className=\"text-2xl font-bold text-gray-800\">CameraHub</div>\n          <div className=\"hidden md:flex space-x-8\">\n            <a href=\"#\" className=\"text-gray-600 hover:text-gray-900\">Home</a>\n            <a href=\"#products\" className=\"text-gray-600 hover:text-gray-900\">Products</a>\n            <a href=\"#promotions\" className=\"text-gray-600 hover:text-gray-900\">Deals</a>\n            <a href=\"#contact\" className=\"text-gray-600 hover:text-gray-900\">Contact</a>\n          </div>\n          <button onClick={() => setIsOpen(!isOpen)} className=\"md:hidden\">\n            <svg className=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n              <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d={isOpen ? \"M6 18L18 6M6 6l12 12\" : \"M4 6h16M4 12h16M4 18h16\"} />\n            </svg>\n          </button>\n        </div>\n        {isOpen && (\n          <div className=\"md:hidden\">\n            <div className=\"px-2 pt-2 pb-3 space-y-1\">\n              <a href=\"#\" className=\"block px-3 py-2 text-gray-600 hover:text-gray-900\">Home</a>\n              <a href=\"#products\" className=\"block px-3 py-2 text-gray-600 hover:text-gray-900\">Products</a>\n              <a href=\"#promotions\" className=\"block px-3 py-2 text-gray-600 hover:text-gray-900\">Deals</a>\n              <a href=\"#contact\" className=\"block px-3 py-2 text-gray-600 hover:text-gray-900\">Contact</a>\n            </div>\n          </div>\n        )}\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Hero.jsx",
+                        "content": "import React from 'react';\n\nconst Hero = () => {\n  return (\n    <div className=\"pt-16 bg-gray-900 text-white\">\n      <div className=\"max-w-7xl mx-auto px-4 py-20 md:py-32\">\n        <div className=\"text-center\">\n          <h1 className=\"text-4xl md:text-6xl font-bold mb-6\">Capture Life's Best Moments</h1>\n          <p className=\"text-lg md:text-xl mb-8\">Professional cameras and equipment for every photographer</p>\n          <a href=\"#products\" className=\"bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300\">\n            Shop Now\n          </a>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Hero;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Products.jsx",
+                        "content": "import React from 'react';\n\nconst Products = () => {\n  const products = [\n    {\n      id: 1,\n      name: \"Professional DSLR Camera\",\n      price: \"$1,299\",\n      image: \"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60\"\n    },\n    {\n      id: 2,\n      name: \"Mirrorless Camera\",\n      price: \"$999\",\n      image: \"https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60\"\n    },\n    {\n      id: 3,\n      name: \"Action Camera\",\n      price: \"$399\",\n      image: \"https://images.unsplash.com/photo-1524143986875-3b098d78b363?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60\"\n    }\n  ];\n\n  return (\n    <section id=\"products\" className=\"py-20 bg-white\">\n      <div className=\"max-w-7xl mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold text-center mb-12\">Top Selling Products</h2>\n        <div className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n          {products.map(product => (\n            <div key={product.id} className=\"bg-white rounded-lg shadow-lg overflow-hidden\">\n              <img src={product.image} alt={product.name} className=\"w-full h-64 object-cover\"/>\n              <div className=\"p-6\">\n                <h3 className=\"text-xl font-semibold mb-2\">{product.name}</h3>\n                <p className=\"text-gray-600 mb-4\">{product.price}</p>\n                <button className=\"w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300\">\n                  Add to Cart\n                </button>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Products;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Promotions.jsx",
+                        "content": "import React from 'react';\n\nconst Promotions = () => {\n  return (\n    <section id=\"promotions\" className=\"bg-gray-100 py-20\">\n      <div className=\"max-w-7xl mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold text-center mb-12\">Current Promotions</h2>\n        <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n          <div className=\"bg-white p-6 rounded-lg shadow-lg\">\n            <h3 className=\"text-xl font-semibold mb-4\">Holiday Season Sale</h3>\n            <p className=\"text-gray-600 mb-4\">Get up to 30% off on selected DSLR cameras</p>\n            <button className=\"bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300\">\n              Learn More\n            </button>\n          </div>\n          <div className=\"bg-white p-6 rounded-lg shadow-lg\">\n            <h3 className=\"text-xl font-semibold mb-4\">Bundle Deal</h3>\n            <p className=\"text-gray-600 mb-4\">Buy a camera and get a free lens kit</p>\n            <button className=\"bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300\">\n              Learn More\n            </button>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Promotions;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Testimonials.jsx",
+                        "content": "import React from 'react';\n\nconst Testimonials = () => {\n  const testimonials = [\n    {\n      id: 1,\n      name: \"John Smith\",\n      text: \"Great selection of cameras and excellent customer service!\",\n      role: \"Professional Photographer\"\n    },\n    {\n      id: 2,\n      name: \"Sarah Johnson\",\n      text: \"The best place to buy photography equipment. Highly recommended!\",\n      role: \"Photography Enthusiast\"\n    }\n  ];\n\n  return (\n    <section className=\"bg-white py-20\">\n      <div className=\"max-w-7xl mx-auto px-4\">\n        <h2 className=\"text-3xl font-bold text-center mb-12\">What Our Customers Say</h2>\n        <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8\">\n          {testimonials.map(testimonial => (\n            <div key={testimonial.id} className=\"bg-gray-50 p-6 rounded-lg\">\n              <p className=\"text-gray-600 mb-4\">\"{testimonial.text}\"</p>\n              <p className=\"font-semibold\">{testimonial.name}</p>\n              <p className=\"text-gray-500\">{testimonial.role}</p>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Testimonials;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Newsletter.jsx",
+                        "content": "import React, { useState } from 'react';\n\nconst Newsletter = () => {\n  const [email, setEmail] = useState('');\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    // Handle newsletter signup\n    setEmail('');\n  };\n\n  return (\n    <section className=\"bg-gray-900 text-white py-20\">\n      <div className=\"max-w-7xl mx-auto px-4 text-center\">\n        <h2 className=\"text-3xl font-bold mb-4\">Subscribe to Our Newsletter</h2>\n        <p className=\"mb-8\">Get the latest updates on new products and special offers</p>\n        <form onSubmit={handleSubmit} className=\"max-w-md mx-auto\">\n          <div className=\"flex flex-col md:flex-row gap-4\">\n            <input\n              type=\"email\"\n              value={email}\n              onChange={(e) => setEmail(e.target.value)}\n              placeholder=\"Enter your email\"\n              className=\"flex-1 px-4 py-2 rounded-lg text-gray-900\"\n              required\n            />\n            <button type=\"submit\" className=\"bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300\">\n              Subscribe\n            </button>\n          </div>\n        </form>\n      </div>\n    </section>\n  );\n};\n\nexport default Newsletter;"
+                      },
+                      {
+                        "type": "file",
+                        "name": "Footer.jsx",
+                        "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer className=\"bg-gray-800 text-white py-12\">\n      <div className=\"max-w-7xl mx-auto px-4\">\n        <div className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n          <div>\n            <h3 className=\"text-xl font-bold mb-4\">CameraHub</h3>\n            <p className=\"text-gray-400\">Your trusted camera retailer since 2010</p>\n          </div>\n          <div>\n            <h3 className=\"text-xl font-bold mb-4\">Quick Links</h3>\n            <ul className=\"space-y-2\">\n              <li><a href=\"#\" className=\"text-gray-400 hover:text-white\">About Us</a></li>\n              <li><a href=\"#products\" className=\"text-gray-400 hover:text-white\">Products</a></li>\n              <li><a href=\"#contact\" className=\"text-gray-400 hover:text-white\">Contact</a></li>\n            </ul>\n          </div>\n          <div>\n            <h3 className=\"text-xl font-bold mb-4\">Contact Info</h3>\n            <p className=\"text-gray-400\">123 Camera Street</p>\n            <p className=\"text-gray-400\">Phone: (555) 123-4567</p>\n            <p className=\"text-gray-400\">Email: info@camerahub.com</p>\n          </div>\n        </div>\n        <div className=\"border-t border-gray-700 mt-8 pt-8 text-center\">\n          <p className=\"text-gray-400\">&copy; 2024 CameraHub. All rights reserved.</p>\n        </div>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "file",
+                "name": "index.html",
+                "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>CameraHub - Professional Camera Retailer</title>\n</head>\n<body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+              }
+            ]
     },
 };
 
-function File({ name }) {
+function File({ name,content, onSelectFile }) {
     return (
-        <div className="ml-4 text-sm text-blue-600 cursor-pointer">
+        <div className="ml-2 mb-1 text-sm text-gray-400 cursor-pointer">
+            <button
+                onClick={() => onSelectFile(content)}
+            >
             📄 {name}
+            </button>
+            
         </div>
     );
 }
 
-function Directory({ name, children }) {
+function Directory({ name, children, onSelectFile }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="ml-2">
+        <div className="ml-1">
             <div
-                className="flex items-center text-gray-800 cursor-pointer"
+                className="flex items-center text-white cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {isOpen ? "📂" : "📁"} {name}
+                <img
+                    src={isOpen ? "/public/images/Files.png" : "/public/images/FilesD.png"}
+                    alt={isOpen ? "Open Folder" : "Closed Folder"}
+                    className="w-7 h-7 mb-1"
+                />
+                {name}
             </div>
             {isOpen && (
-                <div className="ml-4">
+                <div className="ml-2">
                     {children &&
                         children.map((child, index) =>
                             child.type === "file" ? (
-                                <File key={index} name={child.name} />
+                                <File key={index} name={child.name} content={child.content} onSelectFile={onSelectFile} />
                             ) : (
                                 <Directory
                                     key={index}
                                     name={child.name}
                                     children={child.children}
+                                    onSelectFile={onSelectFile}
                                 />
                             )
                         )}
@@ -97,12 +126,13 @@ function Directory({ name, children }) {
     );
 }
 
-function FileExplorer() {
+function FileExplorer({onSelectFile}) {
     return (
-        <div className="w-80 h-full overflow-auto bg-gray-100 p-4">
-            <Directory name={tree.data.name} children={tree.data.children} />
+        <div className="w-80 h-full overflow-auto bg-black p-4">
+            <Directory name={tree.data.name} children={tree.data.children} onSelectFile={onSelectFile} />
         </div>
     );
 }
+
 
 export default FileExplorer;
