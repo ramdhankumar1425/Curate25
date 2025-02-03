@@ -7,7 +7,11 @@ import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Loader from "./components/Loader";
 import TestPage from "./pages/TestPage";
+
 import ProfilePage from "./pages/ProfilePage";
+
+import 'regenerator-runtime/runtime';
+
 
 function App() {
     return (

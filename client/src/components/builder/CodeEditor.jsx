@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import * as monaco from "monaco-editor";
 import FileExplorer from "./FileExplorer";
 
+
 function CodeEditor() {
     const editorRef = useRef(null);
     const monacoEditorRef = useRef(null);
-    const [selectedFileContent, setSelectedFileContent] = useState(
-        "Select a file to start editing..."
-    );
+    const [selectedFileContent, setSelectedFileContent] = useState("Select a file to start editing...");
+
 
     useEffect(() => {
         if (!editorRef.current) return;
@@ -21,9 +21,10 @@ function CodeEditor() {
         });
 
         return () => {
-            monacoEditorRef.current.dispose();
+            monacoEditorRef.current.dispose(); 
         };
-    }, []);
+    }, []); 
+
 
     useEffect(() => {
         if (monacoEditorRef.current) {
@@ -37,7 +38,8 @@ function CodeEditor() {
     return (
         <div className="h-screen flex">
             <div className="w-1/5">
-                <FileExplorer onSelectFile={setSelectedFileContent} />
+                <FileExplorer onSelectFile= {setSelectedFileContent} />
+
             </div>
             <div ref={editorRef} className="w-4/5"></div>
         </div>
@@ -45,3 +47,4 @@ function CodeEditor() {
 }
 
 export default CodeEditor;
+

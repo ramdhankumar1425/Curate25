@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useProject } from "../../context/ProjectProvider";
 
-function File({ name, content, onSelectFile }) {
+
+function File({ name,content, onSelectFile }) {
     return (
         <div className="ml-2 mb-1 text-sm text-gray-400 cursor-pointer">
-            <button onClick={() => onSelectFile(content)}>📄 {name}</button>
+            <button
+                onClick={() => onSelectFile(content)}
+            >
+            📄 {name}
+            </button>
         </div>
     );
 }
@@ -24,6 +29,7 @@ function Directory({ name, children, onSelectFile }) {
                             ? "/public/images/Files.png"
                             : "/public/images/FilesD.png"
                     }
+                
                     alt={isOpen ? "Open Folder" : "Closed Folder"}
                     className="w-7 h-7 mb-1"
                 />
@@ -34,12 +40,7 @@ function Directory({ name, children, onSelectFile }) {
                     {children &&
                         children.map((child, index) =>
                             child.type === "file" ? (
-                                <File
-                                    key={index}
-                                    name={child.name}
-                                    content={child.content}
-                                    onSelectFile={onSelectFile}
-                                />
+                                <File key={index} name={child.name} content={child.content} onSelectFile={onSelectFile} />
                             ) : (
                                 <Directory
                                     key={index}
@@ -54,6 +55,7 @@ function Directory({ name, children, onSelectFile }) {
         </div>
     );
 }
+
 
 function FileExplorer({ onSelectFile }) {
     const { project } = useProject();
@@ -71,5 +73,6 @@ function FileExplorer({ onSelectFile }) {
         </div>
     );
 }
+
 
 export default FileExplorer;

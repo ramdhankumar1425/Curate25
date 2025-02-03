@@ -36,3 +36,33 @@
 #prompt-text-area::-webkit-scrollbar-thumb:hover {
     background: #0056b3; /* Darker blue on hover */
 }
+
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .moving-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* Border will cover the image */
+    height: 100%; /* Border will cover the image */
+    border: 3px solid #ffffff; /* Border color */
+    border-radius: 50%;
+    animation: move-border 1.5s linear infinite;
+    z-index: 2; /* Keeps the border behind the image */
+  }
+  
+  @keyframes move-border {
+    0% {
+        border-width: 1px;
+    }
+    50% {
+        border-width: 3px; /* The border becomes slightly thicker during animation */
+    }
+    100% {
+        border-width: 1px;
+    }
+  }
