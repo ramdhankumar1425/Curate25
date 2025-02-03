@@ -10,8 +10,7 @@ import TestPage from "./pages/TestPage";
 
 import ProfilePage from "./pages/ProfilePage";
 
-import 'regenerator-runtime/runtime';
-
+// import 'regenerator-runtime/runtime';
 
 function App() {
     return (

@@ -1,80 +1,72 @@
-import  { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useProject } from "../../context/ProjectProvider";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { ArrowUp } from "lucide-react";
+// import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function Chatbot() {
     const { chats, handleRefine } = useProject();
     const [prompt, setPrompt] = useState("");
-    const { transcript, listening, resetTranscript } = useSpeechRecognition();
-
-
+    // const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
     // const handleSend = async () => {
     //     if(!prompt.trim()) return;
 
     //     await handleRefine(prompt);
     //     setPrompt("");
-        
+
     // };
 
     const handleSend = useCallback(async () => {
-        if (prompt.trim()){
+        if (prompt.trim()) {
+            await handleRefine(prompt);
 
-        await handleRefine(prompt);
-
-        setPrompt("");
-        resetTranscript();
+            setPrompt("");
+            // resetTranscript();
         }
-    }, [prompt, handleRefine, resetTranscript]);
+    }, [prompt, handleRefine]);
 
+    // const toggleSpeechRecognition = () => {
+    //     if (listening) {
+    //         SpeechRecognition.stopListening(); // Stop the mic if it's already listening
+    //         //console.log("not listening");
+    //     } else {
+    //         SpeechRecognition.startListening({ continuous: true, language: "en-US" }); // Start the mic
+    //         //console.log("listening");
+    //     }
+    // };
 
-    const toggleSpeechRecognition = () => {
-        if (listening) {
-            SpeechRecognition.stopListening(); // Stop the mic if it's already listening
-            //console.log("not listening");
-        } else {
-            SpeechRecognition.startListening({ continuous: true, language: "en-US" }); // Start the mic
-            //console.log("listening");
-        }
-    };
-    
-    useEffect(() => {
-        if (listening) {
-            setPrompt(transcript.trim());
-        }
-    }, [transcript, listening]);
-
+    // useEffect(() => {
+    //     if (listening) {
+    //         setPrompt(transcript.trim());
+    //     }
+    // }, [transcript, listening]);
 
     useEffect(() => {
         // Add a global key listener for Enter
         const handleGlobalKeyPress = (e) => {
             if (e.key === "Enter" && !e.shiftKey) {
-                if(listening){
-                    SpeechRecognition.stopListening();
-                }
+                // if(listening){
+                //     SpeechRecognition.stopListening();
+                // }
                 e.preventDefault();
                 e.target.style.height = "auto";
                 handleSend(); // Call the send function
-                
             }
         };
-
 
         window.addEventListener("keydown", handleGlobalKeyPress);
 
         return () => {
             window.removeEventListener("keydown", handleGlobalKeyPress);
         };
-    }, [handleSend, listening]);
-
-
+    }, [handleSend]);
 
     return (
         <div className="w-96 h-full">
             <div className="flex flex-col h-full max-h-full">
-                <div className="flex justify-center p-3">
+                <div className="flex justify-center items-center gap-2 p-3">
                     <img
-                        src="/images/AI.png"
+                        src="/images/logo.png"
                         alt="AI Logo"
                         className="w-6 h-6"
                     />
@@ -144,20 +136,13 @@ function Chatbot() {
                         className="noscroll outline-none flex-1 p-2 bg-[#18181A] rounded-3xl text-xm font-extralight font-satoshi resize-none overflow-y-auto max-h-[96px] text-gray-300 placeholder-gray-500"
                         placeholder="Need some adjustments?"
                     />
-        <button
-            onClick={toggleSpeechRecognition}
-            className="p-2 rounded-r outline-none"
-        >
-            <div className="image-wrapper" style={{ position: 'relative', display: 'inline-block' }}>
-                <img 
-                    src={listening ? "/images/AI.png" : "/images/voice.png"}
-                    alt="mic"
-                    className="w-10"
-                />
-                {listening && <div className="moving-border"></div>}
-            </div>
-        </button>
-
+                    <button
+                        className="absolute bottom-3 right-3 rounded-full p-1 bg-[#EDEEF0] hover:bg-gray-400 text-[#1E1E1E] font-bold cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
+                        title="Submit"
+                        onClick={handleSend}
+                    >
+                        <ArrowUp className="scale-75" />
+                    </button>
                 </div>
             </div>
         </div>
