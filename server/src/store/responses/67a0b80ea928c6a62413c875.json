@@ -1,0 +1,64 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Dashboard from './pages/Dashboard';\nimport Exercises from './pages/Exercises';\nimport Nutrition from './pages/Nutrition';\nimport Progress from './pages/Progress';\nimport Profile from './pages/Profile';\n\nconst App = () => {\n    return (\n        <div className=\"min-h-screen bg-base-100\">\n            <Navbar />\n            <Routes>\n                <Route path=\"/\" element={<Dashboard />} />\n                <Route path=\"/exercises\" element={<Exercises />} />\n                <Route path=\"/nutrition\" element={<Nutrition />} />\n                <Route path=\"/progress\" element={<Progress />} />\n                <Route path=\"/profile\" element={<Profile />} />\n            </Routes>\n            <Footer />\n        </div>\n    );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"bfb67bf0-8cf8-4b61-be3b-c9fd1c235bba\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"fa9f097d-01a7-4f4c-8491-1e616f873b05\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"fc614afe-5248-44a6-a4d0-5af502e0c23b\" className=\"dropdown\">\n                    <div data-curate-edit-id=\"020582c2-bd67-449b-82be-877ec9867a56\" tabIndex={0} role=\"button\" className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"da34b723-1071-4dcf-b2ca-7523c5708d5a\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"c6b22074-71d0-4d24-9b15-88daf2ce299a\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </div>\n                    <ul data-curate-edit-id=\"16e3d01b-6dd8-4082-b153-ba3f0993f888\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52\">\n                        <li data-curate-edit-id=\"dacfded1-1fde-4a53-ad1d-d06afde05bfb\"><Link data-curate-edit-id=\"21a23ee9-d0f2-4d73-b84f-5b03532a3292\" to=\"/\">Dashboard</Link></li>\n                        <li data-curate-edit-id=\"ee7167b1-b277-493b-b29a-fb9a331ce284\"><Link data-curate-edit-id=\"2ab60aec-a7d6-43e0-86e4-25b46336ec09\" to=\"/exercises\">Exercises</Link></li>\n                        <li data-curate-edit-id=\"6b4dfd6c-077e-4e22-a1cc-6b346a38f8ac\"><Link data-curate-edit-id=\"98c4dc7c-96f6-44c1-9336-30bd2e0cba1a\" to=\"/nutrition\">Nutrition</Link></li>\n                        <li data-curate-edit-id=\"731f98dd-6f81-4871-8cd6-6b1ea862af89\"><Link data-curate-edit-id=\"73e19f9f-0b73-4251-8dcd-f03906331ae4\" to=\"/progress\">Progress</Link></li>\n                        <li data-curate-edit-id=\"69756916-5244-45f5-9d21-c242ca8603ab\"><Link data-curate-edit-id=\"a2ee3b1a-587f-4b54-b116-d00dc2ef29d4\" to=\"/profile\">Profile</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"a901bbfc-2ae5-4b31-bf39-e072261332d8\" to=\"/\" className=\"btn btn-ghost text-xl\">Fitness Tracker</Link>\n            </div>\n            <div data-curate-edit-id=\"d03b519d-5ea7-46b9-ad0d-9ff0a2b0f452\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"38af91b8-9085-4070-bf8b-af76c25c6172\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"2036f53f-a3cc-42e1-9b73-c0932ec4a2ce\"><Link data-curate-edit-id=\"315d0525-64f8-4430-8434-8c0715a27af2\" to=\"/\">Dashboard</Link></li>\n                    <li data-curate-edit-id=\"06730869-f86d-45d7-a932-9dcffaa68150\"><Link data-curate-edit-id=\"4fe2c370-43d1-44f5-9fda-1839b2d174b8\" to=\"/exercises\">Exercises</Link></li>\n                    <li data-curate-edit-id=\"86ddbf8c-5b4f-4b69-a7c1-2b81198d2bef\"><Link data-curate-edit-id=\"4c4c1395-ca46-42fb-84f5-4ca69db7ef17\" to=\"/nutrition\">Nutrition</Link></li>\n                    <li data-curate-edit-id=\"58cc77bd-2ae8-4a11-8ab8-fe85976786b0\"><Link data-curate-edit-id=\"d3cc7ee2-3ff3-4d38-a854-821d464b0999\" to=\"/progress\">Progress</Link></li>\n                    <li data-curate-edit-id=\"3718459c-6b3a-4ef8-8a30-59c0ae460eac\"><Link data-curate-edit-id=\"1d043416-f490-45b9-b704-78a92a4cd2d9\" to=\"/profile\">Profile</Link></li>\n                </ul>\n            </div>\n            <div data-curate-edit-id=\"8300569c-7535-4ebe-979a-5aec8cc37cad\" className=\"navbar-end\">\n                <div data-curate-edit-id=\"a77d56c5-884d-43c7-adc9-425e8f72f740\" className=\"avatar placeholder\">\n                    <div data-curate-edit-id=\"1fe32b35-6059-4dab-8e95-a656857979e9\" className=\"bg-neutral-focus text-neutral-content rounded-full w-8\">\n                        <span data-curate-edit-id=\"271cba57-92c5-4d7f-92af-822259e79516\" className=\"text-xs\">User</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n    return (\n        <footer data-curate-edit-id=\"50e0e512-43a2-46fd-a562-1b251962b911\" className=\"footer footer-center p-4 bg-base-300 text-base-content\">\n            <aside data-curate-edit-id=\"86f1e3d3-86f4-47af-81a0-918f8b8686b2\">\n                <p data-curate-edit-id=\"0897f8dc-d632-4869-9a68-d5b4b371242b\">Copyright © 2024 - All rights reserved by Fitness Tracker</p>\n            </aside>\n        </footer>\n    );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Dashboard.jsx",
+              "content": "import React from 'react';\n\nconst Dashboard = () => {\n    return (\n        <div data-curate-edit-id=\"4228f1c2-94ff-4dfb-b46e-977e542c5f4f\" className=\"p-4 max-w-7xl mx-auto\">\n            <h1 data-curate-edit-id=\"58eec26e-b34a-490d-9968-f8366e57b6bc\" className=\"text-3xl font-bold mb-6\">Dashboard</h1>\n            <div data-curate-edit-id=\"9a5f9247-3ae7-4d30-9154-558c808bd63c\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                <div data-curate-edit-id=\"de8ccc25-a917-4e8c-9d4b-263d30fe54f0\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"a1d7ca1b-c04a-40c0-ac73-1df0ccfad23c\" className=\"card-body\">\n                        <h2 data-curate-edit-id=\"43e70388-4b60-4ae8-b990-e81ec9f144d7\" className=\"card-title\">Daily Calories</h2>\n                        <p data-curate-edit-id=\"985d4e21-de06-4385-80a6-0ef48d1674b5\">1,800 / 2,000 kcal</p>\n                        <progress data-curate-edit-id=\"4c34ae34-fa96-48e1-9dd1-50c65909fbc2\" className=\"progress progress-primary\" value=\"80\" max=\"100\"></progress>\n                    </div>\n                </div>\n                <div data-curate-edit-id=\"39c3e888-bd4e-431c-beb3-8de886615ea6\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"607e6f2a-b37c-4230-91e8-81efcd866efe\" className=\"card-body\">\n                        <h2 data-curate-edit-id=\"c8c1c798-830f-4cbe-93e4-250c9dbbfbeb\" className=\"card-title\">Workout Progress</h2>\n                        <p data-curate-edit-id=\"80257f87-fd01-4109-97ea-1c74100bc3e2\">3/5 workouts completed this week</p>\n                        <progress data-curate-edit-id=\"192f5eb7-8414-4c75-9e71-2b1769d5d672\" className=\"progress progress-secondary\" value=\"60\" max=\"100\"></progress>\n                    </div>\n                </div>\n                <div data-curate-edit-id=\"e69fa37b-1732-475f-9ca4-f0b13ecdd83e\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"f1bd9298-03c5-4d35-a860-c3db6ea84876\" className=\"card-body\">\n                        <h2 data-curate-edit-id=\"67c60635-9f43-492b-af81-5831c1b7df79\" className=\"card-title\">Weight Goal</h2>\n                        <p data-curate-edit-id=\"db0cbe1a-e48d-48c0-a57a-1338c5819560\">Current: 70kg | Target: 65kg</p>\n                        <progress data-curate-edit-id=\"f37b3e92-6d49-411b-98c4-95510f4f5108\" className=\"progress progress-accent\" value=\"40\" max=\"100\"></progress>\n                    </div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Dashboard;"
+            },
+            {
+              "type": "file",
+              "name": "Exercises.jsx",
+              "content": "import React from 'react';\n\nconst Exercises = () => {\n    return (\n        <div data-curate-edit-id=\"305ee2d3-e82f-49ac-96d6-ce37b150d779\" className=\"p-4 max-w-7xl mx-auto\">\n            <h1 data-curate-edit-id=\"ef0d55e7-e476-4851-a785-79f60935bb0b\" className=\"text-3xl font-bold mb-6\">Exercise Database</h1>\n            <div data-curate-edit-id=\"6f5e8f2c-3dad-4f06-9292-cf6ef082c362\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                {['Push-ups', 'Squats', 'Deadlifts'].map((exercise) => (\n                    <div data-curate-edit-id=\"700eacca-61ed-4db5-ba1e-82b18bc5a5e6\" key={exercise} className=\"card bg-base-200\">\n                        <div data-curate-edit-id=\"d1e8a687-4c1a-4203-a7a5-2f47bd8a8f39\" className=\"card-body\">\n                            <h2 data-curate-edit-id=\"1be11208-4b49-47b3-bda8-ceaae60d8213\" className=\"card-title\">{exercise}</h2>\n                            <p data-curate-edit-id=\"b20ea6af-2cb7-4c35-820a-e020b24e05a8\">Target muscles and instructions</p>\n                            <div data-curate-edit-id=\"73d1015f-b06f-44a9-83bd-b63424b76233\" className=\"card-actions justify-end\">\n                                <button data-curate-edit-id=\"5722d1d1-160c-4c0d-9653-9c5cf1a6cfe8\" className=\"btn btn-primary\">Add to Workout</button>\n                            </div>\n                        </div>\n                    </div>\n                ))}\n            </div>\n        </div>\n    );\n};\n\nexport default Exercises;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"97685ac4-ff30-4503-9cde-55c3aabbee21\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"cbb9c1c0-9fe1-4685-adca-acc356e91a4b\">\n    <meta data-curate-edit-id=\"b833cb88-573b-4626-bc59-257a8da5db88\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"42117a36-347d-4816-81e8-4460f44c3ee5\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"18b41e38-962e-4964-a726-49a471447f3a\">Fitness Tracker</title>\n    <link data-curate-edit-id=\"302631e9-48f8-4472-800f-c1ef078a64ad\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"8e4c967f-6b9d-4a85-a04c-0c52c0e76675\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"72038294-fa14-49b8-955b-e6b390819eac\">\n    <div data-curate-edit-id=\"b1f181e0-23a3-4659-966d-eab68a09c11c\" id=\"root\"></div>\n    <script data-curate-edit-id=\"6a0a33f2-dca7-4f8c-8107-a8a835b32da3\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

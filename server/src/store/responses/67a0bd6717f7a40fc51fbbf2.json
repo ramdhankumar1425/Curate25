@@ -1,0 +1,79 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n.message-grid {\n    display: grid;\n    gap: 1rem;\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport Archive from './pages/Archive';\nimport Login from './pages/Login';\nimport Register from './pages/Register';\n\nconst App = () => {\n    return (\n        <div className=\"min-h-screen bg-base-100\">\n            <Navbar />\n            <div className=\"container mx-auto px-4\">\n                <Routes>\n                    <Route path=\"/\" element={<Home />} />\n                    <Route path=\"/archive\" element={<Archive />} />\n                    <Route path=\"/login\" element={<Login />} />\n                    <Route path=\"/register\" element={<Register />} />\n                </Routes>\n            </div>\n        </div>\n    );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"3a4d6eac-c7ee-43d8-ad29-0680679a7cdb\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"f2ce5e10-6677-474e-8324-b44381d85232\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"af2ef527-60cd-4ab3-a67c-4b90da1aa91d\" className=\"dropdown\">\n                    <label data-curate-edit-id=\"b578c371-6087-49ca-b664-2bc239490c45\" tabIndex={0} className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"660056eb-f5c2-4079-b9a2-0275caec5059\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"b82bd1ca-b10c-4530-9760-f8d5c5a98ead\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </label>\n                    <ul data-curate-edit-id=\"97ebab42-9da6-49a2-8adf-a9d7d4b8ae32\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52\">\n                        <li data-curate-edit-id=\"2a4ba5b4-4279-41fc-813b-3f38ddf4aabd\"><Link data-curate-edit-id=\"b41cbf09-0ddc-4779-ac86-c7265a2f09ab\" to=\"/\">Home</Link></li>\n                        <li data-curate-edit-id=\"2c7b440c-3681-4990-b24c-11d190bbdfaf\"><Link data-curate-edit-id=\"93b9cb98-5406-4d8a-bf55-36d549a932f9\" to=\"/archive\">Archive</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"30e97c14-5f9d-4037-ab9a-0bad13ef2149\" to=\"/\" className=\"btn btn-ghost normal-case text-xl\">WhatsGroup Archive</Link>\n            </div>\n            <div data-curate-edit-id=\"516de8cd-6468-4e9f-9785-87672db052f4\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"6b3c19e9-ee86-4797-adf6-f48a299fdf9b\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"04bb9e45-2306-4298-ae7f-586aa2f6f509\"><Link data-curate-edit-id=\"26c70dc7-e4bb-4907-be5c-5559ad764cda\" to=\"/\">Home</Link></li>\n                    <li data-curate-edit-id=\"cccba3f9-1cfd-4fda-b6a0-05405cf21a70\"><Link data-curate-edit-id=\"3ec9f2af-68dc-4073-b1de-a3aacfef7adf\" to=\"/archive\">Archive</Link></li>\n                </ul>\n            </div>\n            <div data-curate-edit-id=\"0e46c3fb-f580-407c-b803-108638c4fd6b\" className=\"navbar-end\">\n                <Link data-curate-edit-id=\"ad586380-8157-4a09-b38c-bc16f311ffc4\" to=\"/login\" className=\"btn btn-ghost\">Login</Link>\n                <Link data-curate-edit-id=\"377cd26e-5ff2-4a1e-8b71-dd9a9e48bd07\" to=\"/register\" className=\"btn btn-ghost\">Register</Link>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "SearchBar.jsx",
+              "content": "import React from 'react';\n\nconst SearchBar = ({ onSearch }) => {\n    return (\n        <div data-curate-edit-id=\"91ad141c-8543-468f-a85b-b81bd3165d1a\" className=\"form-control w-full max-w-xs mx-auto my-4\">\n            <input data-curate-edit-id=\"e82cc4ca-dd8e-4828-9781-9c69c4499175\" \n                type=\"text\" \n                placeholder=\"Search messages...\" \n                className=\"input input-bordered w-full\" \n                onChange={(e) => onSearch(e.target.value)}\n            />\n        </div>\n    );\n};\n\nexport default SearchBar;"
+            },
+            {
+              "type": "file",
+              "name": "MessageCard.jsx",
+              "content": "import React from 'react';\n\nconst MessageCard = ({ message }) => {\n    return (\n        <div data-curate-edit-id=\"2bb403d2-9c89-4373-8aae-ccc799acfd2d\" className=\"card bg-base-200 shadow-xl\">\n            <div data-curate-edit-id=\"0a927103-cb6e-41aa-acc4-6b7e9dc0950c\" className=\"card-body\">\n                <h2 data-curate-edit-id=\"62762dac-3906-4b6f-9b05-a8e979329ca4\" className=\"card-title\">{message.user}</h2>\n                <p data-curate-edit-id=\"e4cb361e-4ac3-4438-8c4e-c094ed0ade9b\">{message.content}</p>\n                <div data-curate-edit-id=\"9711114e-363c-4138-8553-da5b3c9a7e16\" className=\"card-actions justify-end\">\n                    <div data-curate-edit-id=\"839c48d8-8fac-4876-90fc-9d1abc5b7435\" className=\"badge badge-primary\">{message.date}</div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default MessageCard;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Home = () => {\n    return (\n        <div data-curate-edit-id=\"b7df290c-dfa8-41f9-911a-33232a2b96b0\" className=\"hero min-h-screen bg-base-200\">\n            <div data-curate-edit-id=\"4ba51578-5af9-483d-9d07-2db61304d2d7\" className=\"hero-content text-center\">\n                <div data-curate-edit-id=\"b3cef7e6-7de4-4073-bc4e-84024aad6008\" className=\"max-w-md\">\n                    <h1 data-curate-edit-id=\"c7c71778-9540-44e0-b5b2-7d29a7cc772a\" className=\"text-5xl font-bold\">WhatsGroup Archive</h1>\n                    <p data-curate-edit-id=\"1488f341-444e-4d81-86bb-e49acec37787\" className=\"py-6\">Access and search through all your pinned WhatsGroup messages in one place.</p>\n                    <Link data-curate-edit-id=\"b4c45bdd-63b7-40f1-8212-fad43c8ee78f\" to=\"/archive\" className=\"btn btn-primary\">View Archive</Link>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Archive.jsx",
+              "content": "import React, { useState } from 'react';\nimport SearchBar from '../components/SearchBar';\nimport MessageCard from '../components/MessageCard';\n\nconst dummyMessages = [\n    { id: 1, user: \"John Doe\", content: \"Important meeting tomorrow at 10 AM\", date: \"2024-01-15\" },\n    { id: 2, user: \"Jane Smith\", content: \"Project deadline extended to next week\", date: \"2024-01-14\" },\n    { id: 3, user: \"Mike Johnson\", content: \"New feature documentation updated\", date: \"2024-01-13\" }\n];\n\nconst Archive = () => {\n    const [messages, setMessages] = useState(dummyMessages);\n    const [searchTerm, setSearchTerm] = useState(\"\");\n\n    const handleSearch = (term) => {\n        setSearchTerm(term);\n        if (term === \"\") {\n            setMessages(dummyMessages);\n        } else {\n            const filtered = dummyMessages.filter(message => \n                message.content.toLowerCase().includes(term.toLowerCase()) ||\n                message.user.toLowerCase().includes(term.toLowerCase())\n            );\n            setMessages(filtered);\n        }\n    };\n\n    return (\n        <div data-curate-edit-id=\"f698fd68-3ff9-40fd-910c-f8f6ea0df443\" className=\"py-8\">\n            <h1 data-curate-edit-id=\"c2eacbdf-58f3-4675-bbcb-32dc24bca31b\" className=\"text-3xl font-bold text-center mb-8\">Pinned Messages Archive</h1>\n            <SearchBar data-curate-edit-id=\"b385804a-9f59-4b82-bb2c-79f4acc32b33\" onSearch={handleSearch} />\n            <div data-curate-edit-id=\"dcebf4e8-a643-4408-869c-9ecbcaf383c3\" className=\"message-grid mt-8\">\n                {messages.map(message => (\n                    <MessageCard data-curate-edit-id=\"fa25844b-5710-43c2-90bc-37ed81bdcde7\" key={message.id} message={message} />\n                ))}\n            </div>\n        </div>\n    );\n};\n\nexport default Archive;"
+            },
+            {
+              "type": "file",
+              "name": "Login.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Login = () => {\n    return (\n        <div data-curate-edit-id=\"3b65acaf-9d54-4f9a-acaf-c49e9d472ad0\" className=\"min-h-screen flex items-center justify-center\">\n            <div data-curate-edit-id=\"530872ef-86f1-49ae-b6ef-771136c134d3\" className=\"card w-96 bg-base-200 shadow-xl\">\n                <div data-curate-edit-id=\"ac7c2528-3c4a-4b37-97b0-b4ac6aec617b\" className=\"card-body\">\n                    <h2 data-curate-edit-id=\"254f3981-d5e2-43ae-bb93-894491f8463f\" className=\"card-title justify-center\">Login</h2>\n                    <form data-curate-edit-id=\"1c20ed47-9aed-46bd-bfbc-05c77756733b\" className=\"form-control w-full\">\n                        <input data-curate-edit-id=\"669e221c-848b-4f56-84e5-b728a8dc68c9\" type=\"email\" placeholder=\"Email\" className=\"input input-bordered w-full mt-4\" />\n                        <input data-curate-edit-id=\"f3fa286d-ce79-407a-bbfb-dffa05ddd3da\" type=\"password\" placeholder=\"Password\" className=\"input input-bordered w-full mt-4\" />\n                        <button data-curate-edit-id=\"1933d039-3f67-493a-a9d4-a6edfe80d4ca\" className=\"btn btn-primary mt-6\">Login</button>\n                    </form>\n                    <p data-curate-edit-id=\"fcdcb1ef-f786-4f26-91ae-441a12231317\" className=\"text-center mt-4\">\n                        No account? <Link data-curate-edit-id=\"7ff9c650-f986-4309-adf3-c0fb7986831b\" to=\"/register\" className=\"text-primary\">Register</Link>\n                    </p>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Login;"
+            },
+            {
+              "type": "file",
+              "name": "Register.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Register = () => {\n    return (\n        <div data-curate-edit-id=\"ecdff2f7-5b2b-4927-ba4e-eb9b130983c4\" className=\"min-h-screen flex items-center justify-center\">\n            <div data-curate-edit-id=\"666fa90b-5eb6-4bb2-aa8e-3efed8a68747\" className=\"card w-96 bg-base-200 shadow-xl\">\n                <div data-curate-edit-id=\"9b2400b2-6244-486d-a439-0f196ac19db5\" className=\"card-body\">\n                    <h2 data-curate-edit-id=\"a405b3d9-5609-45c2-8d9e-65be19de5d4f\" className=\"card-title justify-center\">Register</h2>\n                    <form data-curate-edit-id=\"b89fe1f1-1363-48c2-b395-a64cf7a4f622\" className=\"form-control w-full\">\n                        <input data-curate-edit-id=\"645be2df-e198-4335-9b94-064a977fdbe2\" type=\"text\" placeholder=\"Username\" className=\"input input-bordered w-full mt-4\" />\n                        <input data-curate-edit-id=\"8faede9f-d0c7-4bd2-ac75-7a49b5eb8734\" type=\"email\" placeholder=\"Email\" className=\"input input-bordered w-full mt-4\" />\n                        <input data-curate-edit-id=\"20ebcc97-59af-484e-bc0d-91a6cd4cb4d5\" type=\"password\" placeholder=\"Password\" className=\"input input-bordered w-full mt-4\" />\n                        <button data-curate-edit-id=\"8bb5fb3b-d2a4-4713-a38f-154dca91c62e\" className=\"btn btn-primary mt-6\">Register</button>\n                    </form>\n                    <p data-curate-edit-id=\"37893c6c-0e0f-42c5-9dca-a888af72a6d0\" className=\"text-center mt-4\">\n                        Already have an account? <Link data-curate-edit-id=\"ca544db6-e9c6-4c63-b308-15da9a72ea67\" to=\"/login\" className=\"text-primary\">Login</Link>\n                    </p>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Register;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"56e0b25d-2bae-4d6c-983d-37baca376d8e\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"fa0926aa-e4a9-469d-809c-626b8aae1cb2\">\n    <meta data-curate-edit-id=\"53732284-15e6-4575-965f-c4493ec81d2b\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"5ce32502-d0fc-4053-bfd4-835847f06c9d\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"cc1e1324-dba1-43c9-8d33-f8e701ba2bd5\">WhatsGroup Archive</title>\n    <link data-curate-edit-id=\"f42f70b4-be35-4f8f-88fc-6e8ef9c8b746\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"9783019c-021d-48e3-8a49-88249e8068a1\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"f5da4a74-a797-493b-8d94-35aba9d4e180\">\n    <div data-curate-edit-id=\"49fe5bed-c34f-4b99-b540-27e06de07294\" id=\"root\"></div>\n    <script data-curate-edit-id=\"78240e0f-b01b-4f89-851f-72a164736853\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

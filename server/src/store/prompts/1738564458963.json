@@ -1,0 +1,4 @@
+{
+  "prompt": "Create a fitness center website which should track your calories and workout",
+  "refinedPrompt": "Design and develop a comprehensive fitness center website that allows users to track their daily calorie intake and workout routines. The website should include features such as user registration and login, a database to store user information securely, a calorie calculator based on food intake, and a workout tracker that lets users log their exercises, sets, and reps. Additionally, provide informative articles and videos about fitness, nutrition, and healthy lifestyle choices to educate and motivate users."
+}

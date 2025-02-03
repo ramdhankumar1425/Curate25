@@ -1,0 +1,32 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\nbody {\n  background-color: #f3f4f6;\n}\n\n.gradient-text {\n  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600;\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Workouts from './pages/Workouts';\nimport Nutrition from './pages/Nutrition';\nimport BlogPage from './pages/BlogPage';\nimport Progress from './pages/Progress';\nimport WorkoutPlanner from './pages/WorkoutPlanner';\n\nconst App = () => {\n  return (\n    <div className=\"min-h-screen bg-base-100\">\n      <Navbar />\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/workouts\" element={<Workouts />} />\n        <Route path=\"/nutrition\" element={<Nutrition />} />\n        <Route path=\"/blog\" element={<BlogPage />} />\n        <Route path=\"/progress\" element={<Progress />} />\n        <Route path=\"/planner\" element={<WorkoutPlanner />} />\n      </Routes>\n      <Footer />\n    </div>\n  );\n};\n\nexport default App;"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"38bf922d-6660-467c-8f7b-a45a26370390\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"7ff7ffc2-74d1-4ea7-813b-30d4bae34429\">\n    <meta data-curate-edit-id=\"2e3e87f0-ea8a-475b-8600-72cfde91d882\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"712d0eed-0d0b-414f-b6b2-6c07c46db562\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"53f067f1-7a18-463a-a3f7-daec20f3ffe7\">Fitness Fusion: Gym Workout Tracker</title>\n    <link data-curate-edit-id=\"8de28fed-0bd3-433a-b7c1-953d22f41057\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"f7de57f9-7a84-43ad-af05-bfda198e2de6\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"db68fbb3-a7f4-4068-97d3-7e3638afa2d5\">\n    <div data-curate-edit-id=\"eef4859f-5795-4295-9acd-41202e70e0eb\" id=\"root\"></div>\n    <script data-curate-edit-id=\"9cab31b1-a175-4557-a07a-e8b8a06249c8\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

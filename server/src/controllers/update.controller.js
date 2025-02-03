@@ -12,18 +12,6 @@ const handleUpdate = async (req, res) => {
 
         const { currProject, projectId } = req.body;
 
-        // const indexCss = currProject?.children
-        //     ?.find((child) => child.name === "src")
-        //     ?.children?.find((child) => child.name === "index.css");
-        // console.log(indexCss);
-
-        // if (indexCss) {
-        //     fs.writeFileSync(
-        //         path.join(__dirname, "../store/temp", "index1.css"),
-        //         indexCss.content
-        //     );
-        // }
-
         createFiles(
             currProject,
             path.join(__dirname, "../store", "projects", projectId)

@@ -1,0 +1,84 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react'\nimport ReactDOM from 'react-dom/client'\nimport App from './App'\nimport './index.css'\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n)"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react'\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom'\nimport Navbar from './components/Navbar'\nimport Footer from './components/Footer'\nimport Home from './pages/Home'\nimport Products from './pages/Products'\nimport ProductDetail from './pages/ProductDetail'\nimport Cart from './pages/Cart'\nimport Contact from './pages/Contact'\nimport Account from './pages/Account'\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"min-h-screen bg-gray-900 text-white\">\n        <Navbar />\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/products\" element={<Products />} />\n          <Route path=\"/product/:id\" element={<ProductDetail />} />\n          <Route path=\"/cart\" element={<Cart />} />\n          <Route path=\"/contact\" element={<Contact />} />\n          <Route path=\"/account\" element={<Account />} />\n        </Routes>\n        <Footer />\n      </div>\n    </Router>\n  )\n}\n\nexport default App"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react'\nimport { Link } from 'react-router-dom'\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"9535f820-fbec-4a16-a1f2-6a2f865714df\" className=\"bg-gray-800 p-4\">\n      <div data-curate-edit-id=\"9749d20f-5512-4535-9e58-d43d1d57e17e\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"a992f64c-a8ba-4d48-a783-dd9faa7cdbba\" to=\"/\" className=\"text-xl font-bold\">Darkroom Cameras</Link>\n        <div data-curate-edit-id=\"6496c41f-32ec-49b5-8e85-f24785024e82\" className=\"space-x-4\">\n          <Link data-curate-edit-id=\"f7875c17-d6cd-4f2a-b20a-a88c0ec3a82c\" to=\"/products\" className=\"hover:text-gray-300\">Products</Link>\n          <Link data-curate-edit-id=\"fa50c3f1-4e4b-4c0c-9e48-05ca71a7b9e9\" to=\"/cart\" className=\"hover:text-gray-300\">Cart</Link>\n          <Link data-curate-edit-id=\"0d2a0e09-dbf8-4b06-8a8e-78778a33be99\" to=\"/contact\" className=\"hover:text-gray-300\">Contact</Link>\n          <Link data-curate-edit-id=\"f9e2eca5-98da-45ad-b5ed-fecfb9331c46\" to=\"/account\" className=\"hover:text-gray-300\">Account</Link>\n        </div>\n      </div>\n    </nav>\n  )\n}\n\nexport default Navbar"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react'\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"fc05707f-8112-45ad-a12a-45d473e40fc6\" className=\"bg-gray-800 p-4 mt-8\">\n      <div data-curate-edit-id=\"65a6c9b5-b6d6-4e78-8f60-a01638045e48\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"6917ddb5-45b5-45d4-b041-0939b26257cd\">&copy; 2024 Darkroom Cameras. All rights reserved.</p>\n      </div>\n    </footer>\n  )\n}\n\nexport default Footer"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react'\nimport { Link } from 'react-router-dom'\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"ad641ca3-31f8-4086-b397-0b17cbe8bb2a\" className=\"container mx-auto px-4 py-8\">\n      <div data-curate-edit-id=\"c470cb90-0268-484f-893c-b47aaf18415d\" className=\"text-center mb-12\">\n        <h1 data-curate-edit-id=\"7b05e8ed-030e-4710-8bbf-705615442754\" className=\"text-4xl font-bold mb-4\">Welcome to Darkroom Cameras</h1>\n        <p data-curate-edit-id=\"84704022-eda6-49cb-92ce-cd8cb16f7587\" className=\"text-xl text-gray-400\">Discover Professional Camera Equipment</p>\n      </div>\n      <div data-curate-edit-id=\"5e0bca6e-59a0-459a-92ad-551472f44240\" className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n        <div data-curate-edit-id=\"271a161e-a956-440c-957b-a4423737b4d6\" className=\"bg-gray-800 p-6 rounded-lg\">\n          <img data-curate-edit-id=\"a701f81e-df6e-4998-b4b5-b701fc2ef213\" src=\"https://images.unsplash.com/photo-1516035069371-29a1b244cc32\" alt=\"Camera\" className=\"w-full h-48 object-cover rounded-lg mb-4\" />\n          <h3 data-curate-edit-id=\"a536046a-02e9-49f7-bfe6-66f349bd0fa6\" className=\"text-xl font-bold mb-2\">Latest Cameras</h3>\n          <p data-curate-edit-id=\"af9f0ea3-8d89-4ab7-a436-8d57a128d64e\" className=\"text-gray-400\">Explore our collection of professional cameras</p>\n        </div>\n        {/* Add more featured sections */}\n      </div>\n    </div>\n  )\n}\n\nexport default Home"
+            },
+            {
+              "type": "file",
+              "name": "Products.jsx",
+              "content": "import React from 'react'\nimport { Link } from 'react-router-dom'\n\nconst Products = () => {\n  return (\n    <div data-curate-edit-id=\"afe0da33-7c4d-4998-b42b-8f0e4fe1d760\" className=\"container mx-auto px-4 py-8\">\n      <h2 data-curate-edit-id=\"cddabc6e-a991-4d45-a0c0-5cca5b2daecb\" className=\"text-2xl font-bold mb-8\">Our Products</h2>\n      <div data-curate-edit-id=\"4a1bd6ab-f722-4748-98e8-e108e2a0db48\" className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n        {/* Product items */}\n      </div>\n    </div>\n  )\n}\n\nexport default Products"
+            },
+            {
+              "type": "file",
+              "name": "ProductDetail.jsx",
+              "content": "import React from 'react'\nimport { useParams } from 'react-router-dom'\n\nconst ProductDetail = () => {\n  const { id } = useParams()\n  return (\n    <div data-curate-edit-id=\"9ddfb48c-e06c-4cd7-861c-e6e09e5ac94f\" className=\"container mx-auto px-4 py-8\">\n      <div data-curate-edit-id=\"13e7c3da-0abd-485e-804b-1a9ecb3b7e48\" className=\"bg-gray-800 p-6 rounded-lg\">\n        <h2 data-curate-edit-id=\"f2fd687d-d1cd-40d0-8f28-003e7d35838e\" className=\"text-2xl font-bold mb-4\">Product Details</h2>\n      </div>\n    </div>\n  )\n}\n\nexport default ProductDetail"
+            },
+            {
+              "type": "file",
+              "name": "Cart.jsx",
+              "content": "import React from 'react'\n\nconst Cart = () => {\n  return (\n    <div data-curate-edit-id=\"968d5e09-206c-40de-b27b-ed6be22c7b71\" className=\"container mx-auto px-4 py-8\">\n      <h2 data-curate-edit-id=\"c6b8bc10-653a-4ee8-9511-0b8624f257d3\" className=\"text-2xl font-bold mb-8\">Shopping Cart</h2>\n      <div data-curate-edit-id=\"62bb0200-85f7-48be-bfba-499913055ec9\" className=\"bg-gray-800 p-6 rounded-lg\">\n        {/* Cart items */}\n      </div>\n    </div>\n  )\n}\n\nexport default Cart"
+            },
+            {
+              "type": "file",
+              "name": "Contact.jsx",
+              "content": "import React from 'react'\n\nconst Contact = () => {\n  return (\n    <div data-curate-edit-id=\"8849d10f-5316-4fa7-92fa-ca5f9e5cbe2b\" className=\"container mx-auto px-4 py-8\">\n      <h2 data-curate-edit-id=\"33343c69-bb2f-4902-9d06-69ef650fb912\" className=\"text-2xl font-bold mb-8\">Contact Us</h2>\n      <div data-curate-edit-id=\"4ef5e5ec-af3b-42fc-88f1-3a2df3987e48\" className=\"bg-gray-800 p-6 rounded-lg\">\n        <form data-curate-edit-id=\"e83f99c9-f820-4e7e-8c80-52581b768895\" className=\"space-y-4\">\n          <input data-curate-edit-id=\"e62ab99d-260b-4d22-96c8-e660c8231a3b\" type=\"text\" placeholder=\"Name\" className=\"w-full p-2 rounded bg-gray-700\" />\n          <input data-curate-edit-id=\"cf055f9c-8bd2-4e35-8f9a-2f06b54bce0f\" type=\"email\" placeholder=\"Email\" className=\"w-full p-2 rounded bg-gray-700\" />\n          <textarea data-curate-edit-id=\"d3049bc0-0ff1-4985-b897-0a8f1e748d22\" placeholder=\"Message\" className=\"w-full p-2 rounded bg-gray-700 h-32\"></textarea>\n          <button data-curate-edit-id=\"9a958b56-7475-4624-917f-227683e67c16\" className=\"bg-blue-600 px-4 py-2 rounded hover:bg-blue-700\">Send Message</button>\n        </form>\n      </div>\n    </div>\n  )\n}\n\nexport default Contact"
+            },
+            {
+              "type": "file",
+              "name": "Account.jsx",
+              "content": "import React from 'react'\n\nconst Account = () => {\n  return (\n    <div data-curate-edit-id=\"311ddaf2-964d-485f-b813-462be8ef1ff0\" className=\"container mx-auto px-4 py-8\">\n      <h2 data-curate-edit-id=\"5563fa83-010a-4cbf-ba53-4bff7fc57ee6\" className=\"text-2xl font-bold mb-8\">My Account</h2>\n      <div data-curate-edit-id=\"704ec5f3-cd19-42f0-ab52-24251f83a1e2\" className=\"bg-gray-800 p-6 rounded-lg\">\n        {/* Account management content */}\n      </div>\n    </div>\n  )\n}\n\nexport default Account"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"438cf1f9-6914-4141-9631-613870d3f50e\" lang=\"en\">\n  <head data-curate-edit-id=\"97aef914-3977-47d5-877b-1b3ecdb6da1c\">\n    <meta data-curate-edit-id=\"d5bda0c2-e4a0-438a-a88d-69e37e3c04fc\" charset=\"UTF-8\" />\n    <meta data-curate-edit-id=\"456ec6a8-cf14-4c8c-883e-57e1c0ae9827\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title data-curate-edit-id=\"47231e2a-a77a-48e7-aa8e-475b16cd73f4\">Darkroom Cameras</title>\n  </head>\n  <body data-curate-edit-id=\"1f4bebc9-115a-470c-bcae-6e08ab6cb0e8\">\n    <div data-curate-edit-id=\"cfee9b65-570c-4114-bd44-5604266511a9\" id=\"root\"></div>\n    <script data-curate-edit-id=\"d95eebc1-b893-4c25-953e-4fd0bf7c2efc\" type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>"
+    }
+  ]
+}

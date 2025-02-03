@@ -8,6 +8,7 @@ const anthropic = require("../utils/anthropic.util");
 const { buildWithVite } = require("../utils/build.util");
 const { createFiles } = require("../utils/createFiles.util");
 const { removeFiles } = require("../utils/removeFiles.util");
+const { addIDs } = require("../utils/addIDs.util");
 
 const handleRefine = async (req, res) => {
     const refineStart = performance.now();
@@ -38,8 +39,11 @@ const handleRefine = async (req, res) => {
             return res.status(500).json({ message: "Build failed" });
         }
 
-        const project = new Function(`return ${match[1].trim()}`)();
+        let project = new Function(`return ${match[1].trim()}`)();
         // console.log("Project:", project);
+
+        // add unique identifier to all dom nodes to apply editing on client side
+        project = addIDs(project);
 
         createFiles(
             project,

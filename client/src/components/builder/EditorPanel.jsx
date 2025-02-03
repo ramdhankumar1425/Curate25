@@ -1,6 +1,6 @@
 import React from "react";
 import { useProject } from "../../context/ProjectProvider";
-import { ALLOWED_EDITS } from "../../constants/constants";
+import { ALLOWED_EDITS, ALLOWED_FONTS } from "../../constants/constants";
 
 function EditorPanel() {
     const { handleEditing, isEditing, handleSaveChanges } = useProject();
@@ -94,25 +94,6 @@ function EditorPanel() {
                         <option value="dotted">Dotted</option>
                     </select>
                 </div>
-                {/* Border size */}
-                <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium">
-                        Border Size (px)
-                    </label>
-                    <input
-                        type="number"
-                        min={0}
-                        className="h-8 w-24 border rounded p-1 bg-gray-800 text-white"
-                        onChange={(e) =>
-                            isEditing &&
-                            handleEditing(
-                                ALLOWED_EDITS.BORDER_SIZE,
-                                `${Number(e.target.value)}px`
-                            )
-                        }
-                        disabled={!isEditing}
-                    />
-                </div>
                 {/* Border Radius */}
                 <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">
@@ -131,6 +112,27 @@ function EditorPanel() {
                         }
                         disabled={!isEditing}
                     />
+                </div>
+                {/* Font */}
+                <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium">Font Family</label>
+                    <select
+                        className="h-8 w-24 border rounded p-1 bg-gray-800 text-white"
+                        onChange={(e) =>
+                            isEditing &&
+                            handleEditing(
+                                ALLOWED_EDITS.FONT_FAMILY,
+                                e.target.value
+                            )
+                        }
+                        disabled={!isEditing}
+                    >
+                        {ALLOWED_FONTS.map((font) => (
+                            <option key={font} value={font}>
+                                {font}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 {/* Font Size */}
                 <div className="flex items-center justify-between">

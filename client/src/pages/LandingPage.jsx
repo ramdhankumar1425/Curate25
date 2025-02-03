@@ -31,13 +31,19 @@ function LandingPage() {
         }
     }, [isVideoPlaying]);
 
+    useEffect(() => {
+        if (!isLoading && isAuthenticated) {
+            navigate("/prompt");
+        }
+    }, [isAuthenticated, isLoading]);
+
     return (
         <div className="w-full min-h-screen flex flex-col text-white bg-[url(/images/landing-bg.png)] bg-cover bg-center bg-black">
             {/* Header Section */}
             <Header />
 
             {/* Hero Section */}
-            <div className="w-full min-h-[80vh] flex flex-col items-center px-4 space-y-6 sm:space-y-10">
+            <div className="w-full flex flex-col items-center px-4 space-y-6 sm:space-y-10 mb-10">
                 <img
                     className="w-12 sm:w-16 aspect-square mt-10 sm:mt-20"
                     src="images/logo.png"
@@ -62,7 +68,7 @@ function LandingPage() {
             </div>
 
             {/* Video Section */}
-            <div className="flex items-center justify-center relative px-4  sm:my-10">
+            <div className="flex items-center justify-center relative px-4 sm:mb-10">
                 <video
                     ref={videoRef}
                     className="w-full max-w-2xl aspect-auto shadow-2xl rounded-lg border-4 border-blue-600 backdrop-blur-3xl"
@@ -129,7 +135,7 @@ function LandingPage() {
                     Why Choose Curate?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-                    <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
+                    <div className="text-center bg-none border border-blue-700 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
                             src="images/aipowered-design.png"
                             alt="Feature 1"
@@ -143,7 +149,7 @@ function LandingPage() {
                             in seconds.
                         </p>
                     </div>
-                    <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
+                    <div className="text-center bg-none border border-blue-700 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
                             src="images/web-page-customisation.png"
                             alt="Feature 2"
@@ -157,7 +163,7 @@ function LandingPage() {
                             tools.
                         </p>
                     </div>
-                    <div className="text-center bg-blue-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
+                    <div className="text-center bg-none border border-blue-700 bg-opacity-60 p-6 rounded-lg shadow-lg hover:bg-opacity-80 transition-all">
                         <img
                             src="images/responsive-design.png"
                             alt="Feature 3"

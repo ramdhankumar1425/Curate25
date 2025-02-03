@@ -15,7 +15,7 @@ function BuilderPage() {
     // to prevent the page from rendering before the user is authenticated
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
-            loginWithRedirect();
+            // loginWithRedirect();
         }
     }, [isLoading, isAuthenticated, loginWithRedirect]);
 

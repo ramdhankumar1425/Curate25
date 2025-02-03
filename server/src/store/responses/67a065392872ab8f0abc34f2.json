@@ -1,0 +1,59 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport './index.css';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { HashRouter as Router, Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Footer from './components/Footer';\nimport Home from './pages/Home';\nimport Dashboard from './pages/Dashboard';\nimport Workouts from './pages/Workouts';\nimport Nutrition from './pages/Nutrition';\nimport Profile from './pages/Profile';\nimport Login from './pages/Login';\nimport Register from './pages/Register';\n\nconst App = () => {\n  return (\n    <Router>\n      <div className=\"flex flex-col min-h-screen\">\n        <Navbar />\n        <main className=\"flex-grow\">\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/dashboard\" element={<Dashboard />} />\n            <Route path=\"/workouts\" element={<Workouts />} />\n            <Route path=\"/nutrition\" element={<Nutrition />} />\n            <Route path=\"/profile\" element={<Profile />} />\n            <Route path=\"/login\" element={<Login />} />\n            <Route path=\"/register\" element={<Register />} />\n          </Routes>\n        </main>\n        <Footer />\n      </div>\n    </Router>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n  return (\n    <nav data-curate-edit-id=\"f943054d-f3ad-478e-af9c-b28f995590b5\" className=\"bg-blue-600 text-white p-4\">\n      <div data-curate-edit-id=\"b245dc2a-797f-454a-8e55-24ee2bb3dcbe\" className=\"container mx-auto flex justify-between items-center\">\n        <Link data-curate-edit-id=\"c8b09197-3a46-4217-b7e4-11c9cdfc5e76\" to=\"/\" className=\"text-2xl font-bold\">FitTrack</Link>\n        <div data-curate-edit-id=\"b19069dd-aeeb-4562-9206-8e1d31d540d6\" className=\"flex space-x-4\">\n          <Link data-curate-edit-id=\"e3bc9b14-b9a0-48d9-9ca8-8c70c9d62e20\" to=\"/dashboard\" className=\"hover:text-blue-200\">Dashboard</Link>\n          <Link data-curate-edit-id=\"d3537050-9707-4349-b751-3b851d7e832b\" to=\"/workouts\" className=\"hover:text-blue-200\">Workouts</Link>\n          <Link data-curate-edit-id=\"e169ae12-45ed-4d7d-88b5-256147b0c42b\" to=\"/nutrition\" className=\"hover:text-blue-200\">Nutrition</Link>\n          <Link data-curate-edit-id=\"cb1965eb-0dc3-4922-8cc9-92eb1bdf91f0\" to=\"/profile\" className=\"hover:text-blue-200\">Profile</Link>\n          <Link data-curate-edit-id=\"21a0c9b2-d28d-47e5-a073-d2bb4520ef85\" to=\"/login\" className=\"hover:text-blue-200\">Login</Link>\n        </div>\n      </div>\n    </nav>\n  );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "Footer.jsx",
+              "content": "import React from 'react';\n\nconst Footer = () => {\n  return (\n    <footer data-curate-edit-id=\"c6b6bfb4-d514-4df6-bd70-31d659639d94\" className=\"bg-gray-800 text-white p-4 mt-8\">\n      <div data-curate-edit-id=\"544de7c6-1ef0-4ccb-9b95-219238449637\" className=\"container mx-auto text-center\">\n        <p data-curate-edit-id=\"bb93c4c4-fcb0-49d3-9472-47f9f2020b6b\">&copy; 2024 FitTrack. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n};\n\nexport default Footer;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Home = () => {\n  return (\n    <div data-curate-edit-id=\"54cd83fd-7e77-4b13-8922-6155090a887a\" className=\"container mx-auto px-4 py-8\">\n      <h1 data-curate-edit-id=\"e9c278fc-7ef1-491b-a0e3-a6b4b0f84abb\" className=\"text-4xl font-bold text-center mb-8\">Welcome to FitTrack</h1>\n      <div data-curate-edit-id=\"b0e42b03-4b9f-48be-9746-1269f6ce5d1b\" className=\"grid md:grid-cols-2 gap-8\">\n        <div data-curate-edit-id=\"3c2bcb11-aeb3-418b-821f-d6da99d5b34e\" className=\"text-center p-6 bg-white rounded-lg shadow-lg\">\n          <h2 data-curate-edit-id=\"d14fe98e-0df1-4029-8d99-807fdd13e5dc\" className=\"text-2xl font-semibold mb-4\">Track Your Progress</h2>\n          <p data-curate-edit-id=\"00f435d4-dda4-4fe8-9505-d825b3323017\" className=\"mb-4\">Monitor your fitness journey with our comprehensive tracking tools.</p>\n          <Link data-curate-edit-id=\"bcddc53b-5721-46c6-b568-03e3f095585a\" to=\"/register\" className=\"bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700\">\n            Get Started\n          </Link>\n        </div>\n        <div data-curate-edit-id=\"be068e6a-0139-425e-92fd-309d54f8b7f7\" className=\"text-center p-6 bg-white rounded-lg shadow-lg\">\n          <h2 data-curate-edit-id=\"9cb35c73-cc50-42dd-b47c-7deba482dfb4\" className=\"text-2xl font-semibold mb-4\">Personalized Workouts</h2>\n          <p data-curate-edit-id=\"f341d652-3f65-41e7-ba5d-47fd47db08d3\" className=\"mb-4\">Get customized workout plans based on your fitness goals.</p>\n          <Link data-curate-edit-id=\"43979cd2-ef36-4845-b728-9e94997d2b11\" to=\"/workouts\" className=\"bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700\">\n            View Workouts\n          </Link>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Home;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"a67ad7e3-2764-407c-98c7-c7dc2dbbad53\" lang=\"en\">\n<head data-curate-edit-id=\"a7253743-f702-45ac-9c00-10142e14e174\">\n    <meta data-curate-edit-id=\"48edb3ea-2dcd-4b13-9f29-eaffbbe522bf\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"c5158cca-f54c-43c0-b6a0-b614c78fb314\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"f2aa5850-2532-47b8-91b0-4eda1b574ab2\">FitTrack - Your Fitness Journey Starts Here</title>\n</head>\n<body data-curate-edit-id=\"ec4d82f4-ce34-47a7-affa-c891f8d22aaa\">\n    <div data-curate-edit-id=\"ffd087c0-de93-4812-ab44-a83d3cd191e9\" id=\"root\"></div>\n    <script data-curate-edit-id=\"7717457c-a709-470a-bfb5-7717880b394a\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

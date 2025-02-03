@@ -1,0 +1,4 @@
+{
+  "prompt": "make whatsgroup website which keeps history of every pinned message ",
+  "refinedPrompt": "Create a website for WhatsGroup that archives and displays a history of all pinned messages. Include features such as user authentication, search functionality to find specific pinned messages, and the ability to filter messages by date or user. The website should have a clean, user-friendly interface that makes it easy to browse and read the pinned message history."
+}

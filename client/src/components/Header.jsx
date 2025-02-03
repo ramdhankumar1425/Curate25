@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { useState } from "react";
 import ContentLoader from "react-content-loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
     const { loginWithRedirect, isLoading, isAuthenticated } = useAuth0();
@@ -37,7 +37,7 @@ function Header() {
             ) : (
                 <div className="flex space-x-4">
                     <button
-                        className="text-white border border-gray-400 rounded-lg px-4 py-1 hover:bg-gray-200 hover:text-black transition duration-200"
+                        className="text-white border border-gray-400 rounded-lg px-4 py-1 sm:px-6 sm:py-2 hover:bg-gray-200 hover:text-black transition duration-200"
                         onClick={loginWithRedirect}
                     >
                         Log In
@@ -53,6 +53,7 @@ export default Header;
 const User = () => {
     const { user, logout } = useAuth0();
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <div className="relative inline-block">
@@ -68,7 +69,13 @@ const User = () => {
                 <span className="hidden md:flex font-medium">{user.name}</span>
             </div>
             {dropdownOpen && (
-                <div className="absolute right-0 mt-2 overflow-hidden shadow-lg z-10">
+                <div className="absolute right-0 mt-2 flex flex-col gap-3 p-2 overflow-hidden shadow-lg z-10">
+                    <button
+                        onClick={() => navigate("/profile")}
+                        className="block w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-left bg-blue-600 hover:bg-blue-700 duration-150 border border-blue-500 text-gray-100"
+                    >
+                        Profile
+                    </button>
                     <button
                         onClick={() => logout()}
                         className="block w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-left bg-blue-600 hover:bg-blue-700 duration-150 border border-blue-500 text-gray-100"

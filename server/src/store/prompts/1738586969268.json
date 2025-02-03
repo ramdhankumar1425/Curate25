@@ -1,0 +1,4 @@
+{
+  "prompt": "make me a website where i can track calories and workout i performed in gym",
+  "refinedPrompt": "Create a fitness tracking website that allows users to log their daily calorie intake and track their gym workouts. The website should include a dashboard displaying calories consumed, calories burned, and workout history. Implement features such as setting fitness goals, generating reports, and providing insights based on user data. The website should have a user-friendly interface, allowing easy input of calories and workouts, and provide a database to store user information securely."
+}

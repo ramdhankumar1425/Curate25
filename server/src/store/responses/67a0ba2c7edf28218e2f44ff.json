@@ -1,0 +1,74 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n.alert-badge {\n    @apply badge badge-error text-white;\n}"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <HashRouter>\n      <App />\n    </HashRouter>\n  </React.StrictMode>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Dashboard from './pages/Dashboard';\nimport StudentList from './pages/StudentList';\nimport Reports from './pages/Reports';\nimport Settings from './pages/Settings';\n\nconst App = () => {\n    return (\n        <div className=\"min-h-screen bg-base-100\">\n            <Navbar />\n            <div className=\"container mx-auto px-4 py-8\">\n                <Routes>\n                    <Route path=\"/\" element={<Dashboard />} />\n                    <Route path=\"/students\" element={<StudentList />} />\n                    <Route path=\"/reports\" element={<Reports />} />\n                    <Route path=\"/settings\" element={<Settings />} />\n                </Routes>\n            </div>\n        </div>\n    );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"79ca477e-5350-4e1c-a7ce-9d54d3705f85\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"51e8c8f3-b1f4-480d-bd2e-777a714bc07f\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"35ecf5da-0900-4346-a0f6-dc01f2e95863\" className=\"dropdown\">\n                    <div data-curate-edit-id=\"968b74cb-fbcf-4cbc-99e9-b965d7eb42ff\" tabIndex={0} role=\"button\" className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"a66bc02a-258c-460f-86ad-2bfb322de300\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"d8e9d6b7-f3a8-4a76-904f-ee29ec65e877\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </div>\n                    <ul data-curate-edit-id=\"0482e497-2e29-4035-8fc4-90ed33c570f8\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base-content\">\n                        <li data-curate-edit-id=\"ee780176-dbf2-466e-9a6b-a6bea074b4ef\"><Link data-curate-edit-id=\"3a966b14-ab9f-44ab-96d5-a758a78b7e1d\" to=\"/\">Dashboard</Link></li>\n                        <li data-curate-edit-id=\"52ab58ef-2a7f-4f09-b657-73cb67670df4\"><Link data-curate-edit-id=\"d5bffa89-6df0-4121-b03b-503bea0bf5d1\" to=\"/students\">Students</Link></li>\n                        <li data-curate-edit-id=\"380fe9e2-cb60-465c-b83f-bd2455464de2\"><Link data-curate-edit-id=\"8ce0a754-6ec2-40ad-9510-fc613e2bf08f\" to=\"/reports\">Reports</Link></li>\n                        <li data-curate-edit-id=\"79f74b40-4606-4a09-92da-6cedf457839f\"><Link data-curate-edit-id=\"b397095b-2fc9-4ba3-801a-6a7dace029e4\" to=\"/settings\">Settings</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"29332557-7600-4e6b-9623-724ef3c71e6b\" to=\"/\" className=\"btn btn-ghost text-xl\">Student Attendance Tracker</Link>\n            </div>\n            <div data-curate-edit-id=\"3cb6e1aa-ad82-4b39-baad-8c30cdeedc57\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"9b9b6894-58b5-4e6c-be2d-9b9f57d30cf9\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"7b656728-34ce-42ab-9741-17cef822eb90\"><Link data-curate-edit-id=\"d8f03d35-6516-4dd6-a51e-f231161133f5\" to=\"/\">Dashboard</Link></li>\n                    <li data-curate-edit-id=\"8b862f4a-8df7-45dd-b3f6-d2e69a1d859d\"><Link data-curate-edit-id=\"85cc3bbe-871e-43d9-b708-88aff8590ed6\" to=\"/students\">Students</Link></li>\n                    <li data-curate-edit-id=\"f9f2d248-9df6-4e5c-9c2c-a14b01c8fe0f\"><Link data-curate-edit-id=\"ca34b716-08a0-4fcc-89fa-4d6f087083e1\" to=\"/reports\">Reports</Link></li>\n                    <li data-curate-edit-id=\"428c557a-e092-461e-9679-70fd33c83f25\"><Link data-curate-edit-id=\"fd9f22fa-cc27-4ca8-bd71-8d51ec38add8\" to=\"/settings\">Settings</Link></li>\n                </ul>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            },
+            {
+              "type": "file",
+              "name": "AttendanceCard.jsx",
+              "content": "import React from 'react';\n\nconst AttendanceCard = ({ student }) => {\n    return (\n        <div data-curate-edit-id=\"5e7de3a1-c079-4f9f-8d33-65c528291519\" className=\"card bg-base-100 shadow-xl\">\n            <div data-curate-edit-id=\"3b34c676-297c-453e-a2a8-85f58decf372\" className=\"card-body\">\n                <div data-curate-edit-id=\"c078a6fe-9d1e-42c4-8a8d-5cd73d9156f8\" className=\"flex justify-between items-center\">\n                    <h2 data-curate-edit-id=\"02861ea4-5f12-420f-a776-b4315d3537b7\" className=\"card-title\">{student.name}</h2>\n                    {student.absences >= student.threshold && \n                        <span data-curate-edit-id=\"002bffe3-ff43-4901-9a1c-5ef4204ba873\" className=\"alert-badge\">Alert!</span>\n                    }\n                </div>\n                <p data-curate-edit-id=\"409b2ec5-a16e-4b38-8348-9a51867c6e05\">Absences: {student.absences}/{student.threshold}</p>\n                <progress data-curate-edit-id=\"2c75befa-24dc-4d4d-8a2d-6641132086d8\" \n                    className=\"progress progress-error\" \n                    value={student.absences} \n                    max={student.threshold}\n                ></progress>\n                <div data-curate-edit-id=\"755834be-e388-473d-b2bd-1160133654ad\" className=\"card-actions justify-end\">\n                    <button data-curate-edit-id=\"bcc04bda-8c56-4c75-9658-b2d9ee55285a\" className=\"btn btn-primary\">Mark Absent</button>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default AttendanceCard;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Dashboard.jsx",
+              "content": "import React from 'react';\nimport AttendanceCard from '../components/AttendanceCard';\n\nconst Dashboard = () => {\n    const students = [\n        { id: 1, name: \"John Doe\", absences: 3, threshold: 5 },\n        { id: 2, name: \"Jane Smith\", absences: 5, threshold: 5 },\n        { id: 3, name: \"Bob Johnson\", absences: 2, threshold: 5 }\n    ];\n\n    return (\n        <div data-curate-edit-id=\"4e3e3d73-8a4b-45ae-8b69-0bb9c6770e32\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n            {students.map(student => (\n                <AttendanceCard data-curate-edit-id=\"143a774b-34b1-412c-9d31-d9af3d32b10b\" key={student.id} student={student} />\n            ))}\n        </div>\n    );\n};\n\nexport default Dashboard;"
+            },
+            {
+              "type": "file",
+              "name": "StudentList.jsx",
+              "content": "import React from 'react';\n\nconst StudentList = () => {\n    return (\n        <div data-curate-edit-id=\"2250d5ab-6d4d-4ce4-b021-d213189b0b11\" className=\"overflow-x-auto\">\n            <table data-curate-edit-id=\"cb921cc8-2253-4d4b-b359-85a598a7dda8\" className=\"table\">\n                <thead data-curate-edit-id=\"06dbcf31-e244-44f3-8472-0a00a82ae93a\">\n                    <tr data-curate-edit-id=\"5606db21-aa67-4888-bc10-441e20fdbc3e\">\n                        <th data-curate-edit-id=\"6e234cd6-e3f2-4279-a0ba-7f86ed7d1e1a\">Name</th>\n                        <th data-curate-edit-id=\"f98d37ba-dd0a-406b-84e6-223c1870385f\">Student ID</th>\n                        <th data-curate-edit-id=\"9b5a0a5a-9ab0-48b2-97a1-0ecb387ffb5f\">Absences</th>\n                        <th data-curate-edit-id=\"eb635392-991a-4831-adbf-f007169dc73a\">Threshold</th>\n                        <th data-curate-edit-id=\"6c0cdc4e-6a34-4d10-b184-b4d799ef527e\">Actions</th>\n                    </tr>\n                </thead>\n                <tbody data-curate-edit-id=\"55a32db5-3883-4408-899d-b8112fd58ddc\">\n                    <tr data-curate-edit-id=\"cd6b962f-fc4d-4d3e-997c-906d0702ede7\">\n                        <td data-curate-edit-id=\"408be362-f734-4886-a321-4a8d4a48dd57\">John Doe</td>\n                        <td data-curate-edit-id=\"d14d1124-4f66-4939-a821-f5610433b261\">001</td>\n                        <td data-curate-edit-id=\"2d756ac8-87db-42c5-9f16-c7da7c85ae4c\">3/5</td>\n                        <td data-curate-edit-id=\"3ab8117a-3a43-47b3-8c42-8a2461bb1f77\">5</td>\n                        <td data-curate-edit-id=\"e12c2cd4-a417-48a1-865d-fc62ece5963c\">\n                            <button data-curate-edit-id=\"d7844345-b166-439d-a2ae-8d5713c881fc\" className=\"btn btn-sm btn-primary\">Edit</button>\n                        </td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    );\n};\n\nexport default StudentList;"
+            },
+            {
+              "type": "file",
+              "name": "Reports.jsx",
+              "content": "import React from 'react';\n\nconst Reports = () => {\n    return (\n        <div data-curate-edit-id=\"1054a490-277e-4d7d-ab0c-37e8ef0a7682\" className=\"space-y-4\">\n            <div data-curate-edit-id=\"50b4aa18-f1d4-4200-82cc-52c80d59a646\" className=\"stats shadow\">\n                <div data-curate-edit-id=\"9379c6e6-5e6e-42be-aea7-8324fcc7cc81\" className=\"stat\">\n                    <div data-curate-edit-id=\"92d47877-d393-490d-bebe-c5d161b152e8\" className=\"stat-title\">Total Absences</div>\n                    <div data-curate-edit-id=\"3f329d90-969f-45de-b5e4-1b7064cb6ed4\" className=\"stat-value\">31</div>\n                    <div data-curate-edit-id=\"d72b8638-6a25-42eb-aa7f-27039c736683\" className=\"stat-desc\">This Month</div>\n                </div>\n                <div data-curate-edit-id=\"470d8244-7c74-444e-a17f-a0d57d35fa3b\" className=\"stat\">\n                    <div data-curate-edit-id=\"19676317-63a5-4fee-b173-b8cb3713c0c3\" className=\"stat-title\">Average Absences</div>\n                    <div data-curate-edit-id=\"e3d9c780-c847-4d57-8884-25136ec17e1e\" className=\"stat-value\">2.4</div>\n                    <div data-curate-edit-id=\"3f403141-c062-4d29-9e6e-e2197c58d1a3\" className=\"stat-desc\">Per Student</div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Reports;"
+            },
+            {
+              "type": "file",
+              "name": "Settings.jsx",
+              "content": "import React from 'react';\n\nconst Settings = () => {\n    return (\n        <div data-curate-edit-id=\"0c999d04-2283-45ee-b4ae-22932c61f211\" className=\"card bg-base-100 shadow-xl\">\n            <div data-curate-edit-id=\"48aaf526-e049-4773-9fbe-731399a5c9d1\" className=\"card-body\">\n                <h2 data-curate-edit-id=\"67846c48-d609-4537-885d-ea556568687f\" className=\"card-title\">Settings</h2>\n                <div data-curate-edit-id=\"b24fe623-ea92-4e7e-9115-69368c4e8537\" className=\"form-control\">\n                    <label data-curate-edit-id=\"36288093-2aa0-408a-bb06-dc0cc0d9e03f\" className=\"label\">\n                        <span data-curate-edit-id=\"1f2989b5-e63d-4002-9bbe-8d555e4c1d74\" className=\"label-text\">Default Absence Threshold</span>\n                    </label>\n                    <input data-curate-edit-id=\"7b7223a7-6035-413b-8907-c6b0cdaf7f0f\" type=\"number\" placeholder=\"5\" className=\"input input-bordered w-full max-w-xs\" />\n                </div>\n                <div data-curate-edit-id=\"a8c516a6-147f-41d6-b484-45e6ca7a5bf5\" className=\"card-actions justify-end\">\n                    <button data-curate-edit-id=\"68e880f8-2d75-4a88-b26f-17b30ac11b1e\" className=\"btn btn-primary\">Save Changes</button>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Settings;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"ec38a8b0-b9bd-48a3-b1e4-395e65cc122a\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"df8a03f0-ff2b-4a5d-937a-8374bea5fa95\">\n    <meta data-curate-edit-id=\"1fc19083-ff06-4d9d-a019-12379c76556e\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"02c43d69-4417-43b4-8780-b21262e62b17\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"09cc96c3-8486-490c-a611-20923e8ad7cf\">Student Attendance Tracker</title>\n    <link data-curate-edit-id=\"cd480b1b-3f78-45af-a50d-5e96fe9a6082\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"f26d217a-9426-4a21-898d-2820bd5d1cbf\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"990a6990-cf36-4115-84d6-4ce922402c98\">\n    <div data-curate-edit-id=\"145528fb-1a02-4e04-8739-65c8bff36073\" id=\"root\"></div>\n    <script data-curate-edit-id=\"9f2304bb-a8d6-422a-99b1-8f2673de17ed\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    }
+  ]
+}

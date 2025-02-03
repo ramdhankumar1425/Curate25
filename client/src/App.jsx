@@ -7,7 +7,11 @@ import BuilderPage from "./pages/BuilderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Loader from "./components/Loader";
 import TestPage from "./pages/TestPage";
+
+import ProfilePage from "./pages/ProfilePage";
+
 import 'regenerator-runtime/runtime';
+
 
 function App() {
     return (
@@ -26,6 +30,7 @@ function App() {
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/prompt" element={<PromptPage />} />
                         <Route path="/builder" element={<BuilderPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
 
                         <Route path="/test" element={<TestPage />} />
 

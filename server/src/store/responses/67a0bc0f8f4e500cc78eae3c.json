@@ -1,0 +1,59 @@
+{
+  "type": "directory",
+  "name": "root",
+  "children": [
+    {
+      "type": "file",
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html data-curate-edit-id=\"eb76e673-4ea2-4c8e-aeb8-c0304a07cd7e\" lang=\"en\" data-theme=\"light\">\n<head data-curate-edit-id=\"c6e7859c-058e-484e-b18b-46a58f7f13ca\">\n    <meta data-curate-edit-id=\"a9bbf504-9e95-4f31-8905-860161b82f14\" charset=\"UTF-8\">\n    <meta data-curate-edit-id=\"7d6c5b64-41f0-4b6a-90ba-bac25ce06ec9\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title data-curate-edit-id=\"7515d538-593a-42e7-abd2-d815cc1179f3\">Fitness Tracker</title>\n    <link data-curate-edit-id=\"fe5a602f-521a-4778-9528-b37a73a40d09\" href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n    <script data-curate-edit-id=\"cc60ac76-19dc-49d4-9e0a-5a03e2477142\" src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body data-curate-edit-id=\"1b225ba9-3f34-44ef-9577-86aaab7e3c55\">\n    <div data-curate-edit-id=\"b6e59e3d-e52b-4832-b077-59cf55d058b6\" id=\"root\"></div>\n    <script data-curate-edit-id=\"fa165832-5a84-401c-8a0c-60a28c458874\" type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n</html>"
+    },
+    {
+      "type": "directory",
+      "name": "src",
+      "children": [
+        {
+          "type": "file",
+          "name": "index.css",
+          "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+        },
+        {
+          "type": "file",
+          "name": "main.jsx",
+          "content": "import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { HashRouter } from 'react-router-dom';\nimport './index.css';\nimport App from './App';\n\nReactDOM.createRoot(document.getElementById('root')).render(\n  <HashRouter>\n    <App />\n  </HashRouter>\n);"
+        },
+        {
+          "type": "file",
+          "name": "App.jsx",
+          "content": "import React from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Navbar from './components/Navbar';\nimport Home from './pages/Home';\nimport Dashboard from './pages/Dashboard';\nimport Nutrition from './pages/Nutrition';\nimport Workouts from './pages/Workouts';\nimport Progress from './pages/Progress';\nimport Profile from './pages/Profile';\n\nconst App = () => {\n  return (\n    <div className=\"min-h-screen bg-base-100\">\n      <Navbar />\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/dashboard\" element={<Dashboard />} />\n        <Route path=\"/nutrition\" element={<Nutrition />} />\n        <Route path=\"/workouts\" element={<Workouts />} />\n        <Route path=\"/progress\" element={<Progress />} />\n        <Route path=\"/profile\" element={<Profile />} />\n      </Routes>\n    </div>\n  );\n};\n\nexport default App;"
+        },
+        {
+          "type": "directory",
+          "name": "components",
+          "children": [
+            {
+              "type": "file",
+              "name": "Navbar.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Navbar = () => {\n    return (\n        <div data-curate-edit-id=\"44c3cd8a-5c98-4597-83a7-bd046acc8760\" className=\"navbar bg-primary text-primary-content\">\n            <div data-curate-edit-id=\"38791df1-3c63-4213-aada-aae2e2cadae8\" className=\"navbar-start\">\n                <div data-curate-edit-id=\"cc43f784-6684-46c9-aa3c-baedec3f526f\" className=\"dropdown\">\n                    <div data-curate-edit-id=\"94d5c48c-71a9-49b1-afdb-c7e5e6dec780\" tabIndex={0} role=\"button\" className=\"btn btn-ghost lg:hidden\">\n                        <svg data-curate-edit-id=\"c557bbcd-e83b-470c-8af1-3eadc03d06ea\" xmlns=\"http://www.w3.org/2000/svg\" className=\"h-5 w-5\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path data-curate-edit-id=\"416f2333-e0a4-43dd-b738-90034aad04cb\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" d=\"M4 6h16M4 12h8m-8 6h16\" /></svg>\n                    </div>\n                    <ul data-curate-edit-id=\"096f038f-6e4c-445a-835a-2f8fa3a7d185\" tabIndex={0} className=\"menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52\">\n                        <li data-curate-edit-id=\"86ad765a-eabd-4952-b09e-59b73268d8f5\"><Link data-curate-edit-id=\"8461c279-15fe-43fa-a873-d6a8580ce149\" to=\"/\">Home</Link></li>\n                        <li data-curate-edit-id=\"ee4a3091-4e60-47e5-a1fe-fcbde0099fdd\"><Link data-curate-edit-id=\"8c07c323-7156-4cdc-8149-1708f1424037\" to=\"/dashboard\">Dashboard</Link></li>\n                        <li data-curate-edit-id=\"c242c999-6d77-45b0-b2f4-14e48a8f1bb8\"><Link data-curate-edit-id=\"0f5978a6-3702-4b75-8e04-fe4b5a6663ed\" to=\"/nutrition\">Nutrition</Link></li>\n                        <li data-curate-edit-id=\"3a5f4f9d-63dc-46a6-9941-3d9f0725143b\"><Link data-curate-edit-id=\"baf76314-e241-4fa8-a913-772b5c138098\" to=\"/workouts\">Workouts</Link></li>\n                        <li data-curate-edit-id=\"df8da4cd-9989-404a-af2b-62a3e5103692\"><Link data-curate-edit-id=\"7e570e96-6d1b-4d3e-9489-3e9f910c987b\" to=\"/progress\">Progress</Link></li>\n                        <li data-curate-edit-id=\"0f19b9c6-1322-4994-8b0e-b0ebe95cb8c6\"><Link data-curate-edit-id=\"55e02128-1465-456e-82ec-06c1cbb00d12\" to=\"/profile\">Profile</Link></li>\n                    </ul>\n                </div>\n                <Link data-curate-edit-id=\"34f52341-2769-4443-885b-90de1819c6b0\" to=\"/\" className=\"btn btn-ghost text-xl\">Fitness Tracker</Link>\n            </div>\n            <div data-curate-edit-id=\"60c3c10b-810e-4927-af1a-c7cc45c1ba61\" className=\"navbar-center hidden lg:flex\">\n                <ul data-curate-edit-id=\"cb262ac0-0908-4f4a-baad-7ea4bbf200a3\" className=\"menu menu-horizontal px-1\">\n                    <li data-curate-edit-id=\"142ecdaa-f8fe-4e06-9003-dc138cb7219a\"><Link data-curate-edit-id=\"ceabd324-d978-4542-8985-a92f50a12438\" to=\"/dashboard\">Dashboard</Link></li>\n                    <li data-curate-edit-id=\"aec53f7c-c7e4-48a8-b6bf-75d038a90f17\"><Link data-curate-edit-id=\"b1ad9447-8d89-4e27-9c36-d8fbe54eb1e4\" to=\"/nutrition\">Nutrition</Link></li>\n                    <li data-curate-edit-id=\"5ee0b008-1828-4cbd-9445-5cf8677a6165\"><Link data-curate-edit-id=\"637dd31f-d5ce-4d15-b56b-8c46db2514bc\" to=\"/workouts\">Workouts</Link></li>\n                    <li data-curate-edit-id=\"ad9f2e67-ffd4-41c9-b24c-4d81a8be3b45\"><Link data-curate-edit-id=\"3b5522ad-d9ee-4770-be6c-a155e4bf4fb4\" to=\"/progress\">Progress</Link></li>\n                    <li data-curate-edit-id=\"9fb2ffe1-04bc-4fa7-81d8-f3f3f01b5357\"><Link data-curate-edit-id=\"e5fb4003-4aae-47dd-b422-0df35088a80a\" to=\"/profile\">Profile</Link></li>\n                </ul>\n            </div>\n        </div>\n    );\n};\n\nexport default Navbar;"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "pages",
+          "children": [
+            {
+              "type": "file",
+              "name": "Home.jsx",
+              "content": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nconst Home = () => {\n    return (\n        <div data-curate-edit-id=\"4a051ae9-cbf2-43ef-afa5-71218c03f9e3\" className=\"hero min-h-screen\" style={{ backgroundImage: \"url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')\" }}>\n            <div data-curate-edit-id=\"3bdfc204-7aae-46cf-952a-bf9317ab598a\" className=\"hero-overlay bg-opacity-60\"></div>\n            <div data-curate-edit-id=\"5c2e59a4-3986-428b-b59a-2b5426c39199\" className=\"hero-content text-center text-neutral-content\">\n                <div data-curate-edit-id=\"a526add8-f54a-4b0a-a9bc-f065d2f8cf53\" className=\"max-w-md\">\n                    <h1 data-curate-edit-id=\"542d3ecd-9d1e-422d-a965-3a2e89b9f2c2\" className=\"mb-5 text-5xl font-bold\">Track Your Fitness Journey</h1>\n                    <p data-curate-edit-id=\"7dbf2d9d-fd7d-45d8-ba31-42f2bf3cf3e1\" className=\"mb-5\">Your all-in-one solution for tracking nutrition, workouts, and progress. Start your fitness journey today!</p>\n                    <Link data-curate-edit-id=\"953274fc-b9be-4f76-b9db-3c33b5af8220\" to=\"/dashboard\" className=\"btn btn-primary\">Get Started</Link>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Home;"
+            },
+            {
+              "type": "file",
+              "name": "Dashboard.jsx",
+              "content": "import React from 'react';\n\nconst Dashboard = () => {\n    return (\n        <div data-curate-edit-id=\"b166e46e-8eec-4595-9add-3e609dfffded\" className=\"p-4 max-w-7xl mx-auto\">\n            <h2 data-curate-edit-id=\"b4cfa83f-e164-4c69-bddb-b5bdccd6a76b\" className=\"text-3xl font-bold mb-6\">Dashboard</h2>\n            <div data-curate-edit-id=\"e657bfe7-ef1f-497f-8b69-b3ac014ee4f5\" className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n                <div data-curate-edit-id=\"894213ca-8b5c-41a4-a7a5-bae1ad9d3ccf\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"9cf679a6-612e-4404-99f7-5e318d83458a\" className=\"card-body\">\n                        <h3 data-curate-edit-id=\"976c5116-0319-4f52-b7ad-f882d6d10a8b\" className=\"card-title\">Daily Calories</h3>\n                        <div data-curate-edit-id=\"d7721a2c-e392-4825-8067-42b774153812\" className=\"radial-progress text-primary\" style={{\"--value\": 70}}>70%</div>\n                        <p data-curate-edit-id=\"b1998409-3d97-46ee-83ad-8992a7f35eea\">1400/2000 kcal consumed</p>\n                    </div>\n                </div>\n                <div data-curate-edit-id=\"e6fd6cd3-6ad9-4ae3-b5b6-13f814e2c1c7\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"7e4c2247-ee12-4e28-b9df-ca138ccf8298\" className=\"card-body\">\n                        <h3 data-curate-edit-id=\"b11c2b25-ab46-48ea-b717-f9567517bfc7\" className=\"card-title\">Workout Progress</h3>\n                        <p data-curate-edit-id=\"e5862539-6a76-4d93-9548-39723b3ef324\">3/5 workouts completed this week</p>\n                        <progress data-curate-edit-id=\"ebfcd002-5766-474b-b54f-d1eaca2cb959\" className=\"progress progress-primary\" value=\"60\" max=\"100\"></progress>\n                    </div>\n                </div>\n                <div data-curate-edit-id=\"b102d3e8-345a-4dd1-8ecb-19184eada6de\" className=\"card bg-base-200\">\n                    <div data-curate-edit-id=\"0b03d18a-8c54-43c4-bf96-5cf57dbc7e7c\" className=\"card-body\">\n                        <h3 data-curate-edit-id=\"7d9b2a17-b815-4fb0-ac80-d17ffc83bc25\" className=\"card-title\">Goals</h3>\n                        <ul data-curate-edit-id=\"f887e4a2-9799-479c-a3e0-c4f5a76dcd4b\">\n                            <li data-curate-edit-id=\"0b6d641c-e77d-4163-9121-81e375b89df8\">Weight Goal: 150 lbs</li>\n                            <li data-curate-edit-id=\"88d14411-9eee-49e9-b35b-38906de446b1\">Daily Steps: 10,000</li>\n                            <li data-curate-edit-id=\"42c0aadb-a3b9-46fd-a0a0-9f708ab5c122\">Weekly Workouts: 5</li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n    );\n};\n\nexport default Dashboard;"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

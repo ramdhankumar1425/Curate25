@@ -27,8 +27,6 @@ function Sidebar() {
         setIsDragging,
         viewPort,
         setViewPort,
-        handleUndo,
-        handleRedo,
         handleDownload,
     } = useProject();
 
@@ -116,24 +114,6 @@ function Sidebar() {
                 title="Mobile view"
             >
                 <Smartphone />
-            </button>
-
-            <hr className="w-10 border-gray-700" />
-
-            <button
-                className="p-2 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
-                onClick={() => handleUndo()}
-                title="Undo"
-            >
-                <Undo />
-            </button>
-
-            <button
-                className="p-2 bg-gray-900 hover:bg-gray-950 duration-150 rounded-md cursor-pointer"
-                onClick={() => handleRedo()}
-                title="Redo"
-            >
-                <Redo />
             </button>
 
             <hr className="w-10 border-gray-700" />
