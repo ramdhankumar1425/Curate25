@@ -26,7 +26,7 @@ This project is built to reduce the technical barriers faced by non-technical us
 
 📺 [Demo Video Link](https://drive.google.com/file/d/1CjHo5Weh7G0gfPRnZY0XQ4LUUxCA_SRz/view?usp=sharing)
 
----
+ ---
 
 ## 🔗 Deployed Client Link
 
